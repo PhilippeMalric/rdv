@@ -63,6 +63,7 @@ const ROUTES: Routes = [
     NCMComponent
   ],
   imports: [
+    PanelModule,
     FormsModule,
     DropdownModule,
     DialogModule,
