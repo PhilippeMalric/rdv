@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 
-import { NgModel } from '@angular/forms';
 
 import { DataScrollerModule } from 'primeng/primeng';
 import { DataViewModule } from 'primeng/dataview';
@@ -25,6 +24,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NCMComponent } from './ncm/ncm.component';
 
 import { NCMService } from './service/ncm.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -52,7 +52,6 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    NgModel,
     AppComponent,
     NavBarComponent,
     HomeComponent,
@@ -63,6 +62,7 @@ const ROUTES: Routes = [
     NCMComponent
   ],
   imports: [
+    FormsModule,
     DropdownModule,
     DialogModule,
     DataViewModule,
