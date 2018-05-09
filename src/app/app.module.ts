@@ -15,6 +15,7 @@ import { DataScrollerModule } from 'primeng/primeng';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { PanelModule } from 'primeng/panel';
 
 import { HomeComponent } from './home/home.component';
 import { DocComponent } from './doc/doc.component';
