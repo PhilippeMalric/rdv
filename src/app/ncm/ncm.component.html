@@ -38,14 +38,14 @@
         </div>
       </div>
       <div class="ui-g-12 ui-md-1 search-icon">
-        <button pButton type="button" icon="fa-search" (click)="selecNncm($event, ncm)"></button>
+        <button pButton type="button" icon="fa-search" (click)="selectNcm($event, ncm)"></button>
       </div>
     </div>
   </ng-template>
   <ng-template let-ncm pTemplate="gridItem">
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
       <p-panel [header]="ncm.vin" [style]="{'text-align':'center'}">
-        <img src="assets/imagestest.png" width="60">
+        <img src="assets/images/test.png" width="60">
         <div class="ncm-detail">{{ncm._id}} - {{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
         <button pButton type="button" icon="fa-search" (click)="selectNcm($event, ncm)" style="margin-top:0"></button>
