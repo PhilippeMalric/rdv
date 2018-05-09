@@ -8,7 +8,7 @@
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
           <div style="position:relative">
-            <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
+            <input type="search" pInputText placeholder="Rechercher par Id" (keyup)="dv.filter($event.target.value)">
           </div>
         </div>
         <div class="ui-g-6 ui-md-4" style="text-align:right">
@@ -24,16 +24,16 @@
       </div>
       <div class="ui-g-12 ui-md-8 ncm-details">
         <div class="ui-g">
-          <div class="ui-g-2 ui-sm-6">Vin: </div>
+          <div class="ui-g-2 ui-sm-6">Id: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm._id}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">Year: </div>
+          <div class="ui-g-2 ui-sm-6">Écart type: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.stdDev}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">Brand: </div>
+          <div class="ui-g-2 ui-sm-6">Score moyen: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.scoreMoy}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">Color: </div>
+          <div class="ui-g-2 ui-sm-6">Nombre d'occurence: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.count}}</b></div>
         </div>
       </div>
@@ -44,7 +44,7 @@
   </ng-template>
   <ng-template let-ncm pTemplate="gridItem">
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
-      <p-panel [header]="ncm.vin" [style]="{'text-align':'center'}">
+      <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
         <img src="assets/images/test.png" width="60">
         <div class="ncm-detail">{{ncm._id}} - {{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
@@ -54,21 +54,21 @@
   </ng-template>
 </p-dataView>
 
-<p-dialog header="NCM Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225" (onAfterHide)="onDialogHide()">
+<p-dialog header="NCM Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
   <div class="ui-g" *ngIf="selectedNcm">
     <div class="ui-g-12" style="text-align:center">
       <img src="assets/images/test.png">
     </div>
-    <div class="ui-g-4">Vin: </div>
+    <div class="ui-g-4">Id: </div>
     <div class="ui-g-8">{{selectedNcm._id}}</div>
 
-    <div class="ui-g-4">Brand: </div>
+    <div class="ui-g-4">Écart type: </div>
     <div class="ui-g-8">{{selectedNcm.stdDev}}</div>
 
-    <div class="ui-g-4">Year: </div>
+    <div class="ui-g-4">Score moyen: </div>
     <div class="ui-g-8">{{selectedNcm.scoreMoy}}</div>
 
-    <div class="ui-g-4">Color: </div>
+    <div class="ui-g-4">Nombre d'occurence: </div>
     <div class="ui-g-8">{{selectedNcm.count}}</div>
   </div>
 </p-dialog>
