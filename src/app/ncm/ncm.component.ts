@@ -38,9 +38,9 @@ export class NCMComponent implements OnInit {
   ngOnInit() {
     this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms.push.apply(this.ncms, ncms); this.skip += this.limit; });
     this.sortOptions = [
-      { label: 'Nombre (ordre croissant)', value: '!count' },
-      { label: 'Nombre (ordre décroissant)', value: 'count' },
-      { label: 'Écart Type', value: '!stdDev' }
+      { label: 'Nombre (ordre croissant)', value: 'count' },
+      { label: 'Nombre (ordre décroissant)', value: '!count' },
+      { label: 'Écart Type', value: 'stdDev' }
     ];
   }
 
