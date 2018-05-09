@@ -13,6 +13,7 @@ import { Routes, RouterModule, Router, RouterLink, RouterLinkActive } from '@ang
 import { NgModel } from '@angular/forms';
 
 import { DataScrollerModule } from 'primeng/primeng';
+import { DataViewModule } from 'primeng/dataview';
 
 import { HomeComponent } from './home/home.component';
 import { DocComponent } from './doc/doc.component';
@@ -59,6 +60,7 @@ const ROUTES: Routes = [
     NCMComponent
   ],
   imports: [
+    DataViewModule,
     DataScrollerModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,

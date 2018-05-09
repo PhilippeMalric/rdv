@@ -12,7 +12,7 @@ import { Ncm } from '../classDef/Ncm';
 })
 export class NCMComponent implements OnInit {
 
-  ncms: any[] = [];
+  ncms: Ncm[] = [];
 
   skip = 0;
   limit = 10;
@@ -36,7 +36,7 @@ export class NCMComponent implements OnInit {
 
 
   ngOnInit() {
-    this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: any[]) => { this.ncms = ncms; this.skip += this.limit; });
+    this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms.push.apply(this.ncms, ncms); this.skip += this.limit; });
     this.sortOptions = [
       { label: 'Nombre (ordre croissant)', value: '!count' },
       { label: 'Nombre (ordre décroissant)', value: 'count' },
@@ -47,7 +47,7 @@ export class NCMComponent implements OnInit {
   loadData(event) {
     //event.first = First row offset
     //event.rows = Number of rows per page
-    this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: any[]) => { this.ncms = ncms; this.skip += this.limit; });
+    this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms.push.apply(this.ncms, ncms); this.skip += this.limit; });
   }
 
   selectNcm(event: Event, ncm: Ncm) {
