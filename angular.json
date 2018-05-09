@@ -5,7 +5,6 @@
   "projects": {
     "angularRDV": {
       "root": "",
-      "outDir": "dist",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
@@ -14,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angularRDV",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
