@@ -52,6 +52,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
+    NgModel,
     AppComponent,
     NavBarComponent,
     HomeComponent,
