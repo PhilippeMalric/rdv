@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
+    "primeng": "^5.2.6",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
@@ -51,5 +53,3 @@
     "npm": "6.0.0"
   }
 }
-
-
