@@ -198,23 +198,23 @@ export class NCMComponent implements OnInit {
 
     // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
     for (let i of this.range(index2eLink2, l_s1 -1)) {
-      links.push(this.linkGen(i, i + 1, 2))
+      links.push(this.linkGen(i, i + 1, 3))
     }
 
     // troisieme segment
     for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
-      links.push(this.linkGen(i, i + 1, 2))
+      links.push(this.linkGen(i, i + 1, 4))
     }
 
     // quatrieme segment
 
     for (let i of this.range(l_s1 + s21.length - 2, l_s1 + l_s2 - 3)) {
-      links.push(this.linkGen(i, i + 1, 2))
+      links.push(this.linkGen(i, i + 1, 5))
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2 , 1))
-    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3 , 1))
+    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2 , 6))
+    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3 , 6))
 
     console.log("Links : ", links)
 
