@@ -19,6 +19,8 @@ export class NCMComponent implements OnInit {
   cmin = 2;
   stdDevMax = 10
 
+  ncm1_Only_seq = ""
+  ncm2_Only_seq = ""
 
   sortOptions: SelectItem[];
 
@@ -48,6 +50,7 @@ export class NCMComponent implements OnInit {
     //event.first = First row offset
     //event.rows = Number of rows per page
     this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms.push.apply(this.ncms, ncms); this.skip += this.limit; });
+
   }
 
   selectNcm(event: Event, ncm: Ncm) {
@@ -55,6 +58,11 @@ export class NCMComponent implements OnInit {
     this.displayDialog = true;
     event.preventDefault();
   }
+
+  processNcm(event: Event, ncm: Ncm) {
+    this.fromMergedToGraphLayout(ncm._id)
+  }
+
 
   onSortChange(event) {
     let value = event.value;
@@ -80,6 +88,20 @@ export class NCMComponent implements OnInit {
       let stringSplited = merged.split("&")
       let ncm1 = stringSplited[0]
       let ncm2 = stringSplited[1]
+      let ncm1_splitted = ncm1.split("-")
+      let ncm2_splitted = ncm2.split("-")
+      
+      if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
+
+        console.log("ncm1 : ", ncm1_splitted[1], ncm1_splitted[2])
+        this.ncm1_Only_seq = ncm1_splitted[1] + ":"  + ncm1_splitted[2]
+      }
+
+      if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1) {
+        console.log("ncm2 : ", ncm2_splitted[1], ncm2_splitted[2])
+        this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_splitted[2]
+      }
+
 
     }
 
