@@ -157,7 +157,7 @@ export class NCMComponent implements OnInit {
 
     }
 
-    for (let c of s12.split("").slice(1)) {
+    for (let c of s21.split("").slice(1)) {
 
       nodes.push(this.nodeGen(c, 1))
 
@@ -192,7 +192,7 @@ export class NCMComponent implements OnInit {
     // lien phosphate
 
     // premier segment
-    for (let i of this.range(0, index2eLink1 -1)) {
+    for (let i of this.range(0, index2eLink1)) {
       links.push(this.linkGen(i,i+1, 2))
     }
 
@@ -208,7 +208,7 @@ export class NCMComponent implements OnInit {
 
     // quatrieme segment
 
-    for (let i of this.range(l_s1 + s21.length - 2, l_s1 + l_s2 - 3)) {
+    for (let i of this.range(l_s1 + s21.length, l_s1 + l_s2 - 2)) {
       links.push(this.linkGen(i, i + 1, 5))
     }
 
