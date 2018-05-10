@@ -171,6 +171,7 @@ export class NCMComponent implements OnInit {
 
   }
 
+  range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start);
 
   createLinks2 = function (s11: String, s12: String, s21: String, s22: String) {
 
@@ -180,12 +181,40 @@ export class NCMComponent implements OnInit {
     let l_s1 = s11.length + s12.length
     let l_s2 = s21.length + s22.length
 
-    let index2eLink1 = s11.length
-    let index2eLink2 = s11.length + 1
+    let index2eLink1 = s11.length - 1
+    let index2eLink2 = s11.length 
 
+    // lien des paires de bases
     links.push(this.linkGen(0, l_s1,1))
     links.push(this.linkGen(index2eLink1, index2eLink2,1))
-    links.push(this.linkGen(l_s1 + s21.length, l_s1 + s21.length + 1,1))
+    links.push(this.linkGen(l_s1 + s21.length - 2, l_s1 + s21.length - 1, 1))
+
+    // lien phosphate
+
+    // premier segment
+    for (let i of this.range(0, index2eLink1 -1)) {
+      links.push(this.linkGen(i,i+1, 2))
+    }
+
+    // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
+    for (let i of this.range(index2eLink2, l_s1 -1)) {
+      links.push(this.linkGen(i, i + 1, 2))
+    }
+
+    // troisieme segment
+    for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
+      links.push(this.linkGen(i, i + 1, 2))
+    }
+
+    // quatrieme segment
+
+    for (let i of this.range(l_s1 + s21.length - 1, l_s1 + l_s2 - 2)) {
+      links.push(this.linkGen(i, i + 1, 2))
+    }
+
+    // connecter les deux ncm
+    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 1 , 1))
+    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 2 , 1))
 
     console.log("Links : ", links)
 
