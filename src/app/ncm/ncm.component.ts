@@ -15,7 +15,7 @@ export class NCMComponent implements OnInit {
   ncms: Ncm[] = [];
 
   skip = 0;
-  limit = 10;
+  limit = 20;
   cmin = 2;
   stdDevMax = 10
 
@@ -111,8 +111,6 @@ export class NCMComponent implements OnInit {
 
         console.log("ncm2 : ", ncm2_splitted[1], ncm2_end)
         this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_end
-
-
       }
 
       if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1 && ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
@@ -153,18 +151,18 @@ export class NCMComponent implements OnInit {
     }
     for (let c of s12.split("")) {
 
-      nodes.push(this.nodeGen(c, 1))
+      nodes.push(this.nodeGen(c, 2))
 
     }
 
     for (let c of s21.split("").slice(1)) {
 
-      nodes.push(this.nodeGen(c, 1))
+      nodes.push(this.nodeGen(c, 3))
 
     }
     for (let c of s22.split("").slice(0, s22.length - 1)) {
 
-      nodes.push(this.nodeGen(c, 1))
+      nodes.push(this.nodeGen(c, 4))
 
     }
     console.log("nodes : ", nodes)
