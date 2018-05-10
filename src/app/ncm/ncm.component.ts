@@ -83,6 +83,9 @@ export class NCMComponent implements OnInit {
 
   fromMergedToGraphLayout = function (merged: String) {
 
+    let graphLayout = {}
+
+
     if (merged.indexOf("&") != -1) {
 
       let stringSplited = merged.split("&")
@@ -90,20 +93,115 @@ export class NCMComponent implements OnInit {
       let ncm2 = stringSplited[1]
       let ncm1_splitted = ncm1.split("-")
       let ncm2_splitted = ncm2.split("-")
-      
+
+
+      let ncm1_end = ""
       if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
 
-        console.log("ncm1 : ", ncm1_splitted[1], ncm1_splitted[2])
-        this.ncm1_Only_seq = ncm1_splitted[1] + ":"  + ncm1_splitted[2]
+        ncm1_end = ncm1_splitted[2].split("_")[0]
+
+        console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
+        this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
       }
 
+      let ncm2_end = ""
       if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1) {
-        console.log("ncm2 : ", ncm2_splitted[1], ncm2_splitted[2])
-        this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_splitted[2]
+
+        ncm2_end = ncm1_splitted[2].split("_")[0]
+
+        console.log("ncm2 : ", ncm2_splitted[1], ncm2_end)
+        this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_end
+
+
       }
 
+      if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1 && ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
+        graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end)
+      }
+    }
+
+  }
+
+    deuxNcm_tx_togL = function (s11: String, s12: String, s21: String, s22: String) {
+
+      let nodeTab = []
+      let linkTab = []
+      console.log("s : ", s11, s12, s21, s22)
+
+
+      nodeTab = this.createNode(s11, s12, s21, s22)
+      linkTab = this.createLinks(s11, s12, s21, s22)
+
+
+      let d = { "nodes": nodeTab, "links": linkTab }
+      return d
+
+
+  }
+
+
+  // --------------- fonctions utiles
+  createNodes2 = function (s11: String, s12: String, s21: String, s22: String) {
+    let nodes = []
+
+
+    console.log("nodes creation")
+    for (let c of s11.split("")) {
+
+      nodes.push(this.nodeGen(c,1))
 
     }
+    for (let c of s12.split("")) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+
+    for (let c of s12.split("").slice(1)) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+    for (let c of s22.split("").slice(0, s22.length - 1)) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+    console.log("nodes : ", nodes)
+
+  }
+
+
+  createLinks = function (s11: String, s12: String, s21: String, s22: String) {
+
+    let links = []
+    console.log("Links creation")
+
+    let l_s1 = s11.length + s12.length
+    let l_s2 = s21.length + s22.length
+
+    let index2eLink1 = s11.length
+    let index2eLink2 = s11.length + 1
+
+    links.push(this.linkGen(0, l_s1,1))
+    links.push(this.linkGen(index2eLink1, index2eLink2,1))
+    links.push(this.linkGen(l_s1 + s21.length, l_s1 + s21.length + 1,1))
+
+    console.log("Links : ", links)
+
+    return links
+
+  }
+
+  nodeGen = function (name,group) {
+
+    return {"id" : name,"group": group}
+
+  }
+
+  linkGen = function (source,target,value ) {
+
+    return { "source": source, "target": target, "value":value }
 
   }
 
