@@ -129,8 +129,8 @@ export class NCMComponent implements OnInit {
       console.log("s : ", s11, s12, s21, s22)
 
 
-      nodeTab = this.createNode(s11, s12, s21, s22)
-      linkTab = this.createLinks(s11, s12, s21, s22)
+      nodeTab = this.createNodes2(s11, s12, s21, s22)
+      linkTab = this.createLinks2(s11, s12, s21, s22)
 
 
       let d = { "nodes": nodeTab, "links": linkTab }
@@ -172,7 +172,7 @@ export class NCMComponent implements OnInit {
   }
 
 
-  createLinks = function (s11: String, s12: String, s21: String, s22: String) {
+  createLinks2 = function (s11: String, s12: String, s21: String, s22: String) {
 
     let links = []
     console.log("Links creation")
