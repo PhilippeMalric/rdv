@@ -107,7 +107,7 @@ export class NCMComponent implements OnInit {
       let ncm2_end = ""
       if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1) {
 
-        ncm2_end = ncm1_splitted[2].split("_")[0]
+        ncm2_end = ncm2_splitted[2].split("_")[0]
 
         console.log("ncm2 : ", ncm2_splitted[1], ncm2_end)
         this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_end
@@ -160,6 +160,7 @@ export class NCMComponent implements OnInit {
       nodes.push(this.nodeGen(c, 3))
 
     }
+
     for (let c of s22.split("").slice(0, s22.length - 1)) {
 
       nodes.push(this.nodeGen(c, 4))
