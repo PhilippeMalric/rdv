@@ -1,10 +1,10 @@
 <p-dataView #dv [value]="ncms" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand"
-            [sortField]="sortField" [sortOrder]="sortOrder">
+            [sortField]="sortField" [sortOrder]="sortOrder" (onLazyLoad)="loadData($event)">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-4">
-          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
           <div style="position:relative">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="ui-g-12 ui-md-1 search-icon">
-        <p-button label="Détail"  icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+        <p-button label="Détails"  icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </div>
     </div>
   </ng-template>
@@ -48,7 +48,7 @@
         <img src="assets/images/test.png" width="60">
         <div class="ncm-detail">{{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
-        <p-button label="Détail" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+        <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </p-panel>
     </div>
   </ng-template>

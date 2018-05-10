@@ -73,5 +73,17 @@ export class NCMComponent implements OnInit {
     this.selectedNcm = null;
   }
 
+  fromMergedToGraphLayout = function (merged: String) {
+
+    if (merged.indexOf("&") != -1) {
+
+      let stringSplited = merged.split("&")
+      let ncm1 = stringSplited[0]
+      let ncm2 = stringSplited[1]
+
+    }
+
+  }
+
 }
 
