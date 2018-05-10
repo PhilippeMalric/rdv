@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="ui-g-12 ui-md-1 search-icon">
-        <button pButton type="button" icon="fa-search" (click)="selectNcm($event, ncm)"></button>
+        <p-button label="Détail"  icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </div>
     </div>
   </ng-template>
@@ -48,8 +48,8 @@
         <img src="assets/images/test.png" width="60">
         <div class="ncm-detail">{{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
-        <button pButton type="button" (click)="selectNcm($event, ncm)" style="margin-top:0"><i class="fa fa-search" ng-show="ppt.Swipes != null"></button>
-</p-panel>
+        <p-button label="Détail" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+      </p-panel>
     </div>
   </ng-template>
 </p-dataView>
