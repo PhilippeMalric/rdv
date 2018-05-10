@@ -185,7 +185,7 @@ export class NCMComponent implements OnInit {
     let index2eLink2 = s11.length 
 
     // lien des paires de bases
-    links.push(this.linkGen(0, l_s1,1))
+    links.push(this.linkGen(0, l_s1 - 1,1))
     links.push(this.linkGen(index2eLink1, index2eLink2,1))
     links.push(this.linkGen(l_s1 + s21.length - 2, l_s1 + s21.length - 1, 1))
 
@@ -208,13 +208,13 @@ export class NCMComponent implements OnInit {
 
     // quatrieme segment
 
-    for (let i of this.range(l_s1 + s21.length - 1, l_s1 + l_s2 - 2)) {
+    for (let i of this.range(l_s1 + s21.length - 2, l_s1 + l_s2 - 3)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 1 , 1))
-    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 2 , 1))
+    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2 , 1))
+    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3 , 1))
 
     console.log("Links : ", links)
 
