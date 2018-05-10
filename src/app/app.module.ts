@@ -16,6 +16,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
 
 import { HomeComponent } from './home/home.component';
 import { DocComponent } from './doc/doc.component';
@@ -63,6 +64,7 @@ const ROUTES: Routes = [
     NCMComponent
   ],
   imports: [
+    ButtonModule,
     PanelModule,
     FormsModule,
     DropdownModule,
