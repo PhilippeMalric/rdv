@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NCMService } from '../service/ncm.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { Ncm } from '../classDef/Ncm';
-
+import * as d3 from 'd3';
 
 
 @Component({
@@ -132,6 +132,20 @@ export class NCMComponent implements OnInit {
 
 
       let d = { "nodes": nodeTab, "links": linkTab }
+
+
+      this.height = 200
+      this.width = 200
+
+      d3.selectAll(".d3-chart")
+        .attr('width', this.width)
+        .attr('height', this.height)
+          .selectAll("#circle").append("circle")
+          .attr("cx", function (d) { return 100; })
+          .attr("cy", function (d) { return 100; })
+          .attr("r", function (d) { return 100; })
+          .style("fill", function (d) { return "red"; });
+
       return d
 
 

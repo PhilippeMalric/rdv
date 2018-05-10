@@ -21,6 +21,7 @@
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
       <div class="ui-g-12 ui-md-3" style="text-align:center">
         <img src="assets/images/test.png">
+        <div class="d3-chart" #chart></div>
       </div>
       <div class="ui-g-12 ui-md-8 ncm-details">
         <div class="ui-g">
@@ -49,6 +50,7 @@
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
       <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
         <img src="assets/images/test.png" width="60">
+        <div class="d3-chart" #chart></div>
         <div class="ncm-detail">{{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>

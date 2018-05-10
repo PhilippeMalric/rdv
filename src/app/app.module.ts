@@ -29,6 +29,9 @@ import { NCMService } from './service/ncm.service';
 import { FormsModule } from '@angular/forms';
 
 
+import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
+
+
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -61,7 +64,8 @@ const ROUTES: Routes = [
     ViewerComponent,
     AboutComponent,
     PageNotFoundComponent,
-    NCMComponent
+    NCMComponent,
+    BarChartComponent
   ],
   imports: [
     ButtonModule,
