@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NCMService } from '../service/ncm.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { Ncm } from '../classDef/Ncm';
-import * as d3 from 'd3';
+import { Ncm } from '../objectDef/Ncm';
 
 
 @Component({
