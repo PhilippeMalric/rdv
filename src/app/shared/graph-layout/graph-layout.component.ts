@@ -3,8 +3,8 @@ import { Component, OnInit, ViewEncapsulation, OnChanges, ViewChild, ElementRef,
 import * as d3 from 'd3';
 
 
-import { Graph } from "../../classDef/Graph"
-import { Node } from "../../classDef/Node"
+import { Graph } from "../../classDef/Graph";
+import { Node } from "../../classDef/Node";
 
 
 
