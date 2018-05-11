@@ -1,4 +1,4 @@
-export class Link {
+export interface Link {
   target: Number;
   source: Number;
   value: Number;
