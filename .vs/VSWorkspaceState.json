@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\classDef",
+    "\\src\\app\\ncm",
+    "\\src\\app\\service",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\graph-layout",
+    "\\src\\assets"
+  ],
+  "SelectedNode": "\\src\\app\\classDef\\graph.ts",
+  "PreviewInSolutionExplorer": false
+}
