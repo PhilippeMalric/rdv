@@ -120,21 +120,24 @@ export class GraphLayoutComponent implements OnInit {
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
 
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    let color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    var simulation = d3.forceSimulation()
+    let simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id((d: Node) => { return d.id; }))
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
-    var link = svg.append("g")
+    let link = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
       .data(graph.links)
       .enter().append("line")
       .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
 
-    var node = svg.append("g")
+
+    console.log("nodes : ", graph.nodes)
+
+    let node = svg.append("g")
       .attr("class", "nodes")
       .selectAll("circle")
       .data(graph.nodes)
