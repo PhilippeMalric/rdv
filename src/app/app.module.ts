@@ -28,8 +28,9 @@ import { NCMComponent } from './ncm/ncm.component';
 import { NCMService } from './service/ncm.service';
 import { FormsModule } from '@angular/forms';
 
+import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
 
-import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
+
 
 
 
@@ -65,7 +66,8 @@ const ROUTES: Routes = [
     AboutComponent,
     PageNotFoundComponent,
     NCMComponent,
-    BarChartComponent
+    GraphLayoutComponent
+    
   ],
   imports: [
     ButtonModule,
