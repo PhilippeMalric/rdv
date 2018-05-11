@@ -1,6 +1,6 @@
+
 import { Component, OnInit, ViewEncapsulation, OnChanges, ViewChild, ElementRef, Input, } from '@angular/core';
 import * as d3 from 'd3';
-
 
 
 import { Graph } from "../../classDef/Graph"
