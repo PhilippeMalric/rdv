@@ -59,25 +59,27 @@ export class GraphLayoutComponent implements OnInit {
 
 
     let ncm1_end = ""
+    let pos = "";
     if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
 
       ncm1_end = ncm1_splitted[2].split("_")[0]
-
+      pos = ncm2_splitted[2].split("_")[1].split("pos")[0]
       console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
       this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
     }
 
-    let ncm2_end = ""
+    let ncm2_end = "";
     if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1) {
 
       ncm2_end = ncm2_splitted[2].split("_")[0]
+      
 
       console.log("ncm2 : ", ncm2_splitted[1], ncm2_end)
       this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_end
     }
 
     if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1 && ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
-      this.graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end)
+      this.graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end, pos)
     }
     else {
       this.createRedCircle()
@@ -103,14 +105,14 @@ export class GraphLayoutComponent implements OnInit {
   }
 
 
-  deuxNcm_tx_togL = function (s11: String, s12: String, s21: String, s22: String) {
+  deuxNcm_tx_togL = function (s11: String, s12: String, s21: String, s22: String, pos: string) {
 
     let nodeTab = []
     let linkTab = []
     console.log("s : ", s11, s12, s21, s22)
 
 
-    nodeTab = this.createNodes2(s11, s12, s21, s22)
+    nodeTab = this.createNodes2(s11, s12, s21, s22, pos)
     linkTab = this.createLinks2(s11, s12, s21, s22)
 
 
@@ -130,14 +132,14 @@ export class GraphLayoutComponent implements OnInit {
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink())
       .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
+      .force("center", d3.forceCenter(this.width , this.height ));
 
     let link = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
       .data(graph.links)
       .enter().append("line")
-      .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
+      .attr("stroke-width", function (d) { return d.value + 1 });
 
 
     console.log("nodes : ", graph.nodes)
@@ -197,7 +199,7 @@ export class GraphLayoutComponent implements OnInit {
 
 
   // --------------- fonctions utiles
-  createNodes2 = function (s11: String, s12: String, s21: String, s22: String) {
+  createNodes2 = function (s11: String, s12: String, s21: String, s22: String, pos: string) {
     let nodes = []
 
 
@@ -209,22 +211,24 @@ export class GraphLayoutComponent implements OnInit {
     }
     for (let c of s12.split("")) {
 
-      nodes.push(this.nodeGen(c, 2))
+      nodes.push(this.nodeGen(c, 1))
 
     }
 
     for (let c of s21.split("").slice(1)) {
 
-      nodes.push(this.nodeGen(c, 3))
+      nodes.push(this.nodeGen(c, 1))
 
     }
 
     for (let c of s22.split("").slice(0, s22.length - 1)) {
 
-      nodes.push(this.nodeGen(c, 4))
+      nodes.push(this.nodeGen(c, 1))
 
     }
     console.log("nodes : ", nodes)
+
+    nodes[pos] = 2
 
     return nodes
 
@@ -257,23 +261,23 @@ export class GraphLayoutComponent implements OnInit {
 
     // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
     for (let i of this.range(index2eLink2, l_s1 - 1)) {
-      links.push(this.linkGen(i, i + 1, 3))
+      links.push(this.linkGen(i, i + 1, 2))
     }
 
     // troisieme segment
     for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
-      links.push(this.linkGen(i, i + 1, 4))
+      links.push(this.linkGen(i, i + 1, 2))
     }
 
     // quatrieme segment
 
     for (let i of this.range(l_s1 + s21.length, l_s1 + l_s2 - 2)) {
-      links.push(this.linkGen(i, i + 1, 5))
+      links.push(this.linkGen(i, i + 1, 2))
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2, 6))
-    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 6))
+    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2, 2))
+    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 2))
 
     console.log("Links : ", links)
 
