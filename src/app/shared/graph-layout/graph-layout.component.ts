@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnChanges, ViewChild, ElementRef, Input, } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges, ViewChild, ElementRef, Input, AfterViewInit } from '@angular/core';
 import * as d3 from 'd3';
 import { Graph } from '../../objectDef/Graph';
 import { Node } from '../../objectDef/Node';
@@ -9,7 +9,7 @@ import { Node } from '../../objectDef/Node';
   styleUrls: ['./graph-layout.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class GraphLayoutComponent implements OnInit {
+export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: String;
@@ -21,11 +21,9 @@ export class GraphLayoutComponent implements OnInit {
 
   ngOnInit() {
 
-    this.fromMergedToGraphLayout(this.data);
-   
   }
 
-  ngOnchange() {
+  ngAfterViewInit() {
 
     this.fromMergedToGraphLayout(this.data);
 
@@ -228,7 +226,7 @@ export class GraphLayoutComponent implements OnInit {
     }
     console.log("nodes : ", nodes)
 
-    nodes[pos].group = 2
+    nodes[Number(pos)].group = 2
 
     return nodes
 
