@@ -131,8 +131,8 @@ export class GraphLayoutComponent implements OnInit {
 
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink())
-      .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter(this.width , this.height ));
+      .force("charge", d3.forceManyBody(-5))
+      .force("center", d3.forceCenter(this.width/2 , this.height/2 ));
 
     let link = svg.append("g")
       .attr("class", "links")
