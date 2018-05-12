@@ -128,7 +128,7 @@ export class GraphLayoutComponent implements OnInit {
     let color = d3.scaleOrdinal(d3.schemeCategory10);
 
     let simulation = d3.forceSimulation()
-      .force("link", d3.forceLink().id((d: Node) => { return d.id; }))
+      .force("link", d3.forceLink())
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
