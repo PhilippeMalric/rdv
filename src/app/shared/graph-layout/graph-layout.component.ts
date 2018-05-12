@@ -62,6 +62,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
       ncm1_end = ncm1_splitted[2].split("_")[0]
       pos = ncm1_splitted[2].split("_")[1].split("pos")[1]
+      console.log("pos : ", pos)
       console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
       this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
     }
