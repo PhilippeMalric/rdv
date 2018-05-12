@@ -130,8 +130,8 @@ export class GraphLayoutComponent implements OnInit {
     let color = d3.scaleOrdinal(d3.schemeCategory10);
 
     let simulation = d3.forceSimulation()
-      .force("link", link => { return 10 })
-      .force("charge", node => { return -5})
+      .force("link", d3.forceLink().distance(5))
+      .force("charge", d3.forceManyBody().strength(-10))
       .force("center", d3.forceCenter(this.width/2 , this.height/2 ));
 
     let link = svg.append("g")
