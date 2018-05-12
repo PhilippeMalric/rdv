@@ -41,7 +41,7 @@
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </div>
       <div class="ui-g-12 ui-md-1" >
-        <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
+        <p-button label="Process" icon="fa fa-fw fa-check" (click)="ncm.fromMergedToGraphLayout(ncm._id)"></p-button>
       </div>
     </div>
 </ng-template>
@@ -52,7 +52,7 @@
         <div class="ncm-detail">{{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
-        <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
+        <p-button label="Process" icon="fa fa-fw fa-check" (click)="ncm.fromMergedToGraphLayout(ncm._id)"></p-button>
       </p-panel>
     </div>
   </ng-template>
