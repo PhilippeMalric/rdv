@@ -61,7 +61,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
 
       ncm1_end = ncm1_splitted[2].split("_")[0]
-      pos = ncm1_splitted[2].split("_")[1].split("pos")[0]
+      pos = ncm1_splitted[2].split("_")[1].split("pos")[1]
       console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
       this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
     }
@@ -116,6 +116,9 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     let graph = { "nodes": nodeTab, "links": linkTab }
 
+    if (!graph.nodes) {
+      graph = { "nodes": [], "links": [] }
+    }
 
     const element = this.chartContainer.nativeElement;
     this.height = 200
@@ -130,7 +133,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink().distance(20))
       .force("charge", d3.forceManyBody().strength(-10))
-      .force("center", d3.forceCenter(this.width/2 , this.height/2 ));
+      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
     let link = svg.append("g")
       .attr("class", "links")
@@ -148,14 +151,14 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .data(graph.nodes)
       .enter().append("circle")
       .attr("r", function (d) { return d.group * 5 + 5; })
-      .attr("fill", function (d) { return color(d.group); })
+      .attr("fill", function (d) { return color(d.group + 2); })
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended));
 
-    //node.append("title")
-      //.text(function (d) { return d.id; });
+    node.append("title")
+      .text(function (d) { return d.id; });
 
     simulation
       .nodes(graph.nodes)
@@ -163,35 +166,37 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     simulation.force<d3.ForceLink<any, any>>('link').links(graph.links);
 
+    
+  function ticked() {
+    link
+      .attr("x1", function (d) { return d.source.x; })
+      .attr("y1", function (d) { return d.source.y; })
+      .attr("x2", function (d) { return d.target.x; })
+      .attr("y2", function (d) { return d.target.y; });
 
-    function ticked() {
-      link
-        .attr("x1", function (d) { return d.source.x; })
-        .attr("y1", function (d) { return d.source.y; })
-        .attr("x2", function (d) { return d.target.x; })
-        .attr("y2", function (d) { return d.target.y; });
+    node
+      .attr("cx", function (d) { return d.x; })
+      .attr("cy", function (d) { return d.y; });
+  }
 
-      node
-        .attr("cx", function (d) { return d.x; })
-        .attr("cy", function (d) { return d.y; });
-    }
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
 
-    function dragstarted(d) {
-      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
 
-    function dragged(d) {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
-    }
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
 
-    function dragended(d) {
-      if (!d3.event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
-    }
+    
 
   }
 
