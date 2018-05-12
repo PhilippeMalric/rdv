@@ -20,11 +20,14 @@ export class GraphLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
+  }
+
+  ngOnchange() {
 
     this.fromMergedToGraphLayout(this.data);
 
   }
-
 
   fromMergedToGraphLayout = function (merged: String) {
 
