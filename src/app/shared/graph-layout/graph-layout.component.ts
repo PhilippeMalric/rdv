@@ -34,7 +34,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let graphLayout = {}
 
 
-    if (merged.indexOf("&-") != -1) {
+    if (merged.indexOf("&-") == -1) {
 
       this.manageMerged(merged)
 
