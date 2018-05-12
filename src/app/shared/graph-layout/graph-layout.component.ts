@@ -34,7 +34,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let graphLayout = {}
 
 
-    if (merged.indexOf("&-") == -1) {
+    if (merged.indexOf("&") != -1) {
 
       this.manageMerged(merged)
 
@@ -52,16 +52,19 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let stringSplited = merged.split("&")
     let ncm1 = stringSplited[0]
     let ncm2 = stringSplited[1]
-    let ncm1_splitted = ncm1.split("-")
-    let ncm2_splitted = ncm2.split("-")
-
+    let ncm1_splitted = []
+    let ncm2_splitted = []
+    if (ncm1 != "" && ncm2 != "") { 
+      ncm1_splitted = ncm1.split("-")
+      ncm2_splitted = ncm2.split("-")
+    }
 
     let ncm1_end = ""
     let pos = "";
     if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
 
       ncm1_end = ncm1_splitted[2].split("_")[0]
-      pos = ncm1_splitted[2].split("_")[1].split("pos")[1]
+      pos = ncm1_splitted[2].split("_")[2]
       console.log("pos : ", pos)
       console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
       this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
