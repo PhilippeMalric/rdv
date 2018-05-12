@@ -34,7 +34,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let graphLayout = {}
 
 
-    if (merged.indexOf("&") != -1) {
+    if (merged.indexOf("&-") != -1) {
 
       this.manageMerged(merged)
 
@@ -61,7 +61,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
 
       ncm1_end = ncm1_splitted[2].split("_")[0]
-      pos = ncm2_splitted[2].split("_")[1].split("pos")[0]
+      pos = ncm1_splitted[2].split("_")[1].split("pos")[0]
       console.log("ncm1 : ", ncm1_splitted[1], ncm1_end)
       this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end
     }
@@ -147,15 +147,15 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
-      .attr("r", function (d) { return d.group * 10; })
+      .attr("r", function (d) { return d.group * 5 + 5; })
       .attr("fill", function (d) { return color(d.group); })
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended));
 
-    node.append("title")
-      .text(function (d) { return d.id; });
+    //node.append("title")
+      //.text(function (d) { return d.id; });
 
     simulation
       .nodes(graph.nodes)
