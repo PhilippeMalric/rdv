@@ -221,6 +221,8 @@ export class GraphLayoutComponent implements OnInit {
     }
     console.log("nodes : ", nodes)
 
+    return nodes
+
   }
 
   range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start);
