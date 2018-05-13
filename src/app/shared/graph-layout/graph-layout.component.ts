@@ -16,7 +16,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   private width: number;
   private height: number;
   private graph: Graph;
-
+  private ncm1: string;
+  private ncm2: string;
   constructor() { }
 
   ngOnInit() {
@@ -50,13 +51,13 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   manageMerged = function (merged: String) {
 
     let stringSplited = merged.split("&")
-    let ncm1 = stringSplited[0]
-    let ncm2 = stringSplited[1]
+    this.ncm1 = stringSplited[0]
+    this.ncm2 = stringSplited[1]
     let ncm1_splitted = []
     let ncm2_splitted = []
-    if (ncm1 != "" && ncm2 != "") { 
-      ncm1_splitted = ncm1.split("-")
-      ncm2_splitted = ncm2.split("-")
+    if (this.ncm1 != "" && this.ncm2 != "") { 
+      ncm1_splitted = this.ncm1.split("-")
+      ncm2_splitted = this.ncm2.split("-")
     }
 
     let ncm1_end = ""
@@ -132,6 +133,20 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
 
+    svg.append("rect")
+      .style("fill", "red")
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("x", 5)
+      .attr("y", 5)
+      .on('click',  (d, i) => {
+
+        console.log("ncm1 : ", this.ncm1, " ncm2 : ", this.ncm2)
+        console.log("linkTab : ")
+        console.log( linkTab)
+    });
+
+
     let color = d3.scaleOrdinal(d3.schemeCategory10);
 
     let simulation = d3.forceSimulation()
@@ -161,6 +176,32 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         .on("drag", dragged)
         .on("end", dragended));
 
+    let text = svg.append('g').attr('class', 'label_ss_g')
+              .selectAll("text")
+              .data(graph.nodes)
+              .enter()
+              .append("text")
+              .style("cursor", "pointer")
+              .attr("id", "label")
+              .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+
+    text
+      .attr("x", (d, i) => {return graph.nodes[i].x - 8})
+      .attr("y", (d, i) => {return graph.nodes[i].y + 8 })
+      .text( (d) =>  { return d.id; })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "20px")
+      .attr("font-weigth", "bold")
+      .attr("fill", "black")
+      .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
     node.append("title")
       .text(function (d) { return d.id; });
 
@@ -181,6 +222,10 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     node
       .attr("cx", function (d) { return d.x; })
       .attr("cy", function (d) { return d.y; });
+
+    text
+      .attr("x", (d, i) => { return graph.nodes[i].x - 8 })
+      .attr("y", (d, i) => { return graph.nodes[i].y + 8 })
   }
 
   function dragstarted(d) {
@@ -278,12 +323,12 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     // quatrieme segment
 
-    for (let i of this.range(l_s1 + s21.length, l_s1 + l_s2 - 2)) {
+    for (let i of this.range(l_s1 + s21.length-1, l_s1 + l_s2 - 3)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2, 2))
+    links.push(this.linkGen(index2eLink1, l_s1, 2))
     links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 2))
 
     console.log("Links : ", links)

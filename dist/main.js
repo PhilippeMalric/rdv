@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  about works!\n</p>\n"
+module.exports = "<p>\r\n  about works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -285,7 +285,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  doc works!\n</p>\n"
+module.exports = "<p>\r\n  doc works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -348,7 +348,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  home works!\n</p>\n"
+module.exports = "<p>\r\n  home works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -474,7 +474,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-dataView #dv [value]=\"ncms\" [paginator]=\"true\" [rows]=\"20\" paginatorPosition=\"both\" filterBy=\"brand\"\r\n            [sortField]=\"sortField\" [sortOrder]=\"sortOrder\" [lazy]=\"true\" (onLazyLoad)=\"loadData($event)\">\r\n  <p-header>\r\n    <div class=\"ui-helper-clearfix\">\r\n      <div class=\"ui-g\">\r\n        <div class=\"ui-g-12 ui-md-4\">\r\n          <p-dropdown [options]=\"sortOptions\" [(ngModel)]=\"sortKey\" placeholder=\"Trier par\" (onChange)=\"onSortChange($event)\" [autoWidth]=\"false\" [style]=\"{'min-width':'15em'}\"></p-dropdown>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4 filter-container\">\r\n          <div style=\"position:relative\">\r\n            <input type=\"search\" pInputText placeholder=\"Rechercher par Id\" (keyup)=\"dv.filter($event.target.value)\">\r\n          </div>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4\" style=\"text-align:right\">\r\n          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </p-header>\r\n  <ng-template let-ncm pTemplate=\"listItem\">\r\n    <div class=\"ui-g\" style=\"padding: 2em;border-bottom: 1px solid #d9d9d9\">\r\n      <div class=\"ui-g-12 ui-md-3\" style=\"text-align:center\">\r\n        <app-graph-layout [data]=\"ncm._id\"></app-graph-layout>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-8 ncm-details\">\r\n        <div class=\"ui-g\">\r\n          <div class=\"ui-g-2 ui-sm-6\">Id: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm._id}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Écart type: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.stdDev}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Score moyen: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.scoreMoy}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Nombre d'occurence: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.count}}</b></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1 search-icon\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1\" >\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </div>\r\n    </div>\r\n</ng-template>\r\n  <ng-template let-ncm pTemplate=\"gridItem\">\r\n    <div style=\"padding:.5em\" class=\"ui-g-12 ui-md-3\">\r\n      <p-panel [header]=\"ncm._id\" [style]=\"{'text-align':'center'}\">\r\n        <app-graph-layout [data]=\"ncm._id\"></app-graph-layout>\r\n        <div class=\"ncm-detail\">{{ncm.scoreMoy}}</div>\r\n        <hr class=\"ui-widget-content\" style=\"border-top:0\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </p-panel>\r\n    </div>\r\n  </ng-template>\r\n</p-dataView>\r\n\r\n<p-dialog header=\"NCM Details\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\" width=\"400\" (onAfterHide)=\"onDialogHide()\">\r\n  <div class=\"ui-g\" *ngIf=\"selectedNcm\">\r\n    <div class=\"ui-g-12\" style=\"text-align:center\">\r\n      <img src=\"assets/images/test.png\">\r\n    </div>\r\n    <div class=\"ui-g-4\">Id: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm._id}}</div>\r\n\r\n    <div class=\"ui-g-4\">Écart type: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.stdDev}}</div>\r\n\r\n    <div class=\"ui-g-4\">Score moyen: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.scoreMoy}}</div>\r\n\r\n    <div class=\"ui-g-4\">Nombre d'occurence: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.count}}</div>\r\n  </div>\r\n</p-dialog>\r\n"
+module.exports = "<p-dataView #dv [value]=\"ncms\" [paginator]=\"true\" [rows]=\"5\" paginatorPosition=\"both\" filterBy=\"brand\"\r\n    [sortField]=\"sortField\" [sortOrder]=\"sortOrder\">\r\n  <p-header>\r\n    <div class=\"ui-helper-clearfix\">\r\n      <div class=\"ui-g\">\r\n        <div class=\"ui-g-12 ui-md-4\">\r\n          <p-dropdown [options]=\"sortOptions\" [(ngModel)]=\"sortKey\" placeholder=\"Trier par\" (onChange)=\"onSortChange($event)\" [autoWidth]=\"false\" [style]=\"{'min-width':'15em'}\"></p-dropdown>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4 filter-container\">\r\n          <div style=\"position:relative\">\r\n            <input type=\"search\" pInputText placeholder=\"Rechercher par Id\" (keyup)=\"dv.filter($event.target.value)\">\r\n          </div>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4\" style=\"text-align:right\">\r\n          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </p-header>\r\n  <ng-template let-ncm pTemplate=\"listItem\">\r\n    <div class=\"ui-g\" style=\"padding: 2em;border-bottom: 1px solid #d9d9d9\">\r\n      <div class=\"ui-g-12 ui-md-3\" style=\"text-align:center\">\r\n        <app-graph-layout *ngIf=\"ncm\" [data]=\"ncm._id\"></app-graph-layout>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-8 ncm-details\">\r\n        <div class=\"ui-g\">\r\n          <div class=\"ui-g-2 ui-sm-6\">Id: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm._id}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Écart type: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.stdDev}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Score moyen: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.scoreMoy}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Nombre d'occurence: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.count}}</b></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1 search-icon\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1\" >\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </div>\r\n    </div>\r\n</ng-template>\r\n  <ng-template let-ncm pTemplate=\"gridItem\">\r\n    <div style=\"padding:.5em\" class=\"ui-g-12 ui-md-3\">\r\n      <p-panel [header]=\"ncm._id\" [style]=\"{'text-align':'center'}\">\r\n        <app-graph-layout *ngIf=\"ncm\" [data]=\"ncm._id\"></app-graph-layout>\r\n        <div class=\"ncm-detail\">{{ncm.scoreMoy}}</div>\r\n        <hr class=\"ui-widget-content\" style=\"border-top:0\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </p-panel>\r\n    </div>\r\n  </ng-template>\r\n</p-dataView>\r\n\r\n<p-dialog header=\"NCM Details\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\" width=\"400\" (onAfterHide)=\"onDialogHide()\">\r\n  <div class=\"ui-g\" *ngIf=\"selectedNcm\">\r\n    <div class=\"ui-g-12\" style=\"text-align:center\">\r\n      <img src=\"assets/images/test.png\">\r\n    </div>\r\n    <div class=\"ui-g-4\">Id: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm._id}}</div>\r\n\r\n    <div class=\"ui-g-4\">Écart type: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.stdDev}}</div>\r\n\r\n    <div class=\"ui-g-4\">Score moyen: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.scoreMoy}}</div>\r\n\r\n    <div class=\"ui-g-4\">Nombre d'occurence: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.count}}</div>\r\n  </div>\r\n</p-dialog>\r\n"
 
 /***/ }),
 
@@ -515,19 +515,21 @@ var NCMComponent = /** @class */ (function () {
     }
     NCMComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then(function (ncms) { _this.ncms.push.apply(_this.ncms, ncms); _this.skip += _this.limit; });
+        this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then(function (ncms) { _this.ncms = ncms; });
         this.sortOptions = [
             { label: 'Nombre (ordre croissant)', value: 'count' },
             { label: 'Nombre (ordre décroissant)', value: '!count' },
             { label: 'Écart Type', value: 'stdDev' }
         ];
     };
-    NCMComponent.prototype.loadData = function (event) {
-        var _this = this;
-        //event.first = First row offset
-        //event.rows = Number of rows per page
-        this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then(function (ncms) { _this.ncms.push.apply(_this.ncms, ncms); _this.skip += _this.limit; });
-    };
+    /*
+    loadData(event) {
+      //event.first = First row offset
+      //event.rows = Number of rows per page
+      this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms.push.apply(this.ncms, ncms); this.skip += this.limit; });
+  
+    }
+    */
     NCMComponent.prototype.selectNcm = function (event, ncm) {
         this.selectedNcm = ncm;
         this.displayDialog = true;
@@ -583,7 +585,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  page-not-found works!\n</p>\n"
+module.exports = "<p>\r\n  page-not-found works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -733,13 +735,20 @@ var GraphLayoutComponent = /** @class */ (function () {
         };
         this.manageMerged = function (merged) {
             var stringSplited = merged.split("&");
-            var ncm1 = stringSplited[0];
-            var ncm2 = stringSplited[1];
-            var ncm1_splitted = ncm1.split("-");
-            var ncm2_splitted = ncm2.split("-");
+            this.ncm1 = stringSplited[0];
+            this.ncm2 = stringSplited[1];
+            var ncm1_splitted = [];
+            var ncm2_splitted = [];
+            if (this.ncm1 != "" && this.ncm2 != "") {
+                ncm1_splitted = this.ncm1.split("-");
+                ncm2_splitted = this.ncm2.split("-");
+            }
             var ncm1_end = "";
+            var pos = "";
             if (ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
                 ncm1_end = ncm1_splitted[2].split("_")[0];
+                pos = ncm1_splitted[2].split("_")[2];
+                console.log("pos : ", pos);
                 console.log("ncm1 : ", ncm1_splitted[1], ncm1_end);
                 this.ncm1_Only_seq = ncm1_splitted[1] + ":" + ncm1_end;
             }
@@ -750,43 +759,82 @@ var GraphLayoutComponent = /** @class */ (function () {
                 this.ncm2_Only_seq = ncm2_splitted[1] + ":" + ncm2_end;
             }
             if (ncm2_splitted.length > 2 && ncm2_splitted[1].length > 1 && ncm1_splitted.length > 2 && ncm1_splitted[1].length > 1) {
-                this.graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end);
+                this.graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end, pos);
             }
             else {
                 this.createRedCircle();
             }
         };
-        this.deuxNcm_tx_togL = function (s11, s12, s21, s22) {
+        this.deuxNcm_tx_togL = function (s11, s12, s21, s22, pos) {
+            var _this = this;
             var nodeTab = [];
             var linkTab = [];
             console.log("s : ", s11, s12, s21, s22);
-            nodeTab = this.createNodes2(s11, s12, s21, s22);
+            nodeTab = this.createNodes2(s11, s12, s21, s22, pos);
             linkTab = this.createLinks2(s11, s12, s21, s22);
             var graph = { "nodes": nodeTab, "links": linkTab };
+            if (!graph.nodes) {
+                graph = { "nodes": [], "links": [] };
+            }
             var element = this.chartContainer.nativeElement;
             this.height = 200;
             this.width = 200;
             var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"](element).append('svg')
                 .attr('width', element.offsetWidth)
                 .attr('height', element.offsetHeight);
+            svg.append("rect")
+                .style("fill", "red")
+                .attr("width", 30)
+                .attr("height", 30)
+                .attr("x", 5)
+                .attr("y", 5)
+                .on('click', function (d, i) {
+                console.log("ncm1 : ", _this.ncm1, " ncm2 : ", _this.ncm2);
+                console.log("linkTab : ");
+                console.log(linkTab);
+            });
             var color = d3__WEBPACK_IMPORTED_MODULE_1__["scaleOrdinal"](d3__WEBPACK_IMPORTED_MODULE_1__["schemeCategory10"]);
             var simulation = d3__WEBPACK_IMPORTED_MODULE_1__["forceSimulation"]()
-                .force("link", d3__WEBPACK_IMPORTED_MODULE_1__["forceLink"]().id(function (d) { return d.id; }))
-                .force("charge", d3__WEBPACK_IMPORTED_MODULE_1__["forceManyBody"]())
+                .force("link", d3__WEBPACK_IMPORTED_MODULE_1__["forceLink"]().distance(20))
+                .force("charge", d3__WEBPACK_IMPORTED_MODULE_1__["forceManyBody"]().strength(-10))
                 .force("center", d3__WEBPACK_IMPORTED_MODULE_1__["forceCenter"](this.width / 2, this.height / 2));
             var link = svg.append("g")
                 .attr("class", "links")
                 .selectAll("line")
                 .data(graph.links)
                 .enter().append("line")
-                .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
+                .attr("stroke-width", function (d) { return d.value + 1; });
+            console.log("nodes : ", graph.nodes);
             var node = svg.append("g")
                 .attr("class", "nodes")
                 .selectAll("circle")
                 .data(graph.nodes)
                 .enter().append("circle")
-                .attr("r", 5)
-                .attr("fill", function (d) { return color(d.group); })
+                .attr("r", function (d) { return d.group * 5 + 5; })
+                .attr("fill", function (d) { return color(d.group + 2); })
+                .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+            var text = svg.append('g').attr('class', 'label_ss_g')
+                .selectAll("text")
+                .data(graph.nodes)
+                .enter()
+                .append("text")
+                .style("cursor", "pointer")
+                .attr("id", "label")
+                .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+            text
+                .attr("x", function (d, i) { return graph.nodes[i].x - 8; })
+                .attr("y", function (d, i) { return graph.nodes[i].y + 8; })
+                .text(function (d) { return d.id; })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "20px")
+                .attr("font-weigth", "bold")
+                .attr("fill", "black")
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)
@@ -806,6 +854,9 @@ var GraphLayoutComponent = /** @class */ (function () {
                 node
                     .attr("cx", function (d) { return d.x; })
                     .attr("cy", function (d) { return d.y; });
+                text
+                    .attr("x", function (d, i) { return graph.nodes[i].x - 8; })
+                    .attr("y", function (d, i) { return graph.nodes[i].y + 8; });
             }
             function dragstarted(d) {
                 if (!d3__WEBPACK_IMPORTED_MODULE_1__["event"].active)
@@ -825,7 +876,7 @@ var GraphLayoutComponent = /** @class */ (function () {
             }
         };
         // --------------- fonctions utiles
-        this.createNodes2 = function (s11, s12, s21, s22) {
+        this.createNodes2 = function (s11, s12, s21, s22, pos) {
             var nodes = [];
             console.log("nodes creation");
             for (var _i = 0, _a = s11.split(""); _i < _a.length; _i++) {
@@ -834,17 +885,19 @@ var GraphLayoutComponent = /** @class */ (function () {
             }
             for (var _b = 0, _c = s12.split(""); _b < _c.length; _b++) {
                 var c = _c[_b];
-                nodes.push(this.nodeGen(c, 2));
+                nodes.push(this.nodeGen(c, 1));
             }
             for (var _d = 0, _e = s21.split("").slice(1); _d < _e.length; _d++) {
                 var c = _e[_d];
-                nodes.push(this.nodeGen(c, 3));
+                nodes.push(this.nodeGen(c, 1));
             }
             for (var _f = 0, _g = s22.split("").slice(0, s22.length - 1); _f < _g.length; _f++) {
                 var c = _g[_f];
-                nodes.push(this.nodeGen(c, 4));
+                nodes.push(this.nodeGen(c, 1));
             }
             console.log("nodes : ", nodes);
+            nodes[Number(pos)].group = 2;
+            return nodes;
         };
         this.range = function (start, end) { return Array.from({ length: (end - start) }, function (v, k) { return k + start; }); };
         this.createLinks2 = function (s11, s12, s21, s22) {
@@ -867,21 +920,21 @@ var GraphLayoutComponent = /** @class */ (function () {
             // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
             for (var _b = 0, _c = this.range(index2eLink2, l_s1 - 1); _b < _c.length; _b++) {
                 var i = _c[_b];
-                links.push(this.linkGen(i, i + 1, 3));
+                links.push(this.linkGen(i, i + 1, 2));
             }
             // troisieme segment
             for (var _d = 0, _e = this.range(l_s1, l_s1 + s21.length - 2); _d < _e.length; _d++) {
                 var i = _e[_d];
-                links.push(this.linkGen(i, i + 1, 4));
+                links.push(this.linkGen(i, i + 1, 2));
             }
             // quatrieme segment
-            for (var _f = 0, _g = this.range(l_s1 + s21.length, l_s1 + l_s2 - 2); _f < _g.length; _f++) {
+            for (var _f = 0, _g = this.range(l_s1 + s21.length - 1, l_s1 + l_s2 - 3); _f < _g.length; _f++) {
                 var i = _g[_f];
-                links.push(this.linkGen(i, i + 1, 5));
+                links.push(this.linkGen(i, i + 1, 2));
             }
             // connecter les deux ncm
-            links.push(this.linkGen(index2eLink1, l_s1 + s21.length - 2, 6));
-            links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 6));
+            links.push(this.linkGen(index2eLink1, l_s1, 2));
+            links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 2));
             console.log("Links : ", links);
             return links;
         };
@@ -893,6 +946,8 @@ var GraphLayoutComponent = /** @class */ (function () {
         };
     }
     GraphLayoutComponent.prototype.ngOnInit = function () {
+    };
+    GraphLayoutComponent.prototype.ngAfterViewInit = function () {
         this.fromMergedToGraphLayout(this.data);
     };
     GraphLayoutComponent.prototype.createRedCircle = function () {
@@ -949,7 +1004,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  viewer works!\n</p>\n"
+module.exports = "<p>\r\n  viewer works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1054,7 +1109,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Phil\Desktop\angularRDV\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\p\still-castle-69053\src\main.ts */"./src/main.ts");
 
 
 /***/ })
