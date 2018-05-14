@@ -30,6 +30,56 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+  unNcm_tx_togL = function (s: String) {
+
+    let nodeTab = [];
+    let linkTab = [];
+
+
+    let pos = s.split("_")[2]
+
+    console.log("s : ", s, "pos : ", pos);
+
+
+    nodeTab = this.createNodes1(s, pos);
+    linkTab = this.createLinks1(s, pos);
+
+    let graph = { "nodes": nodeTab, "links": linkTab };
+
+    return graph;
+
+  }
+
+  // test
+  createNodes1 = function (s1: string, pos: number) {
+
+    let nodes = [];
+
+    for (let c of s1.split("")) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+
+  }
+
+  createLinks1 = function (s1: string, pos: number) {
+
+    let nodes = []
+
+    for (let c of s1.split("")) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+
+  }
+
+
+
+
   fromMergedToGraphLayout = function (merged: String) {
 
     let graphLayout = {}
@@ -42,7 +92,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
     else {
 
-      this.createRedCircle()
+      this.unNcm_tx_togL(merged)
 
     }
 

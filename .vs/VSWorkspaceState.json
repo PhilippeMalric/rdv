@@ -3,13 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\classDef",
     "\\src\\app\\ncm",
     "\\src\\app\\service",
     "\\src\\app\\shared",
     "\\src\\app\\shared\\graph-layout",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\classDef\\graph.ts",
+  "SelectedNode": "\\src\\app\\shared\\graph-layout\\graph-layout.component.ts",
   "PreviewInSolutionExplorer": false
 }
