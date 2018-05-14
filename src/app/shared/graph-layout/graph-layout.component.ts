@@ -42,6 +42,26 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     console.log("s : ", s, "pos : ", pos);
 
+    const element = this.chartContainer.nativeElement;
+    this.height = 200
+    this.width = 200
+
+    const svg = d3.select(element).append('svg')
+      .attr('width', element.offsetWidth)
+      .attr('height', element.offsetHeight);
+
+    svg.append("rect")
+      .style("fill", "red")
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("x", 5)
+      .attr("y", 5)
+      .on('click', (d, i) => {
+
+        console.log("ncm1 : ", this.ncm1, " ncm2 : ", this.ncm2)
+        console.log("linkTab : ")
+        console.log(linkTab)
+      });
 
     nodeTab = this.createNodes1(s, pos);
     linkTab = this.createLinks1(s, pos);
