@@ -127,11 +127,19 @@ MIT
 MIT
 MIT
 
-@angular/core@6.0.0
+@angular/compiler@6.0.0
+MIT
+MIT
+
+@angular/core@6.0.1
 MIT
 MIT
 
 @angular/forms@6.0.0
+MIT
+MIT
+
+@angular/platform-browser-dynamic@6.0.0
 MIT
 MIT
 
