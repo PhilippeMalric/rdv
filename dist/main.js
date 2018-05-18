@@ -736,7 +736,7 @@ var GraphLayoutComponent = /** @class */ (function () {
             .interpolate(d3__WEBPACK_IMPORTED_MODULE_1__["interpolateHcl"]);
         this.fillcolorNode = function (d) {
             if (d.group == 1) {
-                return "white";
+                return "gainsboro";
             }
             else {
                 return _this.colorScale(Number(_this.score));
@@ -834,9 +834,9 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .enter().append("circle")
                 .attr("r", function (d) { return Number(d.group) * 5 + 8; })
                 .attr("fill", this.fillcolorNode)
+                .attr("stroke-opacity", 1)
                 .attr("stroke", "black")
                 .attr("stroke-width", 3)
-                .attr("stroke-opacity", 1)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)

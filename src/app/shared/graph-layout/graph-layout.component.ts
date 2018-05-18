@@ -34,7 +34,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   fillcolorNode = (d: Node) => {
   if (d.group == 1) {
-    return "white"
+    return "gainsboro"
   }
   else {
 
