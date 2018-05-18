@@ -42,6 +42,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
 
   }
+
   fillcolorRect = () => {
       return this.colorScale(Number(this.score))
     }
@@ -199,6 +200,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr("fill", this.fillcolorNode)
       .attr("stroke", "black")
       .attr("stroke-width", 3)
+      .attr("stroke-opacity", 1)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -397,6 +399,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .enter().append("circle")
       .attr("r", function (d) { return d.group * 5 + 8; })
       .attr("fill", this.fillcolorNode)
+      .attr("stroke-opacity", 1)
       .attr("stroke", "black")
       .attr("stroke-width", 3)
       .call(d3.drag()
