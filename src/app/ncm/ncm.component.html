@@ -48,9 +48,7 @@
   <ng-template let-ncm pTemplate="gridItem">
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
       <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
-        <app-graph-layout [_id]="ncm._id"
-                          [score]="ncm.scoreMoy">
-        </app-graph-layout>
+        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" > </app-graph-layout>
         <div class="ncm-detail">{{ncm.scoreMoy}}</div>
         <hr class="ui-widget-content" style="border-top:0">
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
@@ -63,10 +61,7 @@
 <p-dialog header="NCM Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
   <div class="ui-g" *ngIf="selectedNcm">
     <div class="ui-g-12" style="text-align:center">
-      <app-graph-layout
-                        [_id]="ncm._id"
-                        [score]="ncm.scoreMoy">
-      </app-graph-layout>
+      <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy"> </app-graph-layout>
     </div>
     <div class="ui-g-4">Id: </div>
     <div class="ui-g-8">{{selectedNcm._id}}</div>

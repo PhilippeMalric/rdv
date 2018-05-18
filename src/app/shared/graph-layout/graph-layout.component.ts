@@ -126,24 +126,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   unNcm_tx_togL = function (loop: String) {
 
-    let ticked = () => {
-      link
-        .attr("x1", function (d: any) { return d.source.x; })
-        .attr("y1", function (d: any) { return d.source.y; })
-        .attr("x2", function (d: any) { return d.target.x; })
-        .attr("y2", function (d: any) { return d.target.y; });
-
-      node
-        .attr("cx", function (d: any) { return d.x; })
-        .attr("cy", function (d: any) { return d.y; });
-
-      if (this.graph) {
-        text
-          .attr("x", (d: any, i: number) => { return this.graph.nodes[i].x - 8 })
-          .attr("y", (d: any, i: number) => { return this.graph.nodes[i].y + 8 })
-      }
-    }
-
+    let ticked = () => { }
 
     let nodeTab = [];
     let linkTab = [];
@@ -160,9 +143,13 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     nodeTab = this.createNodes1(seq, pos);
     linkTab = this.createLinks1(seq, pos);
 
-    this.graph = { "nodes": nodeTab, "links": linkTab };
 
-    console.log("graph : ", this.graph)
+    let graph = { "nodes": nodeTab, "links": linkTab }
+
+    if (!graph.nodes) {
+      graph = { "nodes": [], "links": [] }
+    }
+    console.log("graph : ", graph)
 
     const element = this.chartContainer.nativeElement;
     this.height = 200
@@ -182,7 +169,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr("x", 5)
       .attr("y", 5)
       .on('click', (d, i) => {
-        console.log("graph : ", this.graph)
+        console.log("graph : ", graph)
 
         console.log("seq : ", seq, "pos : ", pos);
       });
@@ -194,17 +181,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let link = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
-      .data(this.graph.links)
+      .data(graph.links)
       .enter().append("line")
       .attr("stroke-width", function (d: Link) { return Number(d.value) + 1 });
 
 
-    console.log("nodes : ", this.graph.nodes)
+    console.log("nodes : ", graph.nodes)
 
     let node = svg.append("g")
       .attr("class", "nodes")
       .selectAll("circle")
-      .data(this.graph.nodes)
+      .data(graph.nodes)
       .enter().append("circle")
       .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
       .attr("fill", this.fillcolor)
@@ -213,15 +200,13 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         .on("drag", dragged)
         .on("end", dragended));
 
-    let text = svg.append('g').attr('class', 'label_ss_g')
+    let text = svg.append('g').attr('class', 'label_g')
       .selectAll("text")
-      .data(this.graph.nodes)
+      .data(graph.nodes)
       .enter()
       .append("text")
       .style("cursor", "pointer")
       .attr("id", "label")
-      .attr("stroke", "black")
-      .attr("stroke-width", 3)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -229,29 +214,48 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     text
-        .attr("x", (d, i) => { return this.graph.nodes[i].x - 8 })
-        .attr("y", (d, i) => { return this.graph.nodes[i].y + 8 })
-        .text((d: Node) => { return d.id; })
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "20px")
-        .attr("font-weigth", "bold")
-        .attr("fill", "black")
-        .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+      .attr("x", (d, i) => { return graph.nodes[i].x - 8 })
+      .attr("y", (d, i) => { return graph.nodes[i].y + 8 })
+      .text((d) => { return d.id; })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "20px")
+      .attr("font-weigth", "bold")
+      .attr("fill", "black")
+      .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+
 
     node.append("title")
       .text(function (d: Node) { return d.id; });
 
     simulation
-      .nodes(this.graph.nodes)
+      .nodes(graph.nodes)
       .on("tick", ticked);
 
-    simulation.force<d3.ForceLink<any, any>>('link').links(this.graph.links);
+    simulation.force<d3.ForceLink<any, any>>('link').links(graph.links);
 
 
-    
+
+    ticked = () => {
+      link
+        .attr("x1", function (d: any) { return d.source.x; })
+        .attr("y1", function (d: any) { return d.source.y; })
+        .attr("x2", function (d: any) { return d.target.x; })
+        .attr("y2", function (d: any) { return d.target.y; });
+
+      node
+        .attr("cx", function (d: any) { return d.x; })
+        .attr("cy", function (d: any) { return d.y; });
+
+      if (graph) {
+        text
+          .attr("x", (d: any, i: number) => { return graph.nodes[i].x - 8 })
+          .attr("y", (d: any, i: number) => { return graph.nodes[i].y + 8 })
+      }
+    }
 
     function dragstarted(d) {
       if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -270,7 +274,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       d.fy = null;
     }
     
-    //return this.graph;
 
   }
 
