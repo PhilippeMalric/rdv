@@ -474,7 +474,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-dataView #dv [value]=\"ncms\" [paginator]=\"true\" [rows]=\"5\" paginatorPosition=\"both\" filterBy=\"brand\"\r\n    [sortField]=\"sortField\" [sortOrder]=\"sortOrder\">\r\n  <p-header>\r\n    <div class=\"ui-helper-clearfix\">\r\n      <div class=\"ui-g\">\r\n        <div class=\"ui-g-12 ui-md-4\">\r\n          <p-dropdown [options]=\"sortOptions\" [(ngModel)]=\"sortKey\" placeholder=\"Trier par\" (onChange)=\"onSortChange($event)\" [autoWidth]=\"false\" [style]=\"{'min-width':'15em'}\"></p-dropdown>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4 filter-container\">\r\n          <div style=\"position:relative\">\r\n            <input type=\"search\" pInputText placeholder=\"Rechercher par Id\" (keyup)=\"dv.filter($event.target.value)\">\r\n          </div>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4\" style=\"text-align:right\">\r\n          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </p-header>\r\n  <ng-template let-ncm pTemplate=\"listItem\">\r\n    <div class=\"ui-g\" style=\"padding: 2em;border-bottom: 1px solid #d9d9d9\">\r\n      <div class=\"ui-g-12 ui-md-3\" style=\"text-align:center\">\r\n        <app-graph-layout \r\n                          [_id]=\"ncm._id\"\r\n                          [score]=\"ncm.scoreMoy\">\r\n        </app-graph-layout>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-8 ncm-details\">\r\n        <div class=\"ui-g\">\r\n          <div class=\"ui-g-2 ui-sm-6\">Id: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm._id}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Écart type: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.stdDev}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Score moyen: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.scoreMoy}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Nombre d'occurence: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.count}}</b></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1 search-icon\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1\" >\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </div>\r\n    </div>\r\n</ng-template>\r\n  <ng-template let-ncm pTemplate=\"gridItem\">\r\n    <div style=\"padding:.5em\" class=\"ui-g-12 ui-md-3\">\r\n      <p-panel [header]=\"ncm._id\" [style]=\"{'text-align':'center'}\">\r\n        <app-graph-layout [_id]=\"ncm._id\"\r\n                          [score]=\"ncm.scoreMoy\">\r\n        </app-graph-layout>\r\n        <div class=\"ncm-detail\">{{ncm.scoreMoy}}</div>\r\n        <hr class=\"ui-widget-content\" style=\"border-top:0\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </p-panel>\r\n    </div>\r\n  </ng-template>\r\n</p-dataView>\r\n\r\n<p-dialog header=\"NCM Details\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\" width=\"400\" (onAfterHide)=\"onDialogHide()\">\r\n  <div class=\"ui-g\" *ngIf=\"selectedNcm\">\r\n    <div class=\"ui-g-12\" style=\"text-align:center\">\r\n      <app-graph-layout\r\n                        [_id]=\"ncm._id\"\r\n                        [score]=\"ncm.scoreMoy\">\r\n      </app-graph-layout>\r\n    </div>\r\n    <div class=\"ui-g-4\">Id: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm._id}}</div>\r\n\r\n    <div class=\"ui-g-4\">Écart type: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.stdDev}}</div>\r\n\r\n    <div class=\"ui-g-4\">Score moyen: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.scoreMoy}}</div>\r\n\r\n    <div class=\"ui-g-4\">Nombre d'occurence: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.count}}</div>\r\n  </div>\r\n</p-dialog>\r\n"
+module.exports = "<p-dataView #dv [value]=\"ncms\" [paginator]=\"true\" [rows]=\"5\" paginatorPosition=\"both\" filterBy=\"brand\"\r\n    [sortField]=\"sortField\" [sortOrder]=\"sortOrder\">\r\n  <p-header>\r\n    <div class=\"ui-helper-clearfix\">\r\n      <div class=\"ui-g\">\r\n        <div class=\"ui-g-12 ui-md-4\">\r\n          <p-dropdown [options]=\"sortOptions\" [(ngModel)]=\"sortKey\" placeholder=\"Trier par\" (onChange)=\"onSortChange($event)\" [autoWidth]=\"false\" [style]=\"{'min-width':'15em'}\"></p-dropdown>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4 filter-container\">\r\n          <div style=\"position:relative\">\r\n            <input type=\"search\" pInputText placeholder=\"Rechercher par Id\" (keyup)=\"dv.filter($event.target.value)\">\r\n          </div>\r\n        </div>\r\n        <div class=\"ui-g-6 ui-md-4\" style=\"text-align:right\">\r\n          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </p-header>\r\n  <ng-template let-ncm pTemplate=\"listItem\">\r\n    <div class=\"ui-g\" style=\"padding: 2em;border-bottom: 1px solid #d9d9d9\">\r\n      <div class=\"ui-g-12 ui-md-3\" style=\"text-align:center\">\r\n        <app-graph-layout [_id]=\"ncm._id\" [score]=\"ncm.scoreMoy\"> </app-graph-layout>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-8 ncm-details\">\r\n        <div class=\"ui-g\">\r\n          <div class=\"ui-g-2 ui-sm-6\">Id: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm._id}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Écart type: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.stdDev}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Score moyen: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.scoreMoy}}</b></div>\r\n\r\n          <div class=\"ui-g-2 ui-sm-6\">Nombre d'occurence: </div>\r\n          <div class=\"ui-g-10 ui-sm-6\"><b>{{ncm.count}}</b></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1 search-icon\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n      </div>\r\n      <div class=\"ui-g-12 ui-md-1\" >\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </div>\r\n    </div>\r\n</ng-template>\r\n  <ng-template let-ncm pTemplate=\"gridItem\">\r\n    <div style=\"padding:.5em\" class=\"ui-g-12 ui-md-3\">\r\n      <p-panel [header]=\"ncm._id\" [style]=\"{'text-align':'center'}\">\r\n        <app-graph-layout [_id]=\"ncm._id\" [score]=\"ncm.scoreMoy\" > </app-graph-layout>\r\n        <div class=\"ncm-detail\">{{ncm.scoreMoy}}</div>\r\n        <hr class=\"ui-widget-content\" style=\"border-top:0\">\r\n        <p-button label=\"Détails\" icon=\"fa fa-fw fa-search\" (click)=\"selectNcm($event, ncm)\"></p-button>\r\n        <p-button label=\"Process\" icon=\"fa fa-fw fa-check\" (click)=\"processNcm($event, ncm)\"></p-button>\r\n      </p-panel>\r\n    </div>\r\n  </ng-template>\r\n</p-dataView>\r\n\r\n<p-dialog header=\"NCM Details\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\" width=\"400\" (onAfterHide)=\"onDialogHide()\">\r\n  <div class=\"ui-g\" *ngIf=\"selectedNcm\">\r\n    <div class=\"ui-g-12\" style=\"text-align:center\">\r\n      <app-graph-layout [_id]=\"selectedNcm._id\" [score]=\"selectedNcm.scoreMoy\"> </app-graph-layout>\r\n    </div>\r\n    <div class=\"ui-g-4\">Id: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm._id}}</div>\r\n\r\n    <div class=\"ui-g-4\">Écart type: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.stdDev}}</div>\r\n\r\n    <div class=\"ui-g-4\">Score moyen: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.scoreMoy}}</div>\r\n\r\n    <div class=\"ui-g-4\">Nombre d'occurence: </div>\r\n    <div class=\"ui-g-8\">{{selectedNcm.count}}</div>\r\n  </div>\r\n</p-dialog>\r\n"
 
 /***/ }),
 
@@ -506,7 +506,7 @@ var NCMComponent = /** @class */ (function () {
         this.ncmService = ncmService;
         this.ncms = [];
         this.skip = 0;
-        this.limit = 20;
+        this.limit = 100;
         this.cmin = 2;
         this.stdDevMax = 10;
         this.ncm1_Only_seq = "";
@@ -519,7 +519,10 @@ var NCMComponent = /** @class */ (function () {
         this.sortOptions = [
             { label: 'Nombre (ordre croissant)', value: 'count' },
             { label: 'Nombre (ordre décroissant)', value: '!count' },
-            { label: 'Écart Type', value: 'stdDev' }
+            { label: 'Écart Type croissant', value: 'stdDev' },
+            { label: 'Écart Type décroissant', value: '!stdDev' },
+            { label: 'Score Moyen croissant', value: 'scoreMoy' },
+            { label: 'Score Moyen décroissant', value: '!scoreMoy' }
         ];
     };
     /*
@@ -727,8 +730,10 @@ var GraphLayoutComponent = /** @class */ (function () {
         var _this = this;
         //fonction util
         this.color = d3__WEBPACK_IMPORTED_MODULE_1__["scaleOrdinal"](d3__WEBPACK_IMPORTED_MODULE_1__["schemeCategory10"]);
-        this.colorScale = d3__WEBPACK_IMPORTED_MODULE_1__["scaleSequential"](d3__WEBPACK_IMPORTED_MODULE_1__["interpolatePlasma"])
-            .domain([0, 2]);
+        this.colorScale = d3__WEBPACK_IMPORTED_MODULE_1__["scaleLinear"]()
+            .domain([0, 1])
+            .range(['red', 'blue'])
+            .interpolate(d3__WEBPACK_IMPORTED_MODULE_1__["interpolateHcl"]);
         this.fillcolorNode = function (d) {
             if (d.group == 1) {
                 return "white";
@@ -783,22 +788,6 @@ var GraphLayoutComponent = /** @class */ (function () {
             }
         };
         this.unNcm_tx_togL = function (loop) {
-            var _this = this;
-            var ticked = function () {
-                link
-                    .attr("x1", function (d) { return d.source.x; })
-                    .attr("y1", function (d) { return d.source.y; })
-                    .attr("x2", function (d) { return d.target.x; })
-                    .attr("y2", function (d) { return d.target.y; });
-                node
-                    .attr("cx", function (d) { return d.x; })
-                    .attr("cy", function (d) { return d.y; });
-                if (_this.graph) {
-                    text
-                        .attr("x", function (d, i) { return _this.graph.nodes[i].x - 8; })
-                        .attr("y", function (d, i) { return _this.graph.nodes[i].y + 8; });
-                }
-            };
             var nodeTab = [];
             var linkTab = [];
             var pos = loop.split("_")[2];
@@ -806,8 +795,11 @@ var GraphLayoutComponent = /** @class */ (function () {
             console.log("s : ", loop, " pos : ", pos, " seq : ", seq);
             nodeTab = this.createNodes1(seq, pos);
             linkTab = this.createLinks1(seq, pos);
-            this.graph = { "nodes": nodeTab, "links": linkTab };
-            console.log("graph : ", this.graph);
+            var graph = { "nodes": nodeTab, "links": linkTab };
+            if (!graph.nodes) {
+                graph = { "nodes": [], "links": [] };
+            }
+            console.log("graph : ", graph);
             var element = this.chartContainer.nativeElement;
             this.height = 200;
             this.width = 200;
@@ -821,7 +813,7 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .attr("x", 5)
                 .attr("y", 5)
                 .on('click', function (d, i) {
-                console.log("graph : ", _this.graph);
+                console.log("graph : ", graph);
                 console.log("seq : ", seq, "pos : ", pos);
             });
             var simulation = d3__WEBPACK_IMPORTED_MODULE_1__["forceSimulation"]()
@@ -831,37 +823,36 @@ var GraphLayoutComponent = /** @class */ (function () {
             var link = svg.append("g")
                 .attr("class", "links")
                 .selectAll("line")
-                .data(this.graph.links)
+                .data(graph.links)
                 .enter().append("line")
                 .attr("stroke-width", function (d) { return Number(d.value) + 1; });
-            console.log("nodes : ", this.graph.nodes);
+            console.log("nodes : ", graph.nodes);
             var node = svg.append("g")
                 .attr("class", "nodes")
                 .selectAll("circle")
-                .data(this.graph.nodes)
+                .data(graph.nodes)
                 .enter().append("circle")
                 .attr("r", function (d) { return Number(d.group) * 5 + 8; })
-                .attr("fill", this.fillcolor)
+                .attr("fill", this.fillcolorNode)
+                .attr("stroke", "black")
+                .attr("stroke-width", 3)
+                .attr("stroke-opacity", 1)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended));
-            var text = svg.append('g').attr('class', 'label_ss_g')
+            var text = svg.append('g').attr('class', 'label_g')
                 .selectAll("text")
-                .data(this.graph.nodes)
+                .data(graph.nodes)
                 .enter()
                 .append("text")
                 .style("cursor", "pointer")
                 .attr("id", "label")
-                .attr("stroke", "black")
-                .attr("stroke-width", 3)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended));
             text
-                .attr("x", function (d, i) { return _this.graph.nodes[i].x - 8; })
-                .attr("y", function (d, i) { return _this.graph.nodes[i].y + 8; })
                 .text(function (d) { return d.id; })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "20px")
@@ -874,9 +865,22 @@ var GraphLayoutComponent = /** @class */ (function () {
             node.append("title")
                 .text(function (d) { return d.id; });
             simulation
-                .nodes(this.graph.nodes)
+                .nodes(graph.nodes)
                 .on("tick", ticked);
-            simulation.force('link').links(this.graph.links);
+            simulation.force('link').links(graph.links);
+            function ticked() {
+                link
+                    .attr("x1", function (d) { return d.source.x; })
+                    .attr("y1", function (d) { return d.source.y; })
+                    .attr("x2", function (d) { return d.target.x; })
+                    .attr("y2", function (d) { return d.target.y; });
+                node
+                    .attr("cx", function (d) { return d.x; })
+                    .attr("cy", function (d) { return d.y; });
+                text
+                    .attr("x", function (d, i) { return graph.nodes[i].x - 8; })
+                    .attr("y", function (d, i) { return graph.nodes[i].y + 8; });
+            }
             function dragstarted(d) {
                 if (!d3__WEBPACK_IMPORTED_MODULE_1__["event"].active)
                     simulation.alphaTarget(0.3).restart();
@@ -893,7 +897,6 @@ var GraphLayoutComponent = /** @class */ (function () {
                 d.fx = null;
                 d.fy = null;
             }
-            //return this.graph;
         };
         // test
         this.createNodes1 = function (seq, pos) {
@@ -961,6 +964,7 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .enter().append("circle")
                 .attr("r", function (d) { return d.group * 5 + 8; })
                 .attr("fill", this.fillcolorNode)
+                .attr("stroke-opacity", 1)
                 .attr("stroke", "black")
                 .attr("stroke-width", 3)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
@@ -979,8 +983,6 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .on("drag", dragged)
                 .on("end", dragended));
             text
-                .attr("x", function (d, i) { return graph.nodes[i].x - 8; })
-                .attr("y", function (d, i) { return graph.nodes[i].y + 8; })
                 .text(function (d) { return d.id; })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "20px")

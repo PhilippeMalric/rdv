@@ -43,8 +43,10 @@ export class NCMComponent implements OnInit {
     this.sortOptions = [
       { label: 'Nombre (ordre croissant)', value: 'count' },
       { label: 'Nombre (ordre décroissant)', value: '!count' },
-      { label: 'Écart Type', value: 'stdDev' },
-      { label: 'Score Moyen', value: 'scoreMoy' }
+      { label: 'Écart Type croissant', value: 'stdDev' },
+      { label: 'Écart Type décroissant', value: '!stdDev' },
+      { label: 'Score Moyen croissant', value: 'scoreMoy' },
+      { label: 'Score Moyen décroissant', value: '!scoreMoy' }
     ];
   }
 

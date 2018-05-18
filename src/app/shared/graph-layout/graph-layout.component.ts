@@ -198,9 +198,9 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .enter().append("circle")
       .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
       .attr("fill", this.fillcolorNode)
+      .attr("stroke-opacity", 1)
       .attr("stroke", "black")
       .attr("stroke-width", 3)
-      .attr("stroke-opacity", 1)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -220,8 +220,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     text
-      .attr("x", (d, i) => { return graph.nodes[i].x - 8 })
-      .attr("y", (d, i) => { return graph.nodes[i].y + 8 })
       .text((d) => { return d.id; })
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
@@ -421,8 +419,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     text
-      .attr("x", (d, i) => {return graph.nodes[i].x - 8})
-      .attr("y", (d, i) => {return graph.nodes[i].y + 8 })
       .text( (d) =>  { return d.id; })
       .attr("font-family", "sans-serif")
       .attr("font-size", "20px")
