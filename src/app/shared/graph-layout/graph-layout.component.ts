@@ -26,9 +26,11 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   //fonction util
   color = d3.scaleOrdinal(d3.schemeCategory10);
-  colorScale = d3.scaleSequential(d3.interpolatePlasma)
-    .domain([0, 2]);
-  
+
+  colorScale = d3.scaleLinear<string>()
+    .domain([0, 2])
+    .range(['red', 'blue'])
+    .interpolate(d3.interpolateHcl);
 
   fillcolorNode = (d: Node) => {
   if (d.group == 1) {
