@@ -173,6 +173,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
         console.log("seq : ", seq, "pos : ", pos);
       });
+
+
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink().distance(20))
       .force("charge", d3.forceManyBody().strength(-20))
@@ -195,6 +197,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .enter().append("circle")
       .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
       .attr("fill", this.fillcolor)
+      .attr("stroke", "black")
+      .attr("stroke-width", 3)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
