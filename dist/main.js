@@ -787,27 +787,46 @@ var GraphLayoutComponent = /** @class */ (function () {
                 this.createRedCircle();
             }
         };
+        // test
+        this.createNodes1 = function (seq, pos) {
+            var nodes = [];
+            for (var _i = 0, _a = seq.split(""); _i < _a.length; _i++) {
+                var c = _a[_i];
+                nodes.push(this.nodeGen(c, 1));
+            }
+            nodes[Number(pos)].group = 2;
+            return nodes;
+        };
+        this.createLinks1 = function (seq) {
+            var links = [];
+            for (var _i = 0, _a = this.range(0, seq.length - 1); _i < _a.length; _i++) {
+                var i = _a[_i];
+                links.push(this.linkGen(i, i + 1, 1));
+            }
+            links.push(this.linkGen(0, seq.length - 1, 2));
+            return links;
+        };
         this.unNcm_tx_togL = function (loop) {
             var nodeTab = [];
             var linkTab = [];
             var pos = loop.split("_")[2];
             var seq = loop.split("---")[1].split("_")[0];
             console.log("s : ", loop, " pos : ", pos, " seq : ", seq);
-            nodeTab = this.createNodes1(seq, pos);
-            linkTab = this.createLinks1(seq, pos);
+            nodeTab = _this.createNodes1(seq, pos);
+            linkTab = _this.createLinks1(seq);
             var graph = { "nodes": nodeTab, "links": linkTab };
             if (!graph.nodes) {
                 graph = { "nodes": [], "links": [] };
             }
             console.log("graph : ", graph);
-            var element = this.chartContainer.nativeElement;
-            this.height = 200;
-            this.width = 200;
+            var element = _this.chartContainer.nativeElement;
+            _this.height = 200;
+            _this.width = 200;
             var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"](element).append('svg')
                 .attr('width', element.offsetWidth)
                 .attr('height', element.offsetHeight);
             svg.append("rect")
-                .style("fill", "red")
+                .style("fill", _this.fillcolorRect())
                 .attr("width", 30)
                 .attr("height", 30)
                 .attr("x", 5)
@@ -819,7 +838,7 @@ var GraphLayoutComponent = /** @class */ (function () {
             var simulation = d3__WEBPACK_IMPORTED_MODULE_1__["forceSimulation"]()
                 .force("link", d3__WEBPACK_IMPORTED_MODULE_1__["forceLink"]().distance(20))
                 .force("charge", d3__WEBPACK_IMPORTED_MODULE_1__["forceManyBody"]().strength(-20))
-                .force("center", d3__WEBPACK_IMPORTED_MODULE_1__["forceCenter"](this.width / 2, this.height / 2));
+                .force("center", d3__WEBPACK_IMPORTED_MODULE_1__["forceCenter"](_this.width / 2, _this.height / 2));
             var link = svg.append("g")
                 .attr("class", "links")
                 .selectAll("line")
@@ -833,10 +852,10 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .data(graph.nodes)
                 .enter().append("circle")
                 .attr("r", function (d) { return Number(d.group) * 5 + 8; })
-                .attr("fill", this.fillcolorNode)
+                .attr("fill", _this.fillcolorNode)
                 .attr("stroke-opacity", 1)
-                .attr("stroke", "black")
-                .attr("stroke-width", 3)
+                .attr("stroke", "#000000")
+                .attr("stroke-width", 1)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)
@@ -898,44 +917,24 @@ var GraphLayoutComponent = /** @class */ (function () {
                 d.fy = null;
             }
         };
-        // test
-        this.createNodes1 = function (seq, pos) {
-            var nodes = [];
-            for (var _i = 0, _a = seq.split(""); _i < _a.length; _i++) {
-                var c = _a[_i];
-                nodes.push(this.nodeGen(c, 1));
-            }
-            nodes[Number(pos)].group = 2;
-            return nodes;
-        };
-        this.createLinks1 = function (seq) {
-            var links = [];
-            for (var _i = 0, _a = this.range(0, seq.length - 1); _i < _a.length; _i++) {
-                var i = _a[_i];
-                links.push(this.linkGen(i, i + 1, 1));
-            }
-            links.push(this.linkGen(0, seq.length - 1, 2));
-            return links;
-        };
         this.deuxNcm_tx_togL = function (s11, s12, s21, s22, pos) {
-            var _this = this;
             var nodeTab = [];
             var linkTab = [];
             console.log("s : ", s11, s12, s21, s22);
-            nodeTab = this.createNodes2(s11, s12, s21, s22, pos);
-            linkTab = this.createLinks2(s11, s12, s21, s22);
+            nodeTab = _this.createNodes2(s11, s12, s21, s22, pos);
+            linkTab = _this.createLinks2(s11, s12, s21, s22);
             var graph = { "nodes": nodeTab, "links": linkTab };
             if (!graph.nodes) {
                 graph = { "nodes": [], "links": [] };
             }
-            var element = this.chartContainer.nativeElement;
-            this.height = 200;
-            this.width = 200;
+            var element = _this.chartContainer.nativeElement;
+            _this.height = 200;
+            _this.width = 200;
             var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"](element).append('svg')
                 .attr('width', element.offsetWidth)
                 .attr('height', element.offsetHeight);
             svg.append("rect")
-                .style("fill", this.fillcolorRect())
+                .style("fill", _this.fillcolorRect())
                 .attr("width", 30)
                 .attr("height", 30)
                 .attr("x", 5)
@@ -949,7 +948,7 @@ var GraphLayoutComponent = /** @class */ (function () {
             var simulation = d3__WEBPACK_IMPORTED_MODULE_1__["forceSimulation"]()
                 .force("link", d3__WEBPACK_IMPORTED_MODULE_1__["forceLink"]().distance(20))
                 .force("charge", d3__WEBPACK_IMPORTED_MODULE_1__["forceManyBody"]().strength(-30))
-                .force("center", d3__WEBPACK_IMPORTED_MODULE_1__["forceCenter"](this.width / 2, this.height / 2));
+                .force("center", d3__WEBPACK_IMPORTED_MODULE_1__["forceCenter"](_this.width / 2, _this.height / 2));
             var link = svg.append("g")
                 .attr("class", "links")
                 .selectAll("line")
@@ -963,10 +962,10 @@ var GraphLayoutComponent = /** @class */ (function () {
                 .data(graph.nodes)
                 .enter().append("circle")
                 .attr("r", function (d) { return d.group * 5 + 8; })
-                .attr("fill", this.fillcolorNode)
+                .attr("fill", _this.fillcolorNode)
                 .attr("stroke-opacity", 1)
-                .attr("stroke", "black")
-                .attr("stroke-width", 3)
+                .attr("stroke", "#000000")
+                .attr("stroke-width", 1)
                 .call(d3__WEBPACK_IMPORTED_MODULE_1__["drag"]()
                 .on("start", dragstarted)
                 .on("drag", dragged)

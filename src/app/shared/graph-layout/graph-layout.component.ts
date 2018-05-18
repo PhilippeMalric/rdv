@@ -127,7 +127,43 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   }
 
 
-  unNcm_tx_togL = function (loop: String) {
+  
+
+  // test
+  createNodes1 = function (seq: string, pos: string) {
+
+    let nodes = [];
+
+    for (let c of seq.split("")) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+
+    nodes[Number(pos)].group = 2
+
+    return nodes
+
+
+  }
+
+  createLinks1 = function (seq: string) {
+
+    let links = []
+
+    for (let i of this.range(0,seq.length - 1)) {
+
+      links.push(this.linkGen(i,i+1, 1))
+
+    }
+
+    links.push(this.linkGen(0, seq.length - 1, 2))
+
+    return links
+
+  }
+
+  unNcm_tx_togL = (loop: String) => {
 
     let nodeTab = [];
     let linkTab = [];
@@ -142,7 +178,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     nodeTab = this.createNodes1(seq, pos);
-    linkTab = this.createLinks1(seq, pos);
+    linkTab = this.createLinks1(seq);
 
 
     let graph = { "nodes": nodeTab, "links": linkTab }
@@ -160,11 +196,11 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
 
-    
-   
+
+
 
     svg.append("rect")
-      .style("fill", "red")
+      .style("fill", this.fillcolorRect())
       .attr("width", 30)
       .attr("height", 30)
       .attr("x", 5)
@@ -199,8 +235,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
       .attr("fill", this.fillcolorNode)
       .attr("stroke-opacity", 1)
-      .attr("stroke", "black")
-      .attr("stroke-width", 3)
+      .attr("stroke", "#000000")
+      .attr("stroke-width", 1)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -275,41 +311,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       d.fx = null;
       d.fy = null;
     }
-    
 
-  }
-
-  // test
-  createNodes1 = function (seq: string, pos: string) {
-
-    let nodes = [];
-
-    for (let c of seq.split("")) {
-
-      nodes.push(this.nodeGen(c, 1))
-
-    }
-
-    nodes[Number(pos)].group = 2
-
-    return nodes
-
-
-  }
-
-  createLinks1 = function (seq: string) {
-
-    let links = []
-
-    for (let i of this.range(0,seq.length - 1)) {
-
-      links.push(this.linkGen(i,i+1, 1))
-
-    }
-
-    links.push(this.linkGen(0, seq.length - 1, 2))
-
-    return links
 
   }
 
@@ -331,7 +333,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   }
 
 
-  deuxNcm_tx_togL = function (s11: String, s12: String, s21: String, s22: String, pos: string) {
+  deuxNcm_tx_togL =  (s11: String, s12: String, s21: String, s22: String, pos: string) => {
 
     let nodeTab = []
     let linkTab = []
@@ -398,8 +400,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .attr("r", function (d) { return d.group * 5 + 8; })
       .attr("fill", this.fillcolorNode)
       .attr("stroke-opacity", 1)
-      .attr("stroke", "black")
-      .attr("stroke-width", 3)
+      .attr("stroke", "#000000")
+      .attr("stroke-width", 1)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
