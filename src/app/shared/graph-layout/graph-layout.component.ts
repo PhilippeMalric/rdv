@@ -28,7 +28,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   color = d3.scaleOrdinal(d3.schemeCategory10);
 
   colorScale = d3.scaleLinear<string>()
-    .domain([0, 2])
+    .domain([0, 1])
     .range(['red', 'blue'])
     .interpolate(d3.interpolateHcl);
 
@@ -196,7 +196,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .data(graph.nodes)
       .enter().append("circle")
       .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
-      .attr("fill", this.fillcolor)
+      .attr("fill", this.fillcolorNode)
       .attr("stroke", "black")
       .attr("stroke-width", 3)
       .call(d3.drag()

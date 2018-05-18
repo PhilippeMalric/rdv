@@ -14,7 +14,7 @@ export class NCMComponent implements OnInit {
   ncms: Ncm[] = [];
 
   skip = 0;
-  limit = 20;
+  limit = 100;
   cmin = 2;
   stdDevMax = 10
 
