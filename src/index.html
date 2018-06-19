@@ -14,8 +14,14 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script>
+    var shiftWindow = function () { scrollBy(0, -50) };
+    window.addEventListener("hashchange", shiftWindow);
+    function load() { if (window.location.hash) shiftWindow(); }
+  </script>
 </head>
-<body>
+<body onload="load()">
   <app-root></app-root>
 </body>
 </html>

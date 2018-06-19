@@ -35,6 +35,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { PagePresentationComponent } from './memoire_section/page-presentation/page-presentation.component';
 import { ResumeFrComponent } from './memoire_section/resume-fr/resume-fr.component';
 import { ResumeEnComponent } from './memoire_section/resume-en/resume-en.component';
+import { SigleEtAbreviationComponent } from './memoire_section/sigle-et-abreviation/sigle-et-abreviation.component';
 
 
 
@@ -76,7 +77,8 @@ const ROUTES: Routes = [
     MySideNavComponent,
     PagePresentationComponent,
     ResumeFrComponent,
-    ResumeEnComponent
+    ResumeEnComponent,
+    SigleEtAbreviationComponent
     
   ],
   imports: [
