@@ -29,6 +29,9 @@ import { NCMService } from './service/ncm.service';
 import { FormsModule } from '@angular/forms';
 
 import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
+import { MySideNavComponent } from './my-side-nav/my-side-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 
 
@@ -66,7 +69,8 @@ const ROUTES: Routes = [
     AboutComponent,
     PageNotFoundComponent,
     NCMComponent,
-    GraphLayoutComponent
+    GraphLayoutComponent,
+    MySideNavComponent
     
   ],
   imports: [
@@ -81,7 +85,13 @@ const ROUTES: Routes = [
     HttpClientModule,
     RouterModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [NCMService],
   bootstrap: [AppComponent]
