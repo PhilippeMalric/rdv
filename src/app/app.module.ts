@@ -32,6 +32,9 @@ import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.compone
 import { MySideNavComponent } from './my-side-nav/my-side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { PagePresentationComponent } from './memoire_section/page-presentation/page-presentation.component';
+import { ResumeFrComponent } from './memoire_section/resume-fr/resume-fr.component';
+import { ResumeEnComponent } from './memoire_section/resume-en/resume-en.component';
 
 
 
@@ -70,7 +73,10 @@ const ROUTES: Routes = [
     PageNotFoundComponent,
     NCMComponent,
     GraphLayoutComponent,
-    MySideNavComponent
+    MySideNavComponent,
+    PagePresentationComponent,
+    ResumeFrComponent,
+    ResumeEnComponent
     
   ],
   imports: [
