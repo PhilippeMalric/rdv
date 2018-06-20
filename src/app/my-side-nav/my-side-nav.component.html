@@ -8,11 +8,11 @@
     [opened]="!(isHandset | async)!.matches">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <ul class="collapsible popout" data-collapsible="accordion">
+      <ul id="sideNavBar" class="collapsible popout" data-collapsible="accordion">
         <li>
-          <div class="collapsible-header"><i class="material-icons">folder</i>Entête</div>
-          <div class="collapsible-body">
-            <a mat-list-item href="/home#page_presentation">Page de Présentation</a>
+          <div id="Entête" class="collapsible-header"><i class="material-icons">folder</i>Entête</div>
+          <div id="pageP"class="collapsible-body active">
+            <a mat-list-item href="/home#">Page de Présentation</a>
           </div>
           <div class="collapsible-body">
             <a mat-list-item href="/home#app-resume-fr">Résumé Français</a>
