@@ -8,28 +8,46 @@
     [opened]="!(isHandset | async)!.matches">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/home#page_presentation">Page de Présentation</a>
-      <a mat-list-item href="/home#app-resume-fr">Résumé Français</a>
-      <a mat-list-item href="/home#app-resume-en">Résumé Anglais</a>
-      <a mat-list-item href="/home#app-sigle-et-abreviation">Sigles et Abréviations</a>
-      <a mat-list-item href="/home#app-dedicasse">Dédicace</a>
-      <a mat-list-item href="/home#app-remerciements">Remerciements</a>
-      <ul class="collapsible expandable">
+      <ul class="collapsible popout" data-collapsible="accordion">
         <li>
-          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Introduction</div>
-          <div class="collapsible-body"><a mat-list-item href="/home#app-begining">Intro début</a></div>
+          <div class="collapsible-header"><i class="material-icons">folder</i>Entête</div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#page_presentation">Page de Présentation</a>
+          </div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#app-resume-fr">Résumé Français</a>
+          </div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#app-resume-en">Résumé Anglais</a>
+          </div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#app-sigle-et-abreviation">Sigles et Abréviations</a>
+          </div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#app-dedicasse">Dédicace</a>
+          </div>
+          <div class="collapsible-body">
+            <a mat-list-item href="/home#app-remerciements">Remerciements</a>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter</i>Intro</div>
           <div class="collapsible-body"><a mat-list-item href="/home#app-begining">Intro début2</a></div>
         </li>
         <li>
-          <div class="collapsible-header"><i class="material-icons">Chapitre 1</i>Second</div>
+          <div class="collapsible-header"><i class="material-icons">filter_1</i>Chapitre 1</div>
           <div class="collapsible-body"><a mat-list-item href="/home#app-begining">Intro début2</a></div>
         </li>
         <li>
-          <div class="collapsible-header"><i class="material-icons">Chapitre 2</i>Third</div>
+          <div class="collapsible-header"><i class="material-icons">filter_2</i>Chapitre 2</div>
           <div class="collapsible-body"><div class="collapsible-body"><a mat-list-item href="/home#app-begining">Intro début2</a></div></div>
         </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_3</i>Chapitre 3</div>
+          <div class="collapsible-body"><div class="collapsible-body"><a mat-list-item href="/home#app-begining"></a></div></div>
+        </li>
       </ul>
-      
+
 
     </mat-nav-list>
   </mat-sidenav>
