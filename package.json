@@ -30,6 +30,7 @@
     "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "httpclient": "^0.1.0",
+    "materialize-css": "^1.0.0-rc.1",
     "primeng": "^5.2.6",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.1.0",

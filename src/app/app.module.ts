@@ -36,6 +36,10 @@ import { PagePresentationComponent } from './memoire_section/page-presentation/p
 import { ResumeFrComponent } from './memoire_section/resume-fr/resume-fr.component';
 import { ResumeEnComponent } from './memoire_section/resume-en/resume-en.component';
 import { SigleEtAbreviationComponent } from './memoire_section/sigle-et-abreviation/sigle-et-abreviation.component';
+import { DedicasseComponent } from './memoire_section/dedicasse/dedicasse.component';
+import { RemerciementsComponent } from './memoire_section/remerciements/remerciements.component';
+import { IntroductionComponent } from './memoire_section/introduction/introduction.component';
+import { BeginingComponent } from './memoire_section/intro_sections/begining/begining.component';
 
 
 
@@ -78,7 +82,11 @@ const ROUTES: Routes = [
     PagePresentationComponent,
     ResumeFrComponent,
     ResumeEnComponent,
-    SigleEtAbreviationComponent
+    SigleEtAbreviationComponent,
+    DedicasseComponent,
+    RemerciementsComponent,
+    IntroductionComponent,
+    BeginingComponent
     
   ],
   imports: [
