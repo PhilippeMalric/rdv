@@ -25,9 +25,22 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <script>
+    // permet de bien voir le haut de la page (lorqu'on utilise la navbar)
     var shiftWindow = function () { scrollBy(0, -50) };
     window.addEventListener("hashchange", shiftWindow);
     function load() { if (window.location.hash) shiftWindow(); }
+
+    // Load une icon special en localHost
+    var loadIcon = function () {
+      var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = '1m7.icon.ico';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    };
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+      loadIcon()
+    }
   </script>
 </head>
 <body onload="load()">
