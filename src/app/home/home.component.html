@@ -1,16 +1,76 @@
-<div>
-  <div>
-    <my-side-nav></my-side-nav>
+<p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+<mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+               (closed)="events.push('close!')">
+    <div id="mySidenav" class="sidenav">
+      <div class="toc-wrapper">
+        <ul class="section table-of-contents">
+          <li>
+            <a href="#page_presentation">Présentation</a>
+          </li>
+          <li>
+            <a href="#app-resume-fr">Résumé</a>
+          </li>
+          <li>
+            <a href="#app-resume-en">Abstract</a>
+          </li>
+          <li>
+            <a href="#app-sigle-et-abreviation">Sigle&Abvr.</a>
+          </li>
+          <li>
+            <a href="#app-dedicasse">Dédicace</a>
+          </li>
+          <li>
+            <a href="#app-remerciements">Remerciement</a>
+          </li>
+          <li>
+            <a href="#app-begining">Début</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </mat-sidenav>
+  <div classe="container">
+    <div class="s12 m19 l19 xl9">
+      <ul class="collapsible expandable">
+        <li>
+          <div class="collapsible-header"><i class="accessibility"></i>Présentation</div>
+          <div class="collapsible-body"><app-page-presentation id="page_presentation" class="section scrollspy"></app-page-presentation></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="access_time"></i>Résumé</div>
+          <div class="collapsible-body"><app-resume-fr id="app-resume-fr" class="section scrollspy myjustify"></app-resume-fr></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="language"></i>Abstract</div>
+          <div class="collapsible-body"><app-resume-en id="app-resume-en" class="section scrollspy myjustify"></app-resume-en></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="insert_emoticon"></i>Sigles&Abvr.</div>
+          <div class="collapsible-body"><app-sigle-et-abreviation id="app-sigle-et-abreviation" class="section scrollspy myjustify"></app-sigle-et-abreviation></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="insert_comment"></i>Dédicace</div>
+          <div class="collapsible-body"><app-dedicasse id="app-dedicasse" class="section scrollspy myjustify"></app-dedicasse></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="person_add"></i>Remerciement</div>
+          <div class="collapsible-body"><app-remerciements id="app-remerciements" class="section scrollspy myjustify"></app-remerciements></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="email"></i>Début</div>
+          <div class="collapsible-body"><app-begining id="app-begining" class="section scrollspy myjustify"></app-begining></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="person_add"></i>Avertissement</div>
+          <div class="collapsible-body"><app-avertissement id="app-avertissement" class="section scrollspy myjustify"></app-avertissement></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="email"></i>Mise en context</div>
+          <div class="collapsible-body"><app-contexte id="app-context" class="section scrollspy myjustify"></app-contexte></div>
+        </li>
+      </ul>
+
+    </div>
   </div>
-  
-  <div class="container">
-    <app-page-presentation id="page_presentation" class="section scrollspy"></app-page-presentation>
-    <app-resume-fr id="app-resume-fr" class="section scrollspy"></app-resume-fr>
-    <app-resume-en id="app-resume-en" class="section scrollspy"></app-resume-en>
-    <app-sigle-et-abreviation id="app-sigle-et-abreviation" class="section scrollspy"></app-sigle-et-abreviation>
-    <app-dedicasse id="app-dedicasse" class="section scrollspy"></app-dedicasse>
-    <app-remerciements id="app-remerciements" class="section scrollspy"></app-remerciements>
-    <app-begining id="app-begining" class="section scrollspy"></app-begining>
-    <img class="materialboxed" width="650" src="/assets/images/nucleotide.jpg">
-  </div>
-</div>
+

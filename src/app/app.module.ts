@@ -29,7 +29,6 @@ import { NCMService } from './service/ncm.service';
 import { FormsModule } from '@angular/forms';
 
 import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
-import { MySideNavComponent } from './my-side-nav/my-side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { PagePresentationComponent } from './memoire_section/page-presentation/page-presentation.component';
@@ -38,8 +37,10 @@ import { ResumeEnComponent } from './memoire_section/resume-en/resume-en.compone
 import { SigleEtAbreviationComponent } from './memoire_section/sigle-et-abreviation/sigle-et-abreviation.component';
 import { DedicasseComponent } from './memoire_section/dedicasse/dedicasse.component';
 import { RemerciementsComponent } from './memoire_section/remerciements/remerciements.component';
-import { IntroductionComponent } from './memoire_section/introduction/introduction.component';
 import { BeginingComponent } from './memoire_section/intro_sections/begining/begining.component';
+import { AvertissementComponent } from './memoire_section/intro_sections/avertissement/avertissement.component';
+import { MyScrollspyDirective } from './my-scrollspy.directive';
+import { ContexteComponent } from './memoire_section/intro_sections/contexte/contexte.component';
 
 
 
@@ -78,15 +79,16 @@ const ROUTES: Routes = [
     PageNotFoundComponent,
     NCMComponent,
     GraphLayoutComponent,
-    MySideNavComponent,
     PagePresentationComponent,
     ResumeFrComponent,
     ResumeEnComponent,
     SigleEtAbreviationComponent,
     DedicasseComponent,
     RemerciementsComponent,
-    IntroductionComponent,
-    BeginingComponent
+    BeginingComponent,
+    MyScrollspyDirective,
+    ContexteComponent,
+    AvertissementComponent
     
   ],
   imports: [

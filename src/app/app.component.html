@@ -1,2 +1,13 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar class="pushpin-nav-bar"></app-nav-bar>
 <router-outlet></router-outlet>
+
+<script>
+   $('.pushpin-nav-bar').each(function() {
+    var $this = $(this);
+    var $target = $('#' + $(this).attr('data-target'));
+    $this.pushpin({
+      top: $target.offset().top,
+      bottom: $target.offset().top + $target.outerHeight() - $this.height()
+    });
+  });
+</script>
