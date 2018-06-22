@@ -13,3 +13,4 @@ export class ContexteComponent implements OnInit {
   }
 
 }
+//name = "nombre_d_ARN_rmdb"

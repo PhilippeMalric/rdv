@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -39,11 +39,19 @@ import { DedicasseComponent } from './memoire_section/dedicasse/dedicasse.compon
 import { RemerciementsComponent } from './memoire_section/remerciements/remerciements.component';
 import { BeginingComponent } from './memoire_section/intro_sections/begining/begining.component';
 import { AvertissementComponent } from './memoire_section/intro_sections/avertissement/avertissement.component';
-import { MyScrollspyDirective } from './my-scrollspy.directive';
 import { ContexteComponent } from './memoire_section/intro_sections/contexte/contexte.component';
-
-
-
+import { SidebarModule } from 'primeng/sidebar';
+import { AccordionModule } from 'primeng/accordion';
+import { DebutDeLetudeComponent } from './memoire_section/intro_sections/historique/debut-de-letude/debut-de-letude.component';
+import { DeterminationDeLaStructureComponent } from './memoire_section/intro_sections/historique/determination-de-la-structure/determination-de-la-structure.component';
+import { PredictionDeLaStructureComponent } from './memoire_section/intro_sections/historique/prediction-de-la-structure/prediction-de-la-structure.component';
+import { FigureComponent } from './figure/figure.component';
+import { PourquoiEtudierLARNComponent } from './memoire_section/intro_sections/pourquoi-etudier-l-arn/pourquoi-etudier-l-arn.component';
+import { NucleotidesComponent } from './memoire_section/intro_sections/definitions/nucleotides/nucleotides.component';
+import { HistoriqueComponent } from './memoire_section/intro_sections/historique/historique.component';
+import { DefinitionsComponent } from './memoire_section/intro_sections/definitions/definitions.component';
+import { StructureSecondaireComponent } from './memoire_section/intro_sections/definitions/structure-secondaire/structure-secondaire.component';
+import { MotifCycliqueNucleotidiqueComponent } from './memoire_section/intro_sections/definitions/motif-cyclique-nucleotidique/motif-cyclique-nucleotidique.component';
 
 
 const ROUTES: Routes = [
@@ -86,12 +94,22 @@ const ROUTES: Routes = [
     DedicasseComponent,
     RemerciementsComponent,
     BeginingComponent,
-    MyScrollspyDirective,
     ContexteComponent,
-    AvertissementComponent
+    AvertissementComponent,
+    DebutDeLetudeComponent,
+    DeterminationDeLaStructureComponent,
+    PredictionDeLaStructureComponent,
+    FigureComponent,
+    PourquoiEtudierLARNComponent,
+    NucleotidesComponent,
+    HistoriqueComponent,
+    DefinitionsComponent,
+    StructureSecondaireComponent,
+    MotifCycliqueNucleotidiqueComponent
     
   ],
   imports: [
+    MatButtonModule,
     ButtonModule,
     PanelModule,
     FormsModule,
@@ -109,7 +127,10 @@ const ROUTES: Routes = [
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    SidebarModule,
+    AccordionModule
+
   ],
   providers: [NCMService],
   bootstrap: [AppComponent]

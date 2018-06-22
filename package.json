@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "@material/checkbox": "^0.36.1",
+    "@material/fab": "^0.36.1",
     "angular2-http": "^1.2.0",
     "body-parser": "^1.18.2",
     "core-js": "^2.5.4",

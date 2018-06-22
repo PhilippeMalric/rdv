@@ -1,52 +1,92 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; // <-- do not forget to import
+import { FigureComponent } from "../figure/figure.component"
 
- 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private fragment: string;
-  events: string[] = [];
-  opened: boolean;
-  private currentSection = 'section1';
-  constructor(private route: ActivatedRoute, router: Router) {
-    router.events.subscribe(s => {
-      if (s instanceof NavigationEnd) {
-        const tree = router.parseUrl(router.url);
-        if (tree.fragment) {
-          const element = document.querySelector("#" + tree.fragment);
-          if (element) {
-            const elementRect = element.getBoundingClientRect();
-            const absoluteElementTop = elementRect.top + window.pageYOffset;
-            const middle = absoluteElementTop - 70;
-            window.scrollTo(0, middle);
-          }
-        }
-      }
-    });
+
+  index = 0
+
+  buttonClick = (id) =>{
+
+    console.log("id : ", id)
+    this.index = this.transformToId(id)
+
+  }
+
+  onTabOpen= function (event) {
+    console.log("event : ",event)
+  }
+  
+  onTabClose = function (event) {
+    console.log("event : ", event)
   }
 
   ngOnInit() {
-    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
-    this.route.params.subscribe(params => {
-      this.currentSection = params['sectionId'];
-    })
   }
 
-  ngAfterViewInit(): void {
-    try {
-      const element = document.getElementById(this.fragment);
-      const elementRect = element.getBoundingClientRect();
-      const absoluteElementTop = elementRect.top + window.pageYOffset;
-      const middle = absoluteElementTop - 70;
-      window.scrollTo(0, middle);
-    } catch (e) { }
-  }
-  scrollTo(section) {
-    this.currentSection = section;
-  }
+  transformToId = function (id) {
+    let numberId = 0
+    switch (id) {
+      case "page_presentation": {
+        numberId = 0
+        break;
+      }
+      case "app-resume-fr": {
+        numberId = 1
+        break;
+      }
+      case "app-resume-en": {
+        numberId = 2
+        break;
+      }
+      case "app-sigle-et-abreviation": {
+        numberId = 3
+        break;
+      }
+      case "app-dedicasse": {
+        numberId = 4
+        break;
+      }
+      case "app-remerciements": {
+        numberId = 5
+        break;
+      }
+      case "app-begining": {
+        numberId = 6
+        break;
+      }
+      case "app-avertissement": {
+        numberId = 7
+        break;
+      }
+      case "app-context": {
+        numberId = 8
+        break;
+      }
+      case "app-historique": {
+        numberId = 9
+        break;
+      }
+      case "app-pourquoi-etudier-l-arn": {
+        numberId = 10
+        break;
+      }
+      case "app-definitions": {
+        numberId = 11
+        break;
+      }
 
+      default: {
+        //statements; 
+        break;
+      }
+
+    }
+    return numberId
+  }
 }

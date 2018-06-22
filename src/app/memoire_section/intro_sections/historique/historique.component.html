@@ -1,0 +1,21 @@
+<p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+<p-accordionTab>
+  <p-header>
+    Les débuts
+  </p-header>
+  <app-debut-de-letude id="app-debut-de-letude" class="section scrollspy"></app-debut-de-letude>
+</p-accordionTab>
+<p-accordionTab>
+  <p-header>
+    Détermination de la structure secondaire
+  </p-header>
+  <app-determination-de-la-structure id="app-determination-de-la-structure" class="section scrollspy"></app-determination-de-la-structure>
+</p-accordionTab>
+<p-accordionTab>
+  <p-header>
+    Prédiction de la structure secondaire
+  </p-header>
+  <app-prediction-de-la-structure id="app-resume-fr" class="section scrollspy myjustify"></app-prediction-de-la-structure>
+</p-accordionTab>
+
+</p-accordion>
