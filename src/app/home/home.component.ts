@@ -9,7 +9,8 @@ import { FigureComponent } from "../figure/figure.component"
 })
 export class HomeComponent implements OnInit {
 
-  index = 0
+  index = 0;
+  visibleSidebar1 = false;
 
   buttonClick = (id) =>{
 
