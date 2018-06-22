@@ -53,6 +53,10 @@ import { DefinitionsComponent } from './memoire_section/intro_sections/definitio
 import { StructureSecondaireComponent } from './memoire_section/intro_sections/definitions/structure-secondaire/structure-secondaire.component';
 import { MotifCycliqueNucleotidiqueComponent } from './memoire_section/intro_sections/definitions/motif-cyclique-nucleotidique/motif-cyclique-nucleotidique.component';
 import { GrapheDesTransitionsDesARNComponent } from './memoire_section/intro_sections/definitions/graphe-des-transitions-des-arn/graphe-des-transitions-des-arn.component';
+import { SondageChimiqueDesARNComponent } from './memoire_section/intro_sections/definitions/sondage-chimique-des-arn/sondage-chimique-des-arn.component';
+import { AgentsModificateursComponent } from './memoire_section/intro_sections/definitions/agents-modificateurs/agents-modificateurs.component';
+import { RMDBComponent } from './memoire_section/intro_sections/definitions/rmdb/rmdb.component';
+import { EternaComponent } from './memoire_section/intro_sections/definitions/eterna/eterna.component';
 
 
 const ROUTES: Routes = [
@@ -107,7 +111,11 @@ const ROUTES: Routes = [
     DefinitionsComponent,
     StructureSecondaireComponent,
     MotifCycliqueNucleotidiqueComponent,
-    GrapheDesTransitionsDesARNComponent
+    GrapheDesTransitionsDesARNComponent,
+    SondageChimiqueDesARNComponent,
+    AgentsModificateursComponent,
+    RMDBComponent,
+    EternaComponent
     
   ],
   imports: [
