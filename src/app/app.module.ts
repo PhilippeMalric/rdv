@@ -52,6 +52,7 @@ import { HistoriqueComponent } from './memoire_section/intro_sections/historique
 import { DefinitionsComponent } from './memoire_section/intro_sections/definitions/definitions.component';
 import { StructureSecondaireComponent } from './memoire_section/intro_sections/definitions/structure-secondaire/structure-secondaire.component';
 import { MotifCycliqueNucleotidiqueComponent } from './memoire_section/intro_sections/definitions/motif-cyclique-nucleotidique/motif-cyclique-nucleotidique.component';
+import { GrapheDesTransitionsDesARNComponent } from './memoire_section/intro_sections/definitions/graphe-des-transitions-des-arn/graphe-des-transitions-des-arn.component';
 
 
 const ROUTES: Routes = [
@@ -105,7 +106,8 @@ const ROUTES: Routes = [
     HistoriqueComponent,
     DefinitionsComponent,
     StructureSecondaireComponent,
-    MotifCycliqueNucleotidiqueComponent
+    MotifCycliqueNucleotidiqueComponent,
+    GrapheDesTransitionsDesARNComponent
     
   ],
   imports: [
