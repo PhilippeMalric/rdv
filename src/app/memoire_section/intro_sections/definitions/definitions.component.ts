@@ -11,5 +11,10 @@ export class DefinitionsComponent implements OnInit {
 
   ngOnInit() {
   }
+  onTabOpen = function (event) {
+    console.log("event : ", event)
+  }
 
+  onTabClose = function (event) {
+    conso
 }
