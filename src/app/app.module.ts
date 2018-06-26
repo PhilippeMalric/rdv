@@ -23,7 +23,6 @@ import { DocComponent } from './doc/doc.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NCMComponent } from './ncm/ncm.component';
 
 import { NCMService } from './service/ncm.service';
 import { FormsModule } from '@angular/forms';
@@ -65,7 +64,7 @@ const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'doc', component: DocComponent },
   { path: 'viewer', component: ViewerComponent },
-  { path: 'ncm', component: NCMComponent },
+  { path: 'ncm', component: NCM2Component },
   {
     path: 'about',
     component: AboutComponent
@@ -96,7 +95,6 @@ const ROUTES: Routes = [
     ViewerComponent,
     AboutComponent,
     PageNotFoundComponent,
-    NCMComponent,
     GraphLayoutComponent,
     PagePresentationComponent,
     ResumeFrComponent,
