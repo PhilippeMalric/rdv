@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './ncm2.component.html',
   styleUrls: ['./ncm2.component.css']
 })
-export class NCMComponent implements OnInit {
+export class NCM2Component implements OnInit {
 
   ncms: Ncm[] = [];
   ncms$: Observable<Ncm[]>
