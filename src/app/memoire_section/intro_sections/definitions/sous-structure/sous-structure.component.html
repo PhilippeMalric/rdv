@@ -1,0 +1,22 @@
+<p>
+  Dans le but d'apprendre sur la variabilité de la réactivité d'un nucléotide d'une sous structure, un mini langage a été créé. Pour les nucléotides n'étant pas à la jonction de deux NCM, l’identifiant est nous informe du nombre de nucléotides sur chaque brin, de la sorte de ces nucléotides et de la position du nt sondé. Pour un nucléotides à la jonction de deux NCM, les deux identifiants sont concatenés
+</p>
+<h4>Le type (le nombre de nucléotide sur chaque brin)</h4>
+<p>
+  Dans tous les cas, la chaine de caractère débute toujours par le type du MCN.
+  Lorsque le MCN a 2 brin, il est donc délimité par 2 paires de bases, le type est composé de deux chiffres plus petits que 7 représentant le nombre de nt. entre, et comprenant, les nt. des bases dans les deux paires de bases. Il débute par le brin du nt. d'intérêt.
+  Les boucles sont traitées de la même manière, mais elles ont un seul brin. Précisément, pour les boucles, le type du MCN a seulement un caractère, un chiffre plus petit que 7 ou la lettre « L ». Ce caractère est le nombre de nt. libres de la boucle plus les deux derniers nt. de l’hélice, si ce nombre est plus petit que 7, sinon c’est la lettre « L », pour : « Long regroupement de nt. non pairés ». Ceci aide à diminuer le nombre possible de MCN.
+</p>
+<h4>La séquence</h4>
+<p>
+  Pour les MCN à deux brins, le type est suivi par les séquences, en commençant, aussi, par le brin d'où provient le nt. d'intérêt. Les séquences sont de la longueur des chiffres du type ou si elles sont égales ou plus grandes que 7, elles sont remplacées par la lettre « L ».
+  Pour les boucles, la séquence débute par le nt. pairé en 5’ et se termine par le nt. pairé en 3’. Lorsque le nombre de nt. est égal ou supérieur à 7, la lettre « L » remplace la séquence.
+</p>
+  <h4>La position du nucléotide</h4>
+<p>
+  Finalement, pour les MCN composés de deux brins on ajoute à l’identifiant la position du nt. sur le premier brin. Pour les boucles, il n’y a pas d’ambiguïté à ce niveau. Dans les deux cas, le premier nt. en 5’ à comme numéro de position le 0.
+</p>
+  <h4>Appartenance d’un nucléotide à un MCN</h4>  Appartenance d’un nucléotide à un MCN
+<p>
+  Les nt. pairés font partie de 2 MCN, tandis que les nt. non pairés font partie d’un seul MCN par SS. Les nt. de début ou de fin de séquences pour lesquels aucun voisin n’est pairé d’un des deux côtés, ne font pas partie d’un MCN à proprement parler, mais il est utile d’identifier ces caractéristiques pour prédire la réactivité des nt. L’algorithme qui permet d’extraire les MCN d’une SS est expliqué dans le chapitre 1.
+</p>

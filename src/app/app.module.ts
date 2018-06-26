@@ -58,6 +58,7 @@ import { AgentsModificateursComponent } from './memoire_section/intro_sections/d
 import { RMDBComponent } from './memoire_section/intro_sections/definitions/rmdb/rmdb.component';
 import { EternaComponent } from './memoire_section/intro_sections/definitions/eterna/eterna.component';
 import { NCM2Component} from './ncm2/ncm2.component';
+import { SousStructureComponent } from './memoire_section/intro_sections/definitions/sous-structure/sous-structure.component';
 
 
 const ROUTES: Routes = [
@@ -121,7 +122,8 @@ const ROUTES: Routes = [
     AgentsModificateursComponent,
     RMDBComponent,
     EternaComponent,
-    NCM2Component
+    NCM2Component,
+    SousStructureComponent
     
   ],
   imports: [

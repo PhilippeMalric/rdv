@@ -1,8 +1,58 @@
-<app-nucleotides></app-nucleotides>
-<app-structure-secondaire></app-structure-secondaire>
-<app-motif-cyclique-nucleotidique></app-motif-cyclique-nucleotidique>
-<app-structure-secondaire></app-structure-secondaire>
 <app-graphe-des-transitions-des-arn></app-graphe-des-transitions-des-arn>
 <app-sondage-chimique-des-arn></app-sondage-chimique-des-arn>
 <app-rmdb></app-rmdb>
 <app-eterna></app-eterna>
+<app-sous-structure></app-sous-structure>
+
+
+<p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+  <p-accordionTab>
+    <p-header>
+      Les nucléotides
+    </p-header>
+    <app-nucleotides id="app-nucleotides" class="section scrollspy"></app-nucleotides>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      La structure secondaire
+    </p-header>
+    <app-structure-secondaire> id="app-structure-secondaire" class="section scrollspy"></<app-structure-secondaire>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Les motifs cycliques nucléotidiques
+    </p-header>
+    <app-motif-cyclique-nucleotidique id="app-motif-cyclique-nucleotidique" class="section scrollspy"></app-motif-cyclique-nucleotidique> 
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le graphe des transitions
+    </p-header>
+    <app-graphe-des-transitions-des-arn id="app-graphe-des-transitions-des-arn" class="section scrollspy"></app-graphe-des-transitions-des-arn>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le sondage chimique des ARN
+    </p-header>
+    <app-sondage-chimique-des-arn id="app-sondage-chimique-des-arn" class="section scrollspy"></app-sondage-chimique-des-arn>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      La RMDB (RNA mapping database)
+    </p-header>
+    <app-rmdb id="app-rmdb" class="section scrollspy"></app-rmdb>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Eterna
+    </p-header>
+    <app-eterna id="app-eterna" class="section scrollspy"></app-eterna>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Les Sous structures définies par les MCN
+    </p-header>
+    <app-sous-structure id="app-sous-structure" class="section scrollspy myjustify"></app-sous-structure>
+  </p-accordionTab>
+
+</p-accordion>
