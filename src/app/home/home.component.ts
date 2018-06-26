@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   visibleSidebar1 = false;
 
   buttonClick = (id) =>{
-
+    debugger;
     console.log("id : ", id)
     this.index = this.transformToId(id)
 

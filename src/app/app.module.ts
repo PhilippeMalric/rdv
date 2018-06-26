@@ -57,6 +57,7 @@ import { SondageChimiqueDesARNComponent } from './memoire_section/intro_sections
 import { AgentsModificateursComponent } from './memoire_section/intro_sections/definitions/agents-modificateurs/agents-modificateurs.component';
 import { RMDBComponent } from './memoire_section/intro_sections/definitions/rmdb/rmdb.component';
 import { EternaComponent } from './memoire_section/intro_sections/definitions/eterna/eterna.component';
+import { Ncm2Component } from './ncm2/ncm2.component';
 
 
 const ROUTES: Routes = [
@@ -115,7 +116,8 @@ const ROUTES: Routes = [
     SondageChimiqueDesARNComponent,
     AgentsModificateursComponent,
     RMDBComponent,
-    EternaComponent
+    EternaComponent,
+    Ncm2Component
     
   ],
   imports: [
