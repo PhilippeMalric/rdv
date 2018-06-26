@@ -16,5 +16,6 @@ export class DefinitionsComponent implements OnInit {
   }
 
   onTabClose = function (event) {
-    conso
+    console.log("event : ", event)
+  }
 }
