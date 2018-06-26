@@ -121,7 +121,7 @@ const ROUTES: Routes = [
     AgentsModificateursComponent,
     RMDBComponent,
     EternaComponent,
-    Ncm2Component
+    NCM2Component
     
   ],
   imports: [
