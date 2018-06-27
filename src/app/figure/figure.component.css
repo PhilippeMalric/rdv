@@ -4,4 +4,9 @@ div {
   padding: 15px;
   border: 1px solid black;
   text-align: center;
+  width: 100%
+}
+
+.picture {
+  width: 100%
 }
