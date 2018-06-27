@@ -14,7 +14,7 @@ h5 {
 }
 
 .divTdm {
-  position: absolute;
+  position: relative;
   right: 0;
   top: 0;
 }
@@ -22,9 +22,29 @@ h5 {
 .tdm {
   position: fixed;
   top: 0;
-  float: right;
   text-align: right;
   font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  display: flex;
+  min-height: 50vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+p-header {
+  position:center;
+  width:90%
+
+}
+
+.collapsible {
+  min-width: 95%;
+  width: 100%;
 }
 
 
