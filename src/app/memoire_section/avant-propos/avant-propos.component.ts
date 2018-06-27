@@ -11,5 +11,11 @@ export class AvantProposComponent implements OnInit {
 
   ngOnInit() {
   }
+  onTabOpen = function (event) {
+    console.log("event : ", event)
+  }
 
+  onTabClose = function (event) {
+    console.log("event : ", event)
+  }
 }
