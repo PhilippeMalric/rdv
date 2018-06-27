@@ -1,0 +1,43 @@
+<h3>Les classifieurs</h3>
+<p>
+  Les classifieurs sont des algorithmes qui prennent en entrée des éléments ayant tous les mêmes classes de caractéristiques et qui produit des catégories classant ces éléments. Les classifieurs suivants ont été utilisés pour prédire la classe de réactivité des nucléotides (basse ou haute).
+</p>
+
+<p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+  <p-accordionTab>
+    <p-header>
+      Réseaux de neuronnes
+    </p-header>
+    <app-reseau-de-neurones class="section scrollspy"></app-reseau-de-neurones>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Régression logistique
+    </p-header>
+    <app-regression-logistique class="section scrollspy"></app-regression-logistique>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Machine à vecteurs de support
+    </p-header>
+    <app-machine-vecteurs-support class="section scrollspy"></app-machine-vecteurs-support>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Arbres de décisions
+    </p-header>
+    <app-arbres-decisions class="section scrollspy"></app-arbres-decisions>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Arbre de décision « boosté » ou « Boosted Decision Tree »
+    </p-header>
+    <app-boosted-decision-tree class="section scrollspy"></app-boosted-decision-tree>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Bayes point machine
+    </p-header>
+    <app-bayes-point-machine class="section scrollspy"></app-bayes-point-machine>
+  </p-accordionTab>
+</p-accordion>

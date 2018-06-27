@@ -1,3 +1,33 @@
+<h3>
+  Eterna
+</h3>
 <p>
   Eterna est un jeu vidéo scientifique. Il propose aux joueurs des casse-têtes ayant pour thème l’ARN. Un des jeux consiste à trouver une séquence qui se replie en une SS donnée, c’est l’inverse du problème de repliement résolu par RNAsubopt et MCFlashfold.
 </p>
+<h4>Cloud Labs</h4>
+<p>Lorsqu’un joueur expérimenté a trouvé une séquence se repliant en la structure demandée, il peut la soumettre au laboratoire pour confirmer sa découverte. Le laboratoire synthétise l’ARN et établit son profil par sondage chimique.</p>
+<h4>
+  Fonction d’évaluation des séquences soumises
+</h4>
+<p>Dans ce mémoire, pour évaluer les SS quant à leur degré de similarité avec les données de SHAPE, je me suis inspiré de la fonction de score d’Eterna. Dans ce jeu, les séquences soumises sont évaluées en fonction de la réactivité de leurs bases. Un seuil est déterminé et si le nucléotide est censé être pairé dans la SS cible, mais qu’il réagit à l’agent modificateur, un point est retiré du total. Dans le cas contraire, un nucléotide non pairé doit ne pas réagir du tout pour qu’un point soit retiré. Cette évaluation est très « gentille » pour le joueur, puisqu’un nucléotide tombant dans la zone grise n’entraine pas de pénalité et que les valeurs de seuil sont optimisées pour maximiser le score du joueur. Ceci est dû à l’incertitude de la vraie signification de la réactivité chimique d’un nucléotide. Cette valeur est nommée : « Structure mapping score » [39]. Je me suis inspiré de ce score pour distinguer les nucléotides réactis des nucléotides peu réactifs. La seule différence est que les seuils sont fixes.</p>
+<p>Dans ce mémoire, vous constaterez que le concept pairé ou non pairé peut être précisé pour mieux évaluer la réactivité ou la non-réactivité d’un nucléotide</p>
+<h4>
+  Mapseeker
+</h4>
+<p>Mapseeker est le logiciel faisant la correspondance entre les séquences déterminées lors de l’étape de séquençage et la valeur de réactivité pour chaque nucléotide de la séquence. Son fonctionnement est décrit dans [35]</p>
+<h4>
+  Prise en considération des décrochements naturels de la polymérase
+</h4>
+<p>Comme mentionné brièvement plus haut, un contrôle négatif est effectué pour chaque ARN sondé. Ceci permet de distinguer les arrêts de transcriptions non provoqués par l’agent modificateur. Par exemple une SS très stable peut empêcher la rétrotranscriptase de poursuivre sa transcription.</p>
+<h4>
+  Normalisation sur un segment connu
+</h4>
+<p>L’ajout d’une tige-boucle permet de mesurer chaque réaction de façon extrêmement précise. Dans le passé, comparer les expériences faites sur différents ARN était une tâche presque impossible. Il est maintenant beaucoup plus facile de le faire grâce à cet ajout.</p>
+<h4>
+  Le biais de ligation
+</h4>
+<p>Certaines séquences ont moins de chance de se faire transcrire par la polymérase, créant ainsi un biais. Lors de la calibration des méthodes de détermination de la réactivité chimique des ARN par séquençage, les auteurs de [35] ont remarqué que les données de réactivités normalisées adjacentes à la tige-boucle « GAGUA » sont plus élevées que ce qu’ils avaient découvert avec les expériences faites par électrophorèse capillaire. Ils ont déterminé un facteur pour corriger cette différence.</p>
+<h4>
+  Rapport « signal sur bruit » (Signal to noise ratio)
+</h4>
+<p>Cette valeur est calculée en divisant la moyenne des valeurs de réactivité par la moyenne des erreurs de tous les nucléotides d’un ARN [40]. Pour plus d’information sur l’erreur, on peut se référer à l’article de Matthew G. Seetin [36]. On y apprend entre autres que l’erreur est basée sur la loi de poisson.</p>

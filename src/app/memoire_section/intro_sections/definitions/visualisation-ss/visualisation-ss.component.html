@@ -1,0 +1,15 @@
+<h3> Outils de visualisation des structures secondaires</h3>
+<h4>VARNA</h4>
+<p>La base de données RMDB utilise un outil nommé VARNA pour représenter la structure secondaire et les données de sondage. Cet outil est écrit en java et le code source est offert gratuitement sous la licence GNU GLP. Trois limitations m’ont poussé à créer m’ont propre outil. Premièrement, Java contrairement à JavaScript n’est pas interprété directement dans le navigateur, il doit être compilé par une machine virtuelle non native et gérée à l’intérieur d’un « applet ». La deuxième raison est qu’il ne permet pas de visualiser le graphe des transitions des ARN. Finalement, il ne permet pas de mettre l’accent sur un nucléotide en particulier [41].</p>
+<h4>
+  FORNA
+</h4>
+  <p>FORNA est un logiciel de représentation de la structure secondaire écrit en JavaScript et utilisant la même technologie que RNA Dynamic Viewer (RDV) (mon logiciel), soit d3js. FORNA est offert gratuitement sur github (un répertoire en ligne de code informatique basé sur git un logiciel de gestion des versions). La seule raison pour laquelle, je ne l’ai pas utilisé c’est qu’il n’existait pas lors du début de la conception de RDV, en 2014 [42].</p>
+<app-figure name="ss_forna"></app-figure>
+<p>
+  Figure 8. Représentation en deux dimensions de deux ARN provenant de la « protein data bank » (PDB) par le logiciel FORNA. Les structures se nomment « RNA LOOP-LOOP COMPLEX ». Leur identifiant est : « 1BJ2 ».
+</p>
+<app-figure name="3d_forna"></app-figure>
+<p>
+  Figure 9. Représentation en trois dimensions des ARN de la figure 10. Les pointillés mauves sont des ponts hydrogènes. La couleur des nucléotides est reliée à leur position allant du bleu (5’) au rouge (3’)
+</p>

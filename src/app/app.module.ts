@@ -30,12 +30,12 @@ import { FormsModule } from '@angular/forms';
 import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { PagePresentationComponent } from './memoire_section/page-presentation/page-presentation.component';
-import { ResumeFrComponent } from './memoire_section/resume-fr/resume-fr.component';
-import { ResumeEnComponent } from './memoire_section/resume-en/resume-en.component';
-import { SigleEtAbreviationComponent } from './memoire_section/sigle-et-abreviation/sigle-et-abreviation.component';
-import { DedicasseComponent } from './memoire_section/dedicasse/dedicasse.component';
-import { RemerciementsComponent } from './memoire_section/remerciements/remerciements.component';
+import { PagePresentationComponent } from './memoire_section/avant-propos/page-presentation/page-presentation.component';
+import { ResumeFrComponent } from './memoire_section/avant-propos/resume-fr/resume-fr.component';
+import { ResumeEnComponent } from './memoire_section/avant-propos/resume-en/resume-en.component';
+import { SigleEtAbreviationComponent } from './memoire_section/avant-propos/sigle-et-abreviation/sigle-et-abreviation.component';
+import { DedicasseComponent } from './memoire_section/avant-propos/dedicasse/dedicasse.component';
+import { RemerciementsComponent } from './memoire_section/avant-propos/remerciements/remerciements.component';
 import { BeginingComponent } from './memoire_section/intro_sections/begining/begining.component';
 import { AvertissementComponent } from './memoire_section/intro_sections/avertissement/avertissement.component';
 import { ContexteComponent } from './memoire_section/intro_sections/contexte/contexte.component';
@@ -58,6 +58,34 @@ import { RMDBComponent } from './memoire_section/intro_sections/definitions/rmdb
 import { EternaComponent } from './memoire_section/intro_sections/definitions/eterna/eterna.component';
 import { NCM2Component} from './ncm2/ncm2.component';
 import { SousStructureComponent } from './memoire_section/intro_sections/definitions/sous-structure/sous-structure.component';
+import { AvantProposComponent } from './memoire_section/avant-propos/avant-propos.component';
+import { PredictionSSComponent } from './memoire_section/intro_sections/definitions/prediction-ss/prediction-ss.component';
+import { VisualisationSSComponent } from './memoire_section/intro_sections/definitions/visualisation-ss/visualisation-ss.component';
+import { ClassifieursComponent } from './memoire_section/intro_sections/definitions/classifieurs/classifieurs.component';
+import { ReseauDeNeuronesComponent } from './memoire_section/intro_sections/definitions/classifieurs/reseau-de-neurones/reseau-de-neurones.component';
+import { RegressionLogistiqueComponent } from './memoire_section/intro_sections/definitions/classifieurs/regression-logistique/regression-logistique.component';
+import { MachineVecteursSupportComponent } from './memoire_section/intro_sections/definitions/classifieurs/machine-vecteurs-support/machine-vecteurs-support.component';
+import { ArbresDecisionsComponent } from './memoire_section/intro_sections/definitions/classifieurs/arbres-decisions/arbres-decisions.component';
+import { BoostedDecisionTreeComponent } from './memoire_section/intro_sections/definitions/classifieurs/boosted-decision-tree/boosted-decision-tree.component';
+import { BayesPointMachineComponent } from './memoire_section/intro_sections/definitions/classifieurs/bayes-point-machine/bayes-point-machine.component';
+import { MetriquesComponent } from './memoire_section/intro_sections/definitions/metriques/metriques.component';
+import { VpComponent } from './memoire_section/intro_sections/definitions/metriques/vp/vp.component';
+import { FpComponent } from './memoire_section/intro_sections/definitions/metriques/fp/fp.component';
+import { TprComponent } from './memoire_section/intro_sections/definitions/metriques/tpr/tpr.component';
+import { FprComponent } from './memoire_section/intro_sections/definitions/metriques/fpr/fpr.component';
+import { PrecisionComponent } from './memoire_section/intro_sections/definitions/metriques/precision/precision.component';
+import { RappelSensitiviteComponent } from './memoire_section/intro_sections/definitions/metriques/rappel-sensitivite/rappel-sensitivite.component';
+import { F1Component } from './memoire_section/intro_sections/definitions/metriques/f1/f1.component';
+import { TableDeContingenceComponent } from './memoire_section/intro_sections/definitions/metriques/table-de-contingence/table-de-contingence.component';
+import { RocCurveComponent } from './memoire_section/intro_sections/definitions/metriques/roc-curve/roc-curve.component';
+import { FormatFichierComponent } from './memoire_section/intro_sections/definitions/format-fichier/format-fichier.component';
+import { CsvComponent } from './memoire_section/intro_sections/definitions/format-fichier/csv/csv.component';
+import { JsonComponent } from './memoire_section/intro_sections/definitions/format-fichier/json/json.component';
+import { CorrelationPearsonComponent } from './memoire_section/intro_sections/definitions/correlation-pearson/correlation-pearson.component';
+import { VnFnComponent } from './memoire_section/intro_sections/definitions/metriques/vn-fn/vn-fn.component';
+import { LogicielsComponent } from './memoire_section/intro_sections/definitions/logiciels/logiciels.component';
+import { MongodbComponent } from './memoire_section/intro_sections/definitions/logiciels/mongodb/mongodb.component';
+import { NodejsComponent } from './memoire_section/intro_sections/definitions/logiciels/nodejs/nodejs.component';
 
 
 const ROUTES: Routes = [
@@ -121,7 +149,35 @@ const ROUTES: Routes = [
     RMDBComponent,
     EternaComponent,
     NCM2Component,
-    SousStructureComponent
+    SousStructureComponent,
+    AvantProposComponent,
+    PredictionSSComponent,
+    VisualisationSSComponent,
+    ClassifieursComponent,
+    ReseauDeNeuronesComponent,
+    RegressionLogistiqueComponent,
+    MachineVecteursSupportComponent,
+    ArbresDecisionsComponent,
+    BoostedDecisionTreeComponent,
+    BayesPointMachineComponent,
+    MetriquesComponent,
+    VpComponent,
+    FpComponent,
+    TprComponent,
+    FprComponent,
+    PrecisionComponent,
+    RappelSensitiviteComponent,
+    F1Component,
+    TableDeContingenceComponent,
+    RocCurveComponent,
+    FormatFichierComponent,
+    CsvComponent,
+    JsonComponent,
+    CorrelationPearsonComponent,
+    VnFnComponent,
+    LogicielsComponent,
+    MongodbComponent,
+    NodejsComponent
     
   ],
   imports: [

@@ -1,0 +1,32 @@
+<p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+  <p-accordionTab>
+    <p-header>
+      Résumé
+    </p-header>
+    <app-resume-fr id="app-resume-fr" class="section scrollspy"></app-resume-fr>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Abstract
+    </p-header>
+    <app-resume-en id="app-resume-en" class="section scrollspy myjustify"></app-resume-en>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Sigles&Abvr.
+    </p-header>
+    <app-sigle-et-abreviation id="app-sigle-et-abreviation" class="section scrollspy myjustify"></app-sigle-et-abreviation>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Dédicace
+    </p-header>
+    <app-dedicasse id="app-dedicasse" class="section scrollspy myjustify"></app-dedicasse>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Remerciement
+    </p-header>
+    <app-remerciements id="app-remerciements" class="section scrollspy myjustify"></app-remerciements>
+  </p-accordionTab>
+</p-accordion>

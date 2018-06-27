@@ -1,0 +1,66 @@
+<h4>Métriques couramment utilisées</h4>
+<p>
+  Dans cette section plusieurs métriques sont expliquées. Grossièrement, une métrique permet de mesurer un phénomène. Les métriques de corrélation prennent en entrée deux vecteurs de la même taille, tandis que les métriques de mesure de performance des algorithmes d’apprentissage machine présentée ici prennent en entrée un classifieur binaire tels que ceux présentés plus haut.
+</p>
+<p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+  <p-accordionTab>
+    <p-header>
+      Les vrais positifs
+    </p-header>
+    <app-vp class="section scrollspy"></app-vp>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Les faux positifs
+    </p-header>
+    <app-fp class="section scrollspy"></app-fp>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Les vrais négatifs et les faux négatifs
+    </p-header>
+    <app-vn-fn class="section scrollspy"></app-vn-fn>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le taux de vrais positifs (« True positive rate »)
+    </p-header>
+    <app-tpr class="section scrollspy"></app-tpr>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le taux de faux positifs (« False positive rate »)
+    </p-header>
+    <app-fpr class="section scrollspy"></app-fpr>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      La précision
+    </p-header>
+    <app-precision class="section scrollspy"></app-precision>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le rappel ou sensitivité
+    </p-header>
+    <app-rappel-sensitivite class="section scrollspy"></app-rappel-sensitivite>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Score F1
+    </p-header>
+    <app-f1 class="section scrollspy"></app-f1>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Table de contingence
+    </p-header>
+    <app-table-de-contingence  class="section scrollspy"></app-table-de-contingence>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Courbe ROC
+    </p-header>
+    <app-roc-curve class="section scrollspy"></app-roc-curve>
+  </p-accordionTab>
+</p-accordion>

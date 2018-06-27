@@ -9,11 +9,12 @@ import { FigureComponent } from "../figure/figure.component"
 })
 export class HomeComponent implements OnInit {
 
+  
   index = 0;
   visibleSidebar1 = false;
 
   buttonClick = (id) =>{
-    debugger;
+    //debugger;
     console.log("id : ", id)
     this.index = this.transformToId(id)
 
@@ -37,48 +38,32 @@ export class HomeComponent implements OnInit {
         numberId = 0
         break;
       }
-      case "app-resume-fr": {
+      case "app-avant-propos": {
         numberId = 1
         break;
       }
-      case "app-resume-en": {
+      case "app-begining": {
         numberId = 2
         break;
       }
-      case "app-sigle-et-abreviation": {
+      case "app-avertissement": {
         numberId = 3
         break;
       }
-      case "app-dedicasse": {
+      case "app-context": {
         numberId = 4
         break;
       }
-      case "app-remerciements": {
+      case "app-historique": {
         numberId = 5
         break;
       }
-      case "app-begining": {
+      case "app-pourquoi-etudier-l-arn": {
         numberId = 6
         break;
       }
-      case "app-avertissement": {
-        numberId = 7
-        break;
-      }
-      case "app-context": {
-        numberId = 8
-        break;
-      }
-      case "app-historique": {
-        numberId = 9
-        break;
-      }
-      case "app-pourquoi-etudier-l-arn": {
-        numberId = 10
-        break;
-      }
       case "app-definitions": {
-        numberId = 11
+        numberId = 7
         break;
       }
 
