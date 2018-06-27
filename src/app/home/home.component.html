@@ -1,3 +1,4 @@
+
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000" position="right">
   <h4 style="font-weight:normal">Table des matières</h4>
   <div>
@@ -25,97 +26,99 @@
     <h5 (click)="buttonClick('app-definitions')">Definitions</h5>
   </div>
 </p-sidebar>
+<button mat-fab class="app-fab--absolute show-on-small hide-on-med-and-up" color="primary" (click)="visibleSidebar1 = true" aria-label="sideBar"> <span class="mdc-fab__icon material-icons">favorite</span></button>
 
-<div class="row">
-  <div class="col s12 l9">
-    <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)" [activeIndex]="index">
-      <p-accordionTab>
-        <p-header>
-          Présentation
-        </p-header>
-        <app-page-presentation id="page_presentation" class="section scrollspy"></app-page-presentation>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Avant-propos
-        </p-header>
-        <app-avant-propos id="page_presentation" class="section scrollspy"></app-avant-propos>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Début
-        </p-header>
-        <app-begining id="app-begining" class="section scrollspy myjustify"></app-begining>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Avertissement
-        </p-header>
-        <app-avertissement id="app-avertissement" class="section scrollspy myjustify"></app-avertissement>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Mise en context
-        </p-header>
-        <app-contexte id="app-context" class="section scrollspy myjustify"></app-contexte>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Historique
-        </p-header>
-        <app-historique id="app-historique"></app-historique>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Pourquoi
-        </p-header>
-        <app-pourquoi-etudier-l-arn id="app-pourquoi-etudier-l-arn"></app-pourquoi-etudier-l-arn>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          Définition
-        </p-header>
-        <app-definitions id="app-definitions"></app-definitions>
-      </p-accordionTab>
-      <p-accordionTab>
-        <p-header>
-          jpg
-        </p-header>
-        <app-figure name="phosphate"></app-figure>
-      </p-accordionTab>
-    </p-accordion>
-  </div>
 
-  <div class="col l3 hide-on-small-only">
-    <div class="tdm">
-      <h4 style="font-weight:normal">Table des matières</h4>
-      <div>
-        <h5 (click)="buttonClick('page_presentation')">Présentation</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-avant-propos')">Avant-propos</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-begining')">Début</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-avertissement')">Avertissement</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-context')">Context</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-historique')">Historique</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-pourquoi-etudier-l-arn')">Pourquoi</h5>
-      </div>
-      <div>
-        <h5 (click)="buttonClick('app-definitions')">Definitions</h5>
+<div class="container">
+  <div class="row">
+    <div class="col s12 l9">
+      <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)" [activeIndex]="index">
+        <p-accordionTab>
+          <p-header>
+            Présentation
+          </p-header>
+          <app-page-presentation id="page_presentation" class="section scrollspy"></app-page-presentation>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Avant-propos
+          </p-header>
+          <app-avant-propos id="page_presentation" class="section scrollspy"></app-avant-propos>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Début
+          </p-header>
+          <app-begining id="app-begining" class="section scrollspy myjustify"></app-begining>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Avertissement
+          </p-header>
+          <app-avertissement id="app-avertissement" class="section scrollspy myjustify"></app-avertissement>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Mise en context
+          </p-header>
+          <app-contexte id="app-context" class="section scrollspy myjustify"></app-contexte>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Historique
+          </p-header>
+          <app-historique id="app-historique"></app-historique>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Pourquoi
+          </p-header>
+          <app-pourquoi-etudier-l-arn id="app-pourquoi-etudier-l-arn"></app-pourquoi-etudier-l-arn>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            Définition
+          </p-header>
+          <app-definitions id="app-definitions"></app-definitions>
+        </p-accordionTab>
+        <p-accordionTab>
+          <p-header>
+            jpg
+          </p-header>
+          <app-figure name="phosphate"></app-figure>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+
+    <div class="col l3 hide-on-small-only">
+      <div class="tdm">
+        <h4 style="font-weight:normal">Table des matières</h4>
+        <div>
+          <h5 (click)="buttonClick('page_presentation')">Présentation</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-avant-propos')">Avant-propos</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-begining')">Début</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-avertissement')">Avertissement</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-context')">Context</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-historique')">Historique</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-pourquoi-etudier-l-arn')">Pourquoi</h5>
+        </div>
+        <div>
+          <h5 (click)="buttonClick('app-definitions')">Definitions</h5>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<button mat-fab class="app-fab--absolute show-on-small hide-on-med-and-up" color="primary" (click)="visibleSidebar1 = true" aria-label="sideBar"> <span class="mdc-fab__icon material-icons">favorite</span></button>
