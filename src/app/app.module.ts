@@ -31,14 +31,14 @@ import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.compone
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { PagePresentationComponent } from './memoire_section/avant-propos/page-presentation/page-presentation.component';
-import { ResumeFrComponent } from './memoire_section/avant-propos/resume-fr/resume-fr.component';
-import { ResumeEnComponent } from './memoire_section/avant-propos/resume-en/resume-en.component';
+import { ResumeFrComponent } from './memoire_section/resume-abstract/resume-fr/resume-fr.component';
+import { ResumeEnComponent } from './memoire_section/resume-abstract/resume-en/resume-en.component';
 import { SigleEtAbreviationComponent } from './memoire_section/avant-propos/sigle-et-abreviation/sigle-et-abreviation.component';
 import { DedicasseComponent } from './memoire_section/avant-propos/dedicasse/dedicasse.component';
 import { RemerciementsComponent } from './memoire_section/avant-propos/remerciements/remerciements.component';
 import { BeginingComponent } from './memoire_section/intro_sections/begining/begining.component';
-import { AvertissementComponent } from './memoire_section/intro_sections/avertissement/avertissement.component';
-import { ContexteComponent } from './memoire_section/intro_sections/contexte/contexte.component';
+import { AvertissementComponent } from './memoire_section/avant-propos/avertissement/avertissement.component';
+import { ContexteComponent } from './memoire_section/avant-propos/contexte/contexte.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { AccordionModule } from 'primeng/accordion';
 import { DebutDeLetudeComponent } from './memoire_section/intro_sections/historique/debut-de-letude/debut-de-letude.component';
@@ -86,6 +86,7 @@ import { VnFnComponent } from './memoire_section/intro_sections/definitions/metr
 import { LogicielsComponent } from './memoire_section/intro_sections/definitions/logiciels/logiciels.component';
 import { MongodbComponent } from './memoire_section/intro_sections/definitions/logiciels/mongodb/mongodb.component';
 import { NodejsComponent } from './memoire_section/intro_sections/definitions/logiciels/nodejs/nodejs.component';
+import { ResumeAbstractComponent } from './memoire_section/resume-abstract/resume-abstract.component';
 
 
 const ROUTES: Routes = [
@@ -177,7 +178,8 @@ const ROUTES: Routes = [
     VnFnComponent,
     LogicielsComponent,
     MongodbComponent,
-    NodejsComponent
+    NodejsComponent,
+    ResumeAbstractComponent
     
   ],
   imports: [
