@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Inject  } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; // <-- do not forget to import
 import { FigureComponent } from "../figure/figure.component"
+import { DOCUMENT } from '@angular/common';
+import { PageScrollService, PageScrollInstance } from 'ngx-page-scroll';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -9,15 +13,20 @@ import { FigureComponent } from "../figure/figure.component"
 })
 export class HomeComponent implements OnInit {
 
-  
+  @ViewChild('container') private container: ElementRef;
+  elems: any;
   index = 0;
   visibleSidebar1 = false;
 
+  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) { }
+
   buttonClick = (id) =>{
     //debugger;
+    let index = this.transformToId(id)
     console.log("id : ", id)
-    this.index = this.transformToId(id)
-
+    console.log("index : ", index)
+    let allCollapse : any = $('.collapsible')
+    allCollapse.collapsible('open', index);
   }
 
   onTabOpen= function (event) {
@@ -29,6 +38,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.elems = document.querySelector('.collapsible');
+
   }
 
   transformToId = function (id) {
@@ -38,31 +50,32 @@ export class HomeComponent implements OnInit {
         numberId = 0
         break;
       }
-      case "app-avant-propos": {
+      case "resume-abstract": {
         numberId = 1
         break;
       }
-      case "app-begining": {
+      case "avant-propos": {
         numberId = 2
         break;
       }
-      case "app-avertissement": {
+      case "begining": {
         numberId = 3
         break;
       }
-      case "app-context": {
+      case "historique": {
         numberId = 4
         break;
       }
-      case "app-historique": {
+      case "pourquoi-etudier-l-arn": {
         numberId = 5
         break;
       }
-      case "app-pourquoi-etudier-l-arn": {
+      
+      case "definitions": {
         numberId = 6
         break;
       }
-      case "app-definitions": {
+      case "chapitre1-rnass": {
         numberId = 7
         break;
       }
@@ -75,4 +88,14 @@ export class HomeComponent implements OnInit {
     }
     return numberId
   }
+
+
+  public animateScroll(sectionTarget: string): void {
+    // https://github.com/Nolanus/ngx-page-scroll#service
+    const pageScrollInstance: PageScrollInstance = PageScrollInstance.newInstance({
+      document: this.document, scrollTarget: sectionTarget, scrollingViews: [this.container.nativeElement]
+    });
+    this.pageScrollService.start(pageScrollInstance);
+  }
+
 }

@@ -92,6 +92,12 @@ import { ExtractionComponent } from './memoire_section/chapitre1_RNASS/extractio
 import { FiltrationComponent } from './memoire_section/chapitre1_RNASS/filtration/filtration.component';
 import { RdatFormatComponent } from './memoire_section/chapitre1_RNASS/rdat-format/rdat-format.component';
 import { RepliementInSilicoComponent } from './memoire_section/chapitre1_RNASS/repliement-in-silico/repliement-in-silico.component';
+import { FooterComponent } from './footer/footer.component';
+
+import { ContentsModule } from 'angular-contents';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
+
 
 
 const ROUTES: Routes = [
@@ -189,10 +195,13 @@ const ROUTES: Routes = [
     ExtractionComponent,
     FiltrationComponent,
     RdatFormatComponent,
-    RepliementInSilicoComponent
+    RepliementInSilicoComponent,
+    FooterComponent
     
   ],
   imports: [
+    NgxPageScrollModule,
+    ContentsModule,
     MatButtonModule,
     ButtonModule,
     PanelModule,

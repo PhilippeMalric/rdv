@@ -1,50 +1,69 @@
-.myjustify {
-  text-align: justify;
-  font-family: "Times New Roman", Times, serif;
-}
-
-.app-fab--absolute {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-}
-
-h5 {
-  cursor: pointer;
-}
-
-.divTdm {
-  position: relative;
-  right: 0;
-  top: 0;
-}
-
-.tdm {
-  position: fixed;
-  top: 0;
-  text-align: right;
-  font-family: "Times New Roman", Times, serif;
-}
-
 body {
   display: flex;
   min-height: 50vh;
   flex-direction: column;
 }
 
+.myjustify {
+  text-align: justify;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.tdm {
+  text-align: right;
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+
 main {
   flex: 1 0 auto;
 }
 
-p-header {
-  position:center;
-  width:90%
-
-}
 
 .collapsible {
-  min-width: 95%;
+  min-width: 90%;
   width: 100%;
 }
 
 
+.contents-table {
+  position: fixed;
+  padding: 2rem;
+  margin-top: 100px;
+  list-style: none;
+  margin: 0;
+}
+
+
+
+.contents-table a {
+  border-radius: 4px;
+  display: block;
+  padding: 0.3rem 0.6rem;
+  color: #444;
+  text-decoration: none;
+}
+
+.contents-table a.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.columnify > .table-column {
+  flex: 0 1 auto;
+  width: 220px;
+}
+
+// Columnify https://stackoverflow.com/a/47220287
+.columnify {
+  display: flex;
+}
+
+.columnify > * {
+  flex: 1;
+}
+
+  .columnify > *:not(:first-child) {
+    margin-left: 2rem;
+  }

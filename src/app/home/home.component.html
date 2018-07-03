@@ -5,12 +5,6 @@
     <h5 (click)="buttonClick('page_presentation')">Présentation</h5>
   </div>
   <div>
-    <h5 (click)="buttonClick('app-resume-fr')">Avant-propos</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-begining')">Début</h5>
-  </div>
-  <div>
     <h5 (click)="buttonClick('app-avertissement')">Avertissement</h5>
   </div>
   <div>
@@ -28,144 +22,105 @@
 </p-sidebar>
 <button mat-fab class="app-fab--absolute show-on-small hide-on-med-and-up" color="primary" (click)="visibleSidebar1 = true" aria-label="sideBar"> <span class="mdc-fab__icon material-icons">favorite</span></button>
 
-
-<div class="container">
-  <div class="row">
-    <ul class="col s12 l10 collapsible">
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Présentation
-          <span class="badge">4</span>
-        </div>
-        <div class="collapsible-body"><app-page-presentation id="page_presentation" class="section scrollspy"></app-page-presentation></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Résumé/abstract
-          <span class="badge">4</span>
-        </div>
-        <div class="collapsible-body"><app-resume-abstract id="page_presentation" class="section scrollspy"></app-resume-abstract></div>
-      </li>
-
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Avant-propos
-          <span class="badge">4</span>
-        </div>
-        <div class="collapsible-body"><app-avant-propos id="page_presentation" class="section scrollspy"></app-avant-propos></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Introduction
-          <span class="badge">4</span>
-        </div>
-        <div class="collapsible-body"><app-begining id="app-begining" class="section scrollspy myjustify"></app-begining></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Historique
-          <span class="badge">4</span>
-
-        </div>
-        <div class="collapsible-body"><app-historique id="app-historique"></app-historique></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Pourquoi
-          <span class="badge">4</span>
-
-        </div>
-        <div class="collapsible-body"><app-pourquoi-etudier-l-arn id="app-pourquoi-etudier-l-arn"></app-pourquoi-etudier-l-arn></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Définition
-          <span class="badge">4</span>
-
-        </div>
-        <div class="collapsible-body"><app-definitions id="app-definitions"></app-definitions></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          Chapitre 1 | RNASS
-          <span class="badge">4</span>
-        </div>
-        <div class="collapsible-body"><app-chapitre1-rnass id="app-chapitre1-rnass"></app-chapitre1-rnass></div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons left">cloud</i>
-          jpg
-          <span class="badge">4</span>
-
-        </div>
-        <div class="collapsible-body"><app-figure name="phosphate"></app-figure></div>
-      </li>
-    </ul>
-    <div class="divider"></div>
-
-    <div class="col l2 hide-on-small-only">
-      <div class="tdm">
-        <h4 style="font-weight:normal">Table des matières</h4>
-        <div>
-          <h5 (click)="buttonClick('page_presentation')">Présentation</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-avant-propos')">Avant-propos</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-begining')">Début</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-avertissement')">Avertissement</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-context')">Context</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-historique')">Historique</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-pourquoi-etudier-l-arn')">Pourquoi</h5>
-        </div>
-        <div>
-          <h5 (click)="buttonClick('app-definitions')">Definitions</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer class="page-footer">
-  <div class="container">
+<div class="columnify container" contents >
     <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Pour plus d'information, <br>veuillez contacter : <a href="mailto:malric.philippe@gmail.com">malric.philippe@gmail.com</a></h5>
-        <p class="grey-text text-lighten-4">Pour comprendre l'univers, il faut commencer par se comprendre soi-même.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Liens</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Lien 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Lien 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Lien 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Lien 4</a></li>
+      <ul class="col s12 l10 collapsible">
+        <li>
+          <div id="page_presentation" contentsSection="page_presentation" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            <a href="home#page_presentation" >
+              Présentation
+            </a>
+            <span class="badge">4</span>
+            </div>
+          <div class="collapsible-body"><app-page-presentation id="page_presentation_body" class="section scrollspy"></app-page-presentation></div>
+        </li>
+        <li>
+          <div id="resume-abstract" contentsSection="resume-abstract" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            <a href="home#resume-abstract" >
+              Résumé/abstract
+            </a> 
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-resume-abstract id="resume-abstract_body" class="section scrollspy"></app-resume-abstract></div>
+        </li>
+
+        <li>
+          <div id="avant-propos" contentsSection="avant-propos" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Avant-propos
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-avant-propos id="avant-propos_body" class="section scrollspy"></app-avant-propos></div>
+        </li>
+        <li>
+          <div id="begining" contentsSection="begining" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Introduction
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-begining id="app-begining_body" class="section scrollspy myjustify"></app-begining></div>
+        </li>
+        <li>
+          <div id="historique" contentsSection="historique" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Historique
+            <span class="badge">4</span>
+
+          </div>
+          <div class="collapsible-body"><app-historique id="app-historique_body"></app-historique></div>
+        </li>
+        <li>
+          <div id="pourquoi-etudier-l-arn" contentsSection="pourquoi-etudier-l-arn" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Pourquoi
+            <span class="badge">4</span>
+
+          </div>
+          <div class="collapsible-body"><app-pourquoi-etudier-l-arn id="app-pourquoi-etudier-l-arn_body"></app-pourquoi-etudier-l-arn></div>
+        </li>
+        <li>
+          <div id="definitions" contentsSection="definitions" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Définition
+            <span class="badge">4</span>
+
+          </div>
+          <div class="collapsible-body"><app-definitions id="app-definitions_body"></app-definitions></div>
+        </li>
+        <li>
+          <div id="chapitre1-rnass" contentsSection="chapitre1-rnass" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            Chapitre 1 | RNASS
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-chapitre1-rnass id="app-chapitre1-rnass_body"></app-chapitre1-rnass></div>
+        </li>
+        <li>
+          <div id="figure" contentsSection="figure" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            jpg
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-figure name="phosphate"></app-figure></div>
+        </li>
+      </ul>
+      <div class="divider"></div>
+
+      <div class="col l2 hide-on-small-only">
+        <ul class="contents-table tdm" contentsTable>
+          <li><a href="#page_presentation" (click)="buttonClick('page_presentation')" contentsLink pageScroll>Page de présentation</a></li>
+          <li><a href="#resume-abstract" (click)="buttonClick('resume-abstract')" contentsLink pageScroll>Résumé/abstract</a></li>
+          <li><a href="#avant-propos" (click)="buttonClick('avant-propos')" contentsLink pageScroll>Avant-propos</a></li>
+          <li><a href="#begining" (click)="buttonClick('begining')" contentsLink pageScroll>Introduction</a></li>
+          <li><a href="#historique" (click)="buttonClick('historique')" contentsLink pageScroll>Historique</a></li>
+          <li><a href="#pourquoi-etudier-l-arn" (click)="buttonClick('pourquoi-etudier-l-arn')" contentsLink pageScroll>Pourquoi étudier l'ARN</a></li>
+          <li><a href="#definitions" (click)="buttonClick('definitions')" contentsLink pageScroll>Définitions</a></li>
+          <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll>Chapitre1 | RNASS</a></li>
+          <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll>Figure</a></li>
         </ul>
       </div>
-    </div>
   </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2018 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">Encore</a>
-    </div>
-  </div>
-</footer>
+</div>
+<app-footer></app-footer>
