@@ -87,6 +87,11 @@ import { LogicielsComponent } from './memoire_section/intro_sections/definitions
 import { MongodbComponent } from './memoire_section/intro_sections/definitions/logiciels/mongodb/mongodb.component';
 import { NodejsComponent } from './memoire_section/intro_sections/definitions/logiciels/nodejs/nodejs.component';
 import { ResumeAbstractComponent } from './memoire_section/resume-abstract/resume-abstract.component';
+import { Chapitre1RNASSComponent } from './memoire_section/chapitre1_RNASS/chapitre1-rnass.component';
+import { ExtractionComponent } from './memoire_section/chapitre1_RNASS/extraction/extraction.component';
+import { FiltrationComponent } from './memoire_section/chapitre1_RNASS/filtration/filtration.component';
+import { RdatFormatComponent } from './memoire_section/chapitre1_RNASS/rdat-format/rdat-format.component';
+import { RepliementInSilicoComponent } from './memoire_section/chapitre1_RNASS/repliement-in-silico/repliement-in-silico.component';
 
 
 const ROUTES: Routes = [
@@ -179,7 +184,12 @@ const ROUTES: Routes = [
     LogicielsComponent,
     MongodbComponent,
     NodejsComponent,
-    ResumeAbstractComponent
+    ResumeAbstractComponent,
+    Chapitre1RNASSComponent,
+    ExtractionComponent,
+    FiltrationComponent,
+    RdatFormatComponent,
+    RepliementInSilicoComponent
     
   ],
   imports: [

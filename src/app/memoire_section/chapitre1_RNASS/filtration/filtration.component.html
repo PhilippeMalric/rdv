@@ -1,0 +1,13 @@
+<h5>
+  Filtrer les ARN difficiles à prédire pour mieux apprendre
+</h5>
+<p>
+  Certains ARN de la base de données ont un niveau élevé en adénine (A). Comme on le voit dans la figure 9, MCFlashfold crée des paires de bases entre ces nucléotides, ce qui bruite les données. Une autre caractéristique tendant à fausser les données de prédictions de la réactivité des nucléotides est lorsque la moyenne de la réactivité des nucléotides d’un ARN est élevée. J’ai donc décidé de les retirer de l’analyse finale. De plus, tous les ARN ayant un signal sur bruit inférieur à 2 ont été retirés de l’ensemble d’entrainement. En tout, 16 579 ARN passent le filtre. La figure 10 montre que les prédictions de RNASS faites avec les SS de MCFlashfold sont incohérentes avec les données expérimentales en raison de la queue polyadénylée. Veuillez vous référer au chapitre 2 pour des explications sur le schéma.
+
+  En moyenne un MCN fait de deux paires d’adénines est réactif pour l’ensemble de ses nucléotides. Ce qui vient contredire la majorité des observations de la figure 10, pour MCFlashfold. RNAsubopt ne fait pas beaucoup mieux.
+
+</p>
+<app-figure name="Diff_entre_mcff_et_RNAso"></app-figure>
+<p>
+ Prédiction de la SS faite par MCFlashfold (A) et de RNAsubopt (B) sur un ARN ayant une queue polyadénylée illustrée par RDV. La couleur et la grosseur des nucléotides sont reliées à leur réactivité observée et la couleur de leur contour est reliée à la prédiction faite en compilant la valeur de plusieurs millions de nucléotides. La prédiction est une valeur de cohérence. Le bleu et le rouge représentent une réactivité élevée et basse respectivement. Le gris signifie que nous ne disposons pas de données de réactivité pour ces nucléotides. La SS de MCFlashfold est celle de gauche (A). Le symbole des nucléotides les identifie au centre de leur cercle. La forme n’est pas représentative de la structure 3D.
+</p>

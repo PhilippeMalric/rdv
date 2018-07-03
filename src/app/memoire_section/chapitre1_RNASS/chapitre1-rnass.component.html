@@ -1,0 +1,32 @@
+<h4>
+  Chapitre 1 | RNASS : intégration de deux logiciels de prédiction des structures secondaire
+</h4>
+<p>
+  Il y a plus de 4 ans, l’écriture d’un script faisant le lien entre deux logiciels de repliement des ARN, MCFlashfold et RNAsubopt, débute. Ce script, maintenant long de plusieurs centaines de lignes, prend en entrée, un identifiant, une séquence et un vecteur de valeur réels représentant les valeurs de réactivité chimique d’un ARN. Il produit en sortie un fichier JSON standardisé et une base de données des nucléotides analysés. Le nom de ce script est RNASS. Le fichier qu’il produit en sortie est utilisé par les algorithmes d’exploration et d’analyse de données qui seront présentés dans le reste de ce mémoire. Dans ce chapitre, je décris les étapes de son fonctionnement. Il a été amélioré tout au long de mon parcours et j’espère qu’il le sera encore dans le futur.
+</p>
+<p-accordion>
+  <p-accordionTab>
+    <p-header>
+      Extraction des données
+    </p-header>
+    <app-extraction id="app-extraction" class="section scrollspy"></app-extraction>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Filtrer les ARN difficiles à prédire pour mieux apprendre
+    </p-header>
+    <app-filtration id="app-filtration" class="section scrollspy myjustify"></app-filtration>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Le format RDAT
+    </p-header>
+    <app-rdat-format id="app-rdat-format" class="section scrollspy myjustify"></app-rdat-format>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Repliement des ARN in silico
+    </p-header>
+    <app-repliement-in-silico id="app-repliement-in-silico" class="section scrollspy myjustify"></app-repliement-in-silico>
+  </p-accordionTab>
+</p-accordion>

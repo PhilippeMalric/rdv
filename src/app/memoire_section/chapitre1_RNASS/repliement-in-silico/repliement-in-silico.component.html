@@ -1,0 +1,7 @@
+
+<h5> Repliement des ARN in silico</h5>
+<p>
+  Seuls les logiciels MCFlashfold et RNAsubopt ont été utilisés pour replier les ARN. RNAsubopt est un logiciel provenant de la suite Vienna package et MCFlashfold est un logiciel qui a été créé dans le laboratoire du Dr Major. Ces deux logiciels ont pour particularité de calculer un ensemble de SS auxquels ils attribuent une valeur d’énergie. Le nombre de SS calculée peut être modifié directement ou en fonction d’un écart d’énergie entre la SS de minimum d’énergie libre (minimum free energie (MFE)) et les autres SS. Vu la complexité qu’amène le calcul de chaque SS supplémentaire en raison du nombre de prédictions de réactivité chimique à faire (une par nucléotide de chaque SS), RNASS en considère relativement peu. Plusieurs valeurs ont été testées, toutes plus petites que cent. Dans la majorité des analyses qui suivent. Dix SS sous-optimales sont utilisées.
+  Un troisième logiciel, RNAfold, est utilisé pour obtenir la diversité d’ensemble et la fréquence de la SS d’énergie minimale (MFE) dans les SS prédites.
+  Toutes ces données sont placées dans un fichier JSON standardisé. La prochaine section décrit quelques-uns de ces champs.
+</p>
