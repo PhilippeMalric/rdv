@@ -1,7 +1,7 @@
 .custom-button {
-  position: absolute;
+  position: fixed;
   right: 30px;
-  top: 15px;
+  bottom: 15px;
 }
 
 .marginTop{
