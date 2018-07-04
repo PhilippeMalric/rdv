@@ -88,7 +88,11 @@ export class HomeComponent implements OnInit {
     }
     return numberId
   }
+  doSmth = function (event) {
 
+    console.log("event : ",event)
+
+  }
 
   public animateScroll(sectionTarget: string): void {
     // https://github.com/Nolanus/ngx-page-scroll#service
