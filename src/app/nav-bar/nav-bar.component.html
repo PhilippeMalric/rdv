@@ -1,9 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #2e0051;">
-  <a class="navbar-brand" href="#">RNA Dynamic Viewer</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-header navbar-expand-md navbar-dark" style="background-color: #2e0051;">
+  <img src="/assets/images/bootstrap.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" routerLink="/home">RNA Dynamic Viewer</a>
+  <mat-menu #rootMenu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="subMenu">Power</button>
+    <button mat-menu-item>System settings</button>
+  </mat-menu>
+
+  <mat-menu #subMenu="matMenu">
+    <button mat-menu-item>Shut down</button>
+    <button mat-menu-item>Restart</button>
+    <button mat-menu-item>Hibernate</button>
+  </mat-menu>
+
+  <button color="primary" mat-icon-button [matMenuTriggerFor]="rootMenu">
+    <mat-icon>more_vert</mat-icon>
   </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Acceuil</a>
@@ -23,12 +35,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/test" routerLinkActive="active">test</a>
       </li>
-     
     </ul>
-
-    <!--<form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>-->
   </div>
 </nav>
+

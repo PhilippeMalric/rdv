@@ -101,7 +101,7 @@ import { FreqPaireeComponent } from './memoire_section/chapitre1_RNASS/freq-pair
 import { LongueurSeqComponent } from './memoire_section/chapitre1_RNASS/longueur-seq/longueur-seq.component';
 import { AlgoMcnComponent } from './memoire_section/chapitre1_RNASS/algo-mcn/algo-mcn.component';
 import { CompilationComponent } from './memoire_section/chapitre1_RNASS/compilation/compilation.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -210,6 +210,7 @@ const ROUTES: Routes = [
     
   ],
   imports: [
+    MatMenuModule,
     NgxPageScrollModule,
     ContentsModule,
     MatButtonModule,
