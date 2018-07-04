@@ -22,25 +22,26 @@
 </p-sidebar>
 <button mat-fab class="custom-button app-fab--absolute show-on-small hide-on-med-and-up" color="primary" (click)="visibleSidebar1 = true" aria-label="sideBar"> <span class="mdc-fab__icon material-icons">favorite</span></button>
 
-<div class="columnify container" contents >
+<div class="marginTop">
+  <div class="columnify container" contents>
     <div class="row">
       <ul class="col s12 l10 collapsible">
         <li>
           <div id="page_presentation" contentsSection="page_presentation" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#page_presentation" >
+            <a href="page_presentation" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Présentation
             </a>
             <span class="badge">4</span>
-            </div>
+          </div>
           <div class="collapsible-body"><app-page-presentation id="page_presentation_body" class="section scrollspy"></app-page-presentation></div>
         </li>
         <li>
           <div id="resume-abstract" contentsSection="resume-abstract" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#resume-abstract" >
+            <a href="resume-abstract" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Résumé/abstract
-            </a> 
+            </a>
             <span class="badge">4</span>
           </div>
           <div class="collapsible-body"><app-resume-abstract id="resume-abstract_body" class="section scrollspy"></app-resume-abstract></div>
@@ -49,7 +50,7 @@
         <li>
           <div id="avant-propos" contentsSection="avant-propos" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#avant-propos">
+            <a href="avant-propos" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Avant-propos
             </a>
             <span class="badge">4</span>
@@ -59,10 +60,10 @@
         <li>
           <div id="begining" contentsSection="begining" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#begining">
+            <a href="begining" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Introduction
             </a>
-            
+
             <span class="badge">4</span>
           </div>
           <div class="collapsible-body"><app-begining id="app-begining_body" class="section scrollspy myjustify"></app-begining></div>
@@ -70,10 +71,10 @@
         <li>
           <div id="historique" contentsSection="historique" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#historique">
+            <a href="historique" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Historique
             </a>
-            
+
             <span class="badge">4</span>
 
           </div>
@@ -82,10 +83,10 @@
         <li>
           <div id="pourquoi-etudier-l-arn" contentsSection="pourquoi-etudier-l-arn" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#pourquoi-etudier-l-arn">
+            <a href="pourquoi-etudier-l-arn" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Pourquoi
             </a>
-            
+
             <span class="badge">4</span>
 
           </div>
@@ -94,7 +95,7 @@
         <li>
           <div id="definitions" contentsSection="definitions" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#definitions">
+            <a href="definitions" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Définition
             </a>
             <span class="badge">4</span>
@@ -105,7 +106,7 @@
         <li>
           <div id="chapitre1-rnass" contentsSection="chapitre1-rnass" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#chapitre1-rnass">
+            <a href="chapitre1-rnass" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Chapitre 1 | RNASS
             </a>
             <span class="badge">4</span>
@@ -115,30 +116,32 @@
         <li>
           <div id="figure" contentsSection="figure" class="collapsible-header">
             <i class="material-icons left">cloud</i>
-            <a href="home#figure">
+            <a href="home#figure" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               jpg
             </a>
-            
+
             <span class="badge">4</span>
           </div>
           <div class="collapsible-body"><app-figure name="phosphate"></app-figure></div>
         </li>
+
       </ul>
       <div class="divider"></div>
 
       <div class="col l2 hide-on-small-only">
         <ul class="contents-table tdm" contentsTable>
-          <li><a href="#page_presentation" (click)="buttonClick('page_presentation')" contentsLink pageScroll  (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
-          <li><a href="#resume-abstract" (click)="buttonClick('resume-abstract')" contentsLink pageScroll >Résumé/abstract</a></li>
-          <li><a href="#avant-propos" (click)="buttonClick('avant-propos')" contentsLink pageScroll  >Avant-propos</a></li>
-          <li><a href="#begining" (click)="buttonClick('begining')" contentsLink pageScroll >Introduction</a></li>
-          <li><a href="#historique" (click)="buttonClick('historique')" contentsLink pageScroll >Historique</a></li>
-          <li><a href="#pourquoi-etudier-l-arn" (click)="buttonClick('pourquoi-etudier-l-arn')" contentsLink pageScroll >Pourquoi étudier l'ARN</a></li>
-          <li><a href="#definitions" (click)="buttonClick('definitions')" contentsLink pageScroll >Définitions</a></li>
-          <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll >Chapitre1 | RNASS</a></li>
-          <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll >Figure</a></li>
+          <li><a href="#page_presentation" (click)="buttonClick('page_presentation')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
+          <li><a href="#resume-abstract" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
+          <li><a href="#avant-propos" (click)="buttonClick('avant-propos')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
+          <li><a href="#begining" (click)="buttonClick('begining')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
+          <li><a href="#historique" (click)="buttonClick('historique')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Historique</a></li>
+          <li><a href="#pourquoi-etudier-l-arn" (click)="buttonClick('pourquoi-etudier-l-arn')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Pourquoi étudier l'ARN</a></li>
+          <li><a href="#definitions" (click)="buttonClick('definitions')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Définitions</a></li>
+          <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
+          <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Figure</a></li>
         </ul>
       </div>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

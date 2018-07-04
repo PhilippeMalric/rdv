@@ -7,9 +7,6 @@
           <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
-          <div style="position:relative">
-            <input type="search" pInputText placeholder="Rechercher par Id" (keyup)="dv.filter($event.target.value)">
-          </div>
         </div>
         <div class="ui-g-6 ui-md-4" style="text-align:right">
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -19,7 +16,7 @@
   </p-header>
   <ng-template let-ncm pTemplate="listItem">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-      <div class="ui-g-12 ui-md-3" style="text-align:center">
+      <div class="ui-g-12 ui-md-6 ui-lg-4" style="text-align:center">
         <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy"> </app-graph-layout>
       </div>
       <div class="ui-g-12 ui-md-8 ncm-details">
@@ -37,10 +34,10 @@
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.count}}</b></div>
         </div>
       </div>
-      <div class="ui-g-12 ui-md-1 search-icon">
+      <div class="ui-g-12 ui-md-6 ui-lg-3 search-icon">
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </div>
-      <div class="ui-g-12 ui-md-1">
+      <div class="ui-g-12 ui-md-6 ui-lg-3">
         <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
       </div>
     </div>

@@ -1,0 +1,22 @@
+<h5>Information sur les données collectées</h5>
+
+<p>
+  
+  Dans la prochaine section, j’ai fait ressortir les statistiques pertinentes de quelques champs des fichiers JSON présentés plus haut. J’ai bâti deux bases de données successivement.
+  Dans la première que je nomme « non filtrée », plus de 43 000 ARN provenant de la RMDB ont servi pour ces statistiques, ce qui totalise un peu moins de 4 millions de nucléotides sondés. Pour cette base de données, la seule condition est que les ARN doivent avoir un rapport « signal sur bruit » supérieur à 1 pour être considérés.
+  La deuxième que je nomme filtrée contient plus de 16 000 ARN. Comme expliqué plus haut, le ratio d’adénine sur le nombre de nucléotides total doit être inférieur à 50% et la moyenne des scores plus petite que 1,5.
+  Les nucléotides analysés dans ce mémoire ont été sondés par l’agent chimique 1M7 à 24 °C dans 10 mM de MgCl et 50mM d’HEPES (pH8.0).
+  Scores moyens des valeurs de réactivité
+  Comme vous pouvez le constater dans la figure 10, la majorité des moyennes des valeurs de réactivité se trouve sous la barre des 1. Cette analyse a été faite avant l’application du filtre sur la moyenne des scores de réactivité par ARN et le contenu relatif en adénosine.
+
+</p>
+
+<app-figure name="ReactiviteMoyenneDesARN"></app-figure>
+
+<p>
+  Pour chaque ARN la moyenne des scores des valeurs de réactivité de ses nucléotides est calculée et ordonnée. On remarque que peu d’ARN ont un score moyen entre 2 et 6. Ces ARN proviennent de l’ensemble non filtré.
+</p>
+<p>
+  La distribution des moyennes des scores de chaque ARN de l’ensemble filtré suit une courbe normale telle que déterminée par le test de Kolmogorov-Smirnov [51].
+
+</p>

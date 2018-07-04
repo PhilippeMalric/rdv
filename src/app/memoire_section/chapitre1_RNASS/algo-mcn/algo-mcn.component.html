@@ -1,0 +1,11 @@
+<h5>Algorithme d’identification des MCN</h5>
+<app-figure name="mcn-forna"></app-figure>
+
+<p>
+  SS provenant de FORNA. Les doubles hélices sont vertes, les renflements sont rouges et les loupes terminales et intérieurs bleus et jaunes respectivement. Les MCN sont placés dans des boites. La figure originale est en bas à droite.
+</p>
+<p>
+  La première étape consiste à rechercher les voisins pairés du nucléotide, on les nommera : le voisin gauche (en 5’) et le voisin droit (en 3’). Ensuite, l’algorithme peut être divisé en deux branches selon que le nucléotide est pairé ou non pairé dans la SS analysée. Lorsqu’il est pairé, il fera partie d’un MCN comportant deux brins d’ARN, la longueur de chaque brin est déterminée et elles sont séparées par une barre de soulignement dans la chaine de caractères de sortie. Lorsque le nucléotide est non pairé, il y a deux cas possibles, soit qu’il se trouve dans une boucle ce qui est reconnu par le fait que le partenaire du premier voisin de gauche pairé est le premier voisin pairé de droite, soit qu’il est dans une boucle interne ou un renflement, les deux derniers cas sont gérés de la même façon. Dans tous les cas, lorsqu’il est non pairé, il appartient à un seul MCN, la figure 14 nous le démontre clairement. Dans le cas de la boucle, on comptabilise le nombre de nucléotides non pairés, plus les deux premiers et dans les deux autres cas, c’est la distance en nucléotide entre les deux voisins pairés et leurs partenaires qui est comptabilisé. Finalement, on identifie le MCN par la séquence des ou du brin(s) les composant et on ajoute la position du nucléotide. La valeur de la position débute toujours par 0. Les nucléotides de début et de fin de séquence ont un identifiant spécial qui leur est réservé.
+  Ceci est fait pour chaque SS de chaque logiciel. On peut vérifier l’exactitude de l’algorithme grâce au logiciel de visualisation. En effet, lorsqu’on passe la souris au-dessus d’un nucléotide, le ou les MCN s’illuminent. Une amélioration possible de cet algorithme serait de mieux définir les MCN des jonctions.
+
+</p>

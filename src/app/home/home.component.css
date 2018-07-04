@@ -4,6 +4,10 @@
   top: 15px;
 }
 
+.marginTop{
+  margin-top:50px;
+
+}
 
 body {
   display: flex;
@@ -11,7 +15,7 @@ body {
   flex-direction: column;
 }
 
-p.myjustify {
+p{
   text-align: justify;
   font-family: "Times New Roman", Times, serif;
 }

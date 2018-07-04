@@ -201,8 +201,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     svg.append("rect")
       .style("fill", this.fillcolorRect())
-      .attr("width", 30)
-      .attr("height", 30)
+      .attr("width", 50)
+      .attr("height", 50)
       .attr("x", 5)
       .attr("y", 5)
       .on('click', (d, i) => {

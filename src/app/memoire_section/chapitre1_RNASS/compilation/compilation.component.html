@@ -1,0 +1,28 @@
+<h5>
+  Compilation des MCN
+</h5>
+<p>
+  Pour prédire la réactivité des nucléotides à l’aide des MCN, il faut extraire les nucléotides en fonction du MCN auxquels ils appartiennent. Seuls les MCN présents dans plus de 20% des SS d’un logiciel sont considérés. Ceci force le nombre de MCN compilé, pour un nucléotide donné, à être inférieur à 5 puisque pour l’ensemble d’entrainement 10 SS sont généré par logiciel. Lors de cette étape, la fréquence des MCN pour un nucléotide est conservée dans la base de données pour des analyses ultérieures.
+  La figure 15 de la page suivante montre la distribution de la fréquence des MCN dans les données de la RMDB. Dans l’ensemble de données non filtré, le nombre total de MCN distincts est de 84 694. Il y en a 61 142 qui proviennent du logiciel RNAsubopt et MCFlashfold en compte 23 552. Cette différence s’explique par la grosseur moyenne d’un MCN. MCFlashfold prédit plus de paires de base ce qui diminue la grosseur moyenne des MCN. Le nombre de MCN ayant plus de 1000 nucléotides est de 575 pour MCFlashfold et de 596 pour RNAsubopt. De ces MCN, 213 sont communs aux deux logiciels.
+</p>
+
+<app-figure name="frequenceDesMCN"></app-figure>
+<p>
+  Figure 16. Distribution des MCN en fonction de leur fréquence pour l’ensemble non filtré. Une transformation logarithmique de base 10 a été appliquée pour mieux voir les MCN les plus fréquents. Chaque logiciel est indépendant par rapport à l’ordre de ses MCN. Les MCN du logiciel de RNAsubopt sont représentés par des points bleus et les MCN de MCFlashfold sont représentés par des points verts. Certains MCN caractérisent plusieurs millions nucléotides dans la base de données complète de RMDB. Pour être considéré, le nucléotide doit être dans la conformation du MCN dans plus de 20% des SS sous-optimales.  On trouve dans les boite des MCN les plus fréquents, l’identificateur du MCN.
+</p>
+<p>
+  Une transformation logarithmique en base 10 a été appliquée sur les deux axes de la figure 15 pour mieux distinguer les MCN ayant des valeurs élevées.
+  Leur valeur de réactivité est explicitée dans le tableau III, ci-dessous. Ce qui est remarquable dans ce tableau, c’est le nombre peu élevé de 0 des deux types de réactivités. Puisque dans chaque MCN on trouve des nucléotides des deux classes, on peut conclure que les MCN n’expliquent pas entièrement la réactivité, autrement dit, il y a d’autres facteurs à considérer ou les prédictions des SS demandent de l’amélioration. La réponse se trouve surement entre les deux.
+  Cependant, la plupart des MCN ont un biais marqué. Une autre chose remarquable de ce tableau est l’absence de contradiction entre les deux logiciels en ce qui concerne quelle valeur de réactivité à une fréquence majoritaire pour chaque MCN. Cette caractéristique est un argument en faveur de l’hypothèse qui veut qu’en général les logiciels de prédictions de SS font des bonnes prédictions puisque MCFlashfold et RNAsubopt sont deux méthodes indépendantes de prédictions des SS. Le terme « noVG_notPaired » signifie que ce nucléotide n’est pas pairé et il n’a pas de voisin pairé en 5`. « VG » signifie voisin gauche. « noVD_notPaired » identifie les nucléotides pour lesquels il n’y a pas de voisin droit pairé.
+</p>
+
+<h5>
+  MCN les plus présents et leurs valeurs de réactivités dans l’ensemble non-filtré
+</h5>
+
+
+<app-ncm2></app-ncm2>
+
+<p>
+  Les figures 16 et 17 sont les fréquences des MCN de l’ensemble filtré ordonné par la fréquence des logiciels à tour de rôle. Les points alignés verticalement proviennent du même MCN. Seuls les MCN communs aux deux logiciels sont illustrés. Une transformation logarithmique en base 10 a été appliquée aux deux axes. On aperçoit un plateau à gauche des graphiques, il est formé des MCN les plus petits, les « 2_2 ». Le MCN le plus fréquent est : « 2_2-GU-AC_pos_0 ». Bien que le nombre total de 2_2 soit plus élevé dans les SS de MCFlashfold (voir figure 15), RNAsubopt a constamment un nombre de nucléotides par MCN plus élevé. Ceci est explicable par le fait que MCFlashfold prédit des paires de base non-canoniques. Ce qui répartit les nucléotides dans plus de MCN.
+</p>

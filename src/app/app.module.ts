@@ -96,6 +96,11 @@ import { FooterComponent } from './footer/footer.component';
 
 import { ContentsModule } from 'angular-contents';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { DataInfoComponent } from './memoire_section/chapitre1_RNASS/data-info/data-info.component';
+import { FreqPaireeComponent } from './memoire_section/chapitre1_RNASS/freq-pairee/freq-pairee.component';
+import { LongueurSeqComponent } from './memoire_section/chapitre1_RNASS/longueur-seq/longueur-seq.component';
+import { AlgoMcnComponent } from './memoire_section/chapitre1_RNASS/algo-mcn/algo-mcn.component';
+import { CompilationComponent } from './memoire_section/chapitre1_RNASS/compilation/compilation.component';
 
 
 
@@ -196,7 +201,12 @@ const ROUTES: Routes = [
     FiltrationComponent,
     RdatFormatComponent,
     RepliementInSilicoComponent,
-    FooterComponent
+    FooterComponent,
+    DataInfoComponent,
+    FreqPaireeComponent,
+    LongueurSeqComponent,
+    AlgoMcnComponent,
+    CompilationComponent
     
   ],
   imports: [
