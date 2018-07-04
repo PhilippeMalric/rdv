@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Inject  } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; // <-- do not forget to import
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; 
 import { FigureComponent } from "../figure/figure.component"
 import { DOCUMENT } from '@angular/common';
 import { PageScrollService, PageScrollInstance } from 'ngx-page-scroll';
