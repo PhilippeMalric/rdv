@@ -11,7 +11,7 @@ body {
   flex-direction: column;
 }
 
-.myjustify {
+p.myjustify {
   text-align: justify;
   font-family: "Times New Roman", Times, serif;
 }
