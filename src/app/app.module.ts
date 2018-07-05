@@ -102,6 +102,7 @@ import { LongueurSeqComponent } from './memoire_section/chapitre1_RNASS/longueur
 import { AlgoMcnComponent } from './memoire_section/chapitre1_RNASS/algo-mcn/algo-mcn.component';
 import { CompilationComponent } from './memoire_section/chapitre1_RNASS/compilation/compilation.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { Chapitre3CoherenceComponent } from './memoire_section/chapitre3-coherence/chapitre3-coherence.component';
 
 
 
@@ -206,7 +207,8 @@ const ROUTES: Routes = [
     FreqPaireeComponent,
     LongueurSeqComponent,
     AlgoMcnComponent,
-    CompilationComponent
+    CompilationComponent,
+    Chapitre3CoherenceComponent
     
   ],
   imports: [
