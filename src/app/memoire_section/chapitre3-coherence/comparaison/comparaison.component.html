@@ -6,7 +6,9 @@
   Comparaison des prédictions de RNASS avec celles faites à l’aide de l’état pairé ou non d’un nucléotide.
   Les modèles ont été entrainés et évalués sur deux ensembles distincts de plus d’un million de nt. (1 058 090) provenant des prédictions de la SS de RNAsubopt. Pour les deux modèles, deux ensembles ont été créés en séparant de façon aléatoire un grand ensemble de 2 116 180 nt., l’ensemble d’entrainement et l’ensemble « test ».
 </p>
-<figure name="table-de-contingence"></figure>
+
+<app-figure name="table-de-contingence"></app-figure>
+
 <p>
   Cette figure met en perspective l’état (pairé ou non) des nucléotides avec leur réactivité chimique. Le nombre de nt. réactifs non pairés est semblable au nombre de nt. peu réactifs non pairés. Cependant, il y a beaucoup moins de nt. réactifs pairés que de nt. peu réactifs pairés. Cette figure a été produite en analysant  10 000 nt.
 </p>
@@ -18,10 +20,10 @@
 
 </p>
 
-<figure name="rockCurve"></figure>
+<app-figure name="rockCurve"></app-figure>
 
 <p>
-  Figure 26. Courbe de ROC du modèle de RNASS et du modèle pairé / non pairé. Le modèle de RNASS en plus d’être paramétrable au niveau du risque de ses prédictions performe mieux que le modèle basé sur l’état pairé ou non des nt..
+  app-figure 26. Courbe de ROC du modèle de RNASS et du modèle pairé / non pairé. Le modèle de RNASS en plus d’être paramétrable au niveau du risque de ses prédictions performe mieux que le modèle basé sur l’état pairé ou non des nt..
 
 </p>
 
@@ -29,11 +31,11 @@
   Lorsqu’on considère les nt. réactifs comme des positifs, la précision de ce modèle est de 42.4 % (la précision lorsqu’on considère les nt. peu réactifs comme positifs est de près de 97 %). Cela veut dire que 42.4 % les nt. non pairés sont réactifs. Pour le même nombre de vrai « Hi », RNASS obtient une précision de 51 %. Cependant, le modèle de RNASS peut être ajusté. Par exemple, si l’on désire une précision de 85 % sur nos prédictions « Hi », on le peut, mais le rappel est de seulement 2 %. Voir le graphique précision en fonction du rappel de la figure 25.
 </p>
 
-<figure name="precision_rappel"></figure>
+<app-figure name="precision_rappel"></app-figure>
 
 <p>
 
-  Figure 27. Précision en fonction du rappel du modèle de RNASS (en bleu) et de celui basé sur l’état pairé non pairé des nucléotides (en rouge). Plus de 1 million de nt. ont servi à faire ce test. Chacune des 10 SS de RNAsubopt est prise séparément. Le modèle de RNASS performe mieux que celui basé sur l’état pairé ou non des nt.
+  app-figure 27. Précision en fonction du rappel du modèle de RNASS (en bleu) et de celui basé sur l’état pairé non pairé des nucléotides (en rouge). Plus de 1 million de nt. ont servi à faire ce test. Chacune des 10 SS de RNAsubopt est prise séparément. Le modèle de RNASS performe mieux que celui basé sur l’état pairé ou non des nt.
 
 </p>
 
@@ -44,10 +46,10 @@
 </p>
 
 
-<figure name="tableau_pairee_vs_ncm"></figure>
+<app-figure name="tableau_pairee_vs_ncm"></app-figure>
 
 
-<figure name="distribution_pairee_vs_ncm"></figure>
+<app-figure name="distribution_pairee_vs_ncm"></app-figure>
 
 <p>
   Distribution des nt. en fonction de leur état (axe des ordonnés), de leur score de prédiction de RNASS (axe des abscisses) et de leur réactivité chimique (couleur). Les points rouges représentent les nt. réactifs. Ils sont beaucoup plus présents lorsque le nt. est non pairé et lorsque son score de prédiction est élevé. Cette visualisation a été faite avec Orange, un logiciel d’apprentissage machine.
