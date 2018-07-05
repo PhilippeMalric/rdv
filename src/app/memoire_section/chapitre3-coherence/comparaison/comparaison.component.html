@@ -1,0 +1,60 @@
+<h5>
+  Comparaison des prédictions de RNASS avec celles faites à l’aide de l’état pairé ou non d’un nucléotide.
+</h5>
+
+<p>
+  Comparaison des prédictions de RNASS avec celles faites à l’aide de l’état pairé ou non d’un nucléotide.
+  Les modèles ont été entrainés et évalués sur deux ensembles distincts de plus d’un million de nt. (1 058 090) provenant des prédictions de la SS de RNAsubopt. Pour les deux modèles, deux ensembles ont été créés en séparant de façon aléatoire un grand ensemble de 2 116 180 nt., l’ensemble d’entrainement et l’ensemble « test ».
+</p>
+<figure name="table-de-contingence"></figure>
+<p>
+  Cette figure met en perspective l’état (pairé ou non) des nucléotides avec leur réactivité chimique. Le nombre de nt. réactifs non pairés est semblable au nombre de nt. peu réactifs non pairés. Cependant, il y a beaucoup moins de nt. réactifs pairés que de nt. peu réactifs pairés. Cette figure a été produite en analysant  10 000 nt.
+</p>
+
+<p>
+  Le pourcentage de nt. pairés dans ces ensembles est d’environ 65 % et le pourcentage de nt. peu réactifs est de 83 %. Ces deux pourcentages supposent déjà que certains nt. peu réactifs seront non pairés. En réalité, c’est 20% des nt. totaux qui sont peu réactifs et non pairés. 24 % des nt. peu réactifs ne sont pas pairés. En revanche, 12.5 % des nt. avec une réactivité élevée sont pairés.
+  La figure 26 est une courbe ROC des deux modèles superposés. Concentrons-nous sur la signification de la valeur de l’axe des « x ». De gauche à droite, le taux de faux « Hi » et le taux de vrai « Hi » augmente de façon monotone. Plus le taux de faux « Hi » est bas pendant que le taux de vrai « Hi » est élevé, meilleur est l’algorithme.
+  RNASS donne une probabilité avec ses prédictions. Dans le cas du modèle basé sur l’état pairé ou non des nt., le nombre de prédictions « Hi » est fixe, c’est la raison de la forme « carrée » de la « courbe » rouge du graphique de la figure 24. En fait, un seul point est calculé. On constate que le modèle basé sur l’état des nt. à un taux de faux « Hi » d’environ 24 %, ce qui correspond à un taux de vrai « Hi » de 87.4 %. Pour un même taux de faux positifs, RNASS à un taux de vrai « Hi » au-dessus de 90 %, un gain de plus de 2.4 %
+
+</p>
+
+<figure name="rockCurve"></figure>
+
+<p>
+  Figure 26. Courbe de ROC du modèle de RNASS et du modèle pairé / non pairé. Le modèle de RNASS en plus d’être paramétrable au niveau du risque de ses prédictions performe mieux que le modèle basé sur l’état pairé ou non des nt..
+
+</p>
+
+<p>
+  Lorsqu’on considère les nt. réactifs comme des positifs, la précision de ce modèle est de 42.4 % (la précision lorsqu’on considère les nt. peu réactifs comme positifs est de près de 97 %). Cela veut dire que 42.4 % les nt. non pairés sont réactifs. Pour le même nombre de vrai « Hi », RNASS obtient une précision de 51 %. Cependant, le modèle de RNASS peut être ajusté. Par exemple, si l’on désire une précision de 85 % sur nos prédictions « Hi », on le peut, mais le rappel est de seulement 2 %. Voir le graphique précision en fonction du rappel de la figure 25.
+</p>
+
+<figure name="precision_rappel"></figure>
+
+<p>
+
+  Figure 27. Précision en fonction du rappel du modèle de RNASS (en bleu) et de celui basé sur l’état pairé non pairé des nucléotides (en rouge). Plus de 1 million de nt. ont servi à faire ce test. Chacune des 10 SS de RNAsubopt est prise séparément. Le modèle de RNASS performe mieux que celui basé sur l’état pairé ou non des nt.
+
+</p>
+
+<p>
+
+  Chose surprenante, du point de vue du nombre des bonnes prédictions total divisé par le nombre de prédictions total (accuracy) du modèle prenant seulement en compte l’état pairé ou non d’un nt., il est plus avantageux de prédire tous les nt. comme étant de basse réactivité plutôt que de se fier sur le pairage de ceux-ci. Autrement dit, le nombre de nt. non pairés et peu réactifs est tellement grand par rapport au nombre de nt. non pairés et réactifs que l’état non pairé aide peu à trouver les nt. réactifs (moins de 1 nt. non pairé sur 2 est réactif).
+
+</p>
+
+
+<figure name="tableau_pairee_vs_ncm"></figure>
+
+
+<figure name="distribution_pairee_vs_ncm"></figure>
+
+<p>
+  Distribution des nt. en fonction de leur état (axe des ordonnés), de leur score de prédiction de RNASS (axe des abscisses) et de leur réactivité chimique (couleur). Les points rouges représentent les nt. réactifs. Ils sont beaucoup plus présents lorsque le nt. est non pairé et lorsque son score de prédiction est élevé. Cette visualisation a été faite avec Orange, un logiciel d’apprentissage machine.
+</p>
+
+<p>
+  Le tableau IV montre quelques valeurs des métriques de performance du modèle basé sur le score de RNASS. Pour obtenir un taux de bonne prédiction de plus de 90% sur les nt. de haute réactivité, il faut diminuer le rappel en dessous du 1 %. Cela veut dire que moins de 1% des prédictions faites avec les données sur les MCN ont un taux de bonne prédiction sur le nombre de prédictions total au-dessus de 90 %. Les nt. de la figure 27 ont été divisés en deux groupes, les nt. pairés en haut et ceux non pairés en bas. Les nt. sont ordonnés selon leur score de prédiction, -1 à gauche jusqu’à 1 à droite. Finalement, les nt. rouges sont ceux qui ont un score de réactivité au-dessus de 1 et ceux en bleu ont un score de réactivité en dessous de 0.5.
+</p>
+
+

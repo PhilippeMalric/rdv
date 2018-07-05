@@ -4,3 +4,7 @@
   line-height: 1.42857143 !important; /* this for line in desktop mode */
   z-index:1;
 }
+
+img {
+  margin: 4px 4px 4px 4px;
+}

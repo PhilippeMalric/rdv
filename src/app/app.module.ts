@@ -103,6 +103,10 @@ import { AlgoMcnComponent } from './memoire_section/chapitre1_RNASS/algo-mcn/alg
 import { CompilationComponent } from './memoire_section/chapitre1_RNASS/compilation/compilation.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { Chapitre3CoherenceComponent } from './memoire_section/chapitre3-coherence/chapitre3-coherence.component';
+import { ApprentissageComponent } from './memoire_section/chapitre3-coherence/apprentissage/apprentissage.component';
+import { ComparaisonComponent } from './memoire_section/chapitre3-coherence/comparaison/comparaison.component';
+import { CombinaisonComponent } from './memoire_section/chapitre3-coherence/combinaison/combinaison.component';
+import { Conclusion3Component } from './memoire_section/chapitre3-coherence/conclusion3/conclusion3.component';
 
 
 
@@ -208,7 +212,11 @@ const ROUTES: Routes = [
     LongueurSeqComponent,
     AlgoMcnComponent,
     CompilationComponent,
-    Chapitre3CoherenceComponent
+    Chapitre3CoherenceComponent,
+    ApprentissageComponent,
+    ComparaisonComponent,
+    CombinaisonComponent,
+    Conclusion3Component
     
   ],
   imports: [

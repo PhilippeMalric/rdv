@@ -1,3 +1,36 @@
+<h5>Chapitre 3 : Évaluation de la cohérence des MCN</h5>
+
 <p>
-  chapitre3-coherence works!
+
+  Dans le but de mesurer les performances des prédictions effectuées par RNASS, je les ai évalués dans ce chapitre. J’ai utilisé une machine à vecteur de support pour entrainer un modèle avec deux ensembles de données différents. Le premier ensemble contient les valeurs de pairage des nt. et le deuxième contient les valeurs de prédiction de RNASS. Ces nt. ont été extraits de l’ensemble de données filtré (voir chapitre 1).
+  Le graphique de la figure 23 montre les étapes de l’entrainement. La plateforme Azure permet de créer un protocole graphique. Du haut vers le bas, voici les étapes :
+
 </p>
+
+
+<p-accordion>
+  <p-accordionTab>
+    <p-header>
+      Extraction des données
+    </p-header>
+    <app-apprentissage id="app-apprentissage" class="section scrollspy"></app-apprentissage>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Comparaison des prédictions de RNASS avec celles faites à l’aide de l’état pairé ou non d’un nucléotide.
+    </p-header>
+    <app-comparaison id="app-comparaison" class="section scrollspy myjustify"></app-comparaison>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Combinaison des deux modèles
+    </p-header>
+    <app-combinaison id="app-combinaison" class="section scrollspy myjustify"></app-combinaison>
+  </p-accordionTab>
+  <p-accordionTab>
+    <p-header>
+      Conclusion du chapitre 3
+    </p-header>
+    <app-conclusion3 id="app-conclusion3" class="section scrollspy myjustify"></app-conclusion3>
+  </p-accordionTab>
+</p-accordion>
