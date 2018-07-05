@@ -3,3 +3,7 @@
   La procédure pour obtenir expérimentalement les données de la RMDB et les traitements numériques subséquents sont bien expliqués dans la documentation [35, 36] et sur le forum d’Eterna[49]. Pour les données d’Eterna, une interface de programmation (API) a été mise en place pour que la communauté puisse les obtenir facilement. Il suffit de trouver la liste des « laboratoires » et de faire une requête à l’API (voir l’annexe). Les « laboratoires » sont des ensembles de données créés dans un but précis, ce but peut être l’étude d’une boucle, d’un renflement ou de toutes autres caractéristiques. Plusieurs informations sont disponibles sur les « laboratoires », nous retrouvons entre autres : leurs auteurs, leur identifiant numérique, la date de leur création et leur titre. J’ai choisi de me limiter aux données produites entre 2014 et 2018. Un script nommé : eternaTSV.py utilise cet API et produit une liste d’ARN avec leur séquence, les données de réactivité chimique et d’autres informations reliées à l’expérience qui les a créées. On peut aussi télécharger les fichiers RDAT de la base de données de RMDB.
   Ces données sont fiables, car elles ont été normalisées à l’aide d’un contrôle interne à la séquence et chaque séquence à un contrôle non modifié par le réactif. De plus, chaque ARN est sondé au minimum par deux solutions, une 10 fois plus concentrée que l’autre [35].
 </p>
+
+<h5>Noms des laboratoires et Détails</h5>
+
+<app-rmdb-exp-name></app-rmdb-exp-name>

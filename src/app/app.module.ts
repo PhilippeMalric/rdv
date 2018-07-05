@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { HomeComponent } from './home/home.component';
 import { DocComponent } from './doc/doc.component';
@@ -107,6 +108,8 @@ import { ApprentissageComponent } from './memoire_section/chapitre3-coherence/ap
 import { ComparaisonComponent } from './memoire_section/chapitre3-coherence/comparaison/comparaison.component';
 import { CombinaisonComponent } from './memoire_section/chapitre3-coherence/combinaison/combinaison.component';
 import { Conclusion3Component } from './memoire_section/chapitre3-coherence/conclusion3/conclusion3.component';
+import { RMDBExpNameComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
+import { OneLabComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
 
 
 
@@ -216,10 +219,13 @@ const ROUTES: Routes = [
     ApprentissageComponent,
     ComparaisonComponent,
     CombinaisonComponent,
-    Conclusion3Component
+    Conclusion3Component,
+    RMDBExpNameComponent,
+    OneLabComponent
     
   ],
   imports: [
+    TableModule,
     MatMenuModule,
     NgxPageScrollModule,
     ContentsModule,
