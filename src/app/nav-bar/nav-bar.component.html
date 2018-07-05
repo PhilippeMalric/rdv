@@ -1,4 +1,4 @@
-<nav class="navbar navbar-header navbar-expand-md navbar-dark" style="background-color: #2e0051;">
+<nav class="navbar navbar-fixed navbar-expand-md navbar-dark" style="background-color: #2e0051;">
   <img src="/assets/images/bootstrap.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
   <a class="navbar-brand" routerLink="/home">RNA Dynamic Viewer</a>
   <mat-menu #rootMenu="matMenu">
@@ -11,6 +11,8 @@
     <button mat-menu-item>Restart</button>
     <button mat-menu-item>Hibernate</button>
   </mat-menu>
+
+  <button mat-fab class="custom-button app-fab--absolute show-on-small hide-on-med-and-up" color="primary" (click)="visibleSidebar1 = true" aria-label="sideBar"> <span class="mdc-fab__icon material-icons">favorite</span></button>
 
   <button color="primary" mat-icon-button [matMenuTriggerFor]="rootMenu">
     <mat-icon>more_vert</mat-icon>
