@@ -1,27 +1,3 @@
-
-<p-sidebar class="show-on-small hide-on-med-and-up" [(visible)]="visibleSidebar1" [baseZIndex]="10000" position="right">
-  <h4 style="font-weight:normal">Table des matières</h4>
-  <div>
-    <h5 (click)="buttonClick('page_presentation')">Présentation</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-avertissement')">Avertissement</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-context')">Context</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-historique')">Historique</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-pourquoi-etudier-l-arn')">Pourquoi</h5>
-  </div>
-  <div>
-    <h5 (click)="buttonClick('app-definitions')">Definitions</h5>
-  </div>
-</p-sidebar>
-
-
 <div class="marginTop">
   <div class="columnify container" contents>
     <div class="row">
@@ -114,7 +90,7 @@
           <div class="collapsible-body"><app-chapitre1-rnass id="app-chapitre1-rnass_body"></app-chapitre1-rnass></div>
         </li>
         <li>
-          <div id="chapitre3-coherence" contentsSection="coherence" class="collapsible-header">
+          <div id="chapitre3-coherence" contentsSection="chapitre3-coherence" class="collapsible-header">
             <i class="material-icons left">cloud</i>
             <a href="home#figure" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
               Chapitre 3 - la cohérence de la réactivité face aux prédictions des structures secondaires
@@ -149,10 +125,14 @@
           <li><a href="#pourquoi-etudier-l-arn" (click)="buttonClick('pourquoi-etudier-l-arn')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Pourquoi étudier l'ARN</a></li>
           <li><a href="#definitions" (click)="buttonClick('definitions')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Définitions</a></li>
           <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
+          <li><a href="#chapitre3-coherence" (click)="buttonClick('chapitre3-coherence')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre3 | cohérence</a></li>
           <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Figure</a></li>
+          <li><a href="javascript:topFunction()">Top</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
+
+

@@ -79,7 +79,11 @@ export class HomeComponent implements OnInit {
         numberId = 7
         break;
       }
-
+      case "chapitre3-coherence": {
+        numberId = 8
+        break;
+      }
+        
       default: {
         //statements; 
         break;

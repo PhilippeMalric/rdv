@@ -61,14 +61,17 @@
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
       loadIcon()
     }
-
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
 
   </script>
 </head>
 <body>
   <app-root></app-root>
   <script>
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       var options = {}
       var elems_collapsible = document.querySelectorAll('.collapsible');
       var instances_collapsible = M.Collapsible.init(elems_collapsible, options);
@@ -77,6 +80,9 @@
       var elems_pushpin = document.querySelectorAll('.pushpin');
       var instances_pushpin = M.Pushpin.init(elems_pushpin, options);
     });
+
+    
   </script>
+
 </body>
 </html>

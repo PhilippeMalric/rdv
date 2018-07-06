@@ -9,3 +9,12 @@ img {
   border-radius: 7px;
   margin: 4px 4px 4px 4px;
 }
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
