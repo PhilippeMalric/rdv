@@ -12,7 +12,7 @@ export class RMDBExpNameComponent implements OnInit {
 
   array = null;
   selectedLab = this.labNames[0]
-
+  display = false;
   
   constructor(private rmdbExpService: RmdbExpService) {
     this.rmdbExpService.getFiles("ETERNA_R00_0000").subscribe(data => {
@@ -56,6 +56,12 @@ export class RMDBExpNameComponent implements OnInit {
 
       
     });
+
+  }
+
+  showDetails() {
+
+    this.display = true
 
   }
 

@@ -110,13 +110,14 @@ import { CombinaisonComponent } from './memoire_section/chapitre3-coherence/comb
 import { Conclusion3Component } from './memoire_section/chapitre3-coherence/conclusion3/conclusion3.component';
 import { RMDBExpNameComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
 import { OneLabComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
+import { RdvComponent } from './rdv/rdv.component';
 
 
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'doc', component: DocComponent },
-  { path: 'viewer', component: ViewerComponent },
+  { path: 'viewer', component: RdvComponent },
   { path: 'ncm', component: NCM2Component },
   {
     path: 'about',
@@ -221,10 +222,12 @@ const ROUTES: Routes = [
     CombinaisonComponent,
     Conclusion3Component,
     RMDBExpNameComponent,
-    OneLabComponent
+    OneLabComponent,
+    RdvComponent
     
   ],
   imports: [
+    
     TableModule,
     MatMenuModule,
     NgxPageScrollModule,
