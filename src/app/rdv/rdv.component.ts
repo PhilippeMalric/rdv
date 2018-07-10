@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RnaJsonService } from 'src/app/service/rna-json.service';
 import * as d3 from 'd3';
-import { google_colors } from './helper'
+import { google_colors, plotRNA, click_ss } from './helper'
 
-
-
-import { plotRNA, click_ss } from './helper'
 
 @Component({
   selector: 'app-rdv',
@@ -16,33 +13,25 @@ export class RdvComponent implements OnInit {
 
 
   @ViewChild('chart') private chartContainer: ElementRef;
-  colorConverter = {};
-  ntColorSwitch = 0;
-  changeNodeColor = null;
-  ntTab = ['A', 'U', 'C', 'G'];
+  
 
-
-
-  constructor(private rnaJsonService: RnaJsonService) {
-
-    this.colorConverter['A'] = google_colors(0);
-    this.colorConverter['C'] = google_colors(1);
-    this.colorConverter['G'] = google_colors(2);
-    this.colorConverter['U'] = google_colors(3);
-
-
+  constructor( private rnaJsonService: RnaJsonService) {
+   
   }
 
 
 
   ngOnInit() {
+
+    this.loadJson()
+
   }
 
 
 
   loadJson() {
 
-    let name = "ETERNA_R74_0000-942.json"
+    let name = "ETERNA_R74_0000-942"
 
     this.rnaJsonService.getRNA(name).subscribe(data => {
       console.log("data: ",data)
@@ -53,7 +42,7 @@ export class RdvComponent implements OnInit {
 
   createVizualisation(jsonData) {
 
-    
+    /*
     let id = ""
     let folder1 = "new_bestRNA"
     let pos = 0
@@ -108,24 +97,26 @@ export class RdvComponent implements OnInit {
     let mcff_gt_scale = null
 
     let so_gt_scale = null
-
+    */
 
     const element = this.chartContainer.nativeElement;
 
-    let height = 200
-    let width = 200
+    let height = 1000
+    let width = "100%"
 
     const svg = d3.select(element).append('svg')
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height)
+      .attr("id","ss_svg");
 
-    svg.append("rect")
-      .style("fill", "red")
-      .attr("width", 50)
-      .attr("height", 50)
-      .attr("x", 5)
-      .attr("y", 5)
+
+
+    plotRNA(svg, jsonData, pos)
+
   }
+
+  
+  // fin export
 }
 
 /*

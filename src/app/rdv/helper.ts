@@ -1,62 +1,63 @@
 import * as d3 from 'd3';
-import { RGBColor } from 'd3';
+import { RGBColor, SimulationNodeDatum, SimulationLinkDatum, ForceLink } from 'd3';
 
 
 //--------------------------------------------------------------Debut des fonctions generique (voir helper aussi)
 
-export function mouseOverF (d, i) {
-  //console.log(d)
 
-  //return ilumineNt(d,i);
+class MyNodeType implements SimulationNodeDatum {
+  /**
+    * Node’s zero-based index into nodes array. This property is set during the initialization process of a simulation.
+    */
+  index?: number;
+  /**
+   * Node’s current x-position
+   */
+  x?: number;
+  /**
+   * Node’s current y-position
+   */
+  y?: number;
+  /**
+   * Node’s current x-velocity
+   */
+  vx?: number;
+  /**
+   * Node’s current y-velocity
+   */
+  vy?: number;
+  /**
+   * Node’s fixed x-position (if position was fixed)
+   */
+  fx?: number | null;
+  /**
+   * Node’s fixed y-position (if position was fixed)
+   */
+  fy?: number | null;
+  score: number;
+  erreur: number;
+  sorte: CharacterData;
+  reactivity_pred: number;
+  prediction_color_so: number;
+  prediction_color_mcff: number;
+  ncm_so: string;
+  ncm_mcff: string;
+  voisin_so: number;
+  voisin_mcff: number;
+  color: RGBColor;
+  sc_pred_mcff: number;
+  sc_pred_so: number;
 }
 
+class MyLinkType implements SimulationLinkDatum<SimulationNodeDatum> {
+  source: string | number | MyNodeType;
+  target: string | number | MyNodeType;
+  index?: number;
 
 
-export function mouseOutF (d, i) {
-  //console.log(d)
-  //ntColorSwitch = (ntColorSwitch +2) % 3
-  //changeNodeColor()
 }
 
-export function ilumineNt (d, i, secStructSelected_int, nt_mcff) {
-  let voisin = null
-  if (secStructSelected_int < nt_mcff) {
-    voisin = d.voisin_mcff[secStructSelected_int]
-  }
-  else {
-    voisin = d.voisin_so[secStructSelected_int - nt_mcff]
-  }
-  console.log(voisin)
-
-  if (voisin.p_i == -1) {
-
-    let tab1 = this.getNtBetween(voisin.vg, voisin.vd)
-    let tab2 = this.getNtBetween(voisin.p_vg, voisin.p_vd)
-    let tab3 = tab1.concat(tab2)
-    tab3.map(this.ligthNt)
-    this.ligthNt2(i)
-  }
-  else {
-    let tab1 = this.getNtBetween(voisin.vg, voisin.vd)
-    let tab2 = this.getNtBetween(voisin.p_vg, voisin.p_vd)
-    let tab3 = tab1.concat(tab2)
-    tab3.map(this.ligthNt)
-    this.ligthNt2(i)
-  }
-
-}
-export function ligthNt (n) {
-  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth)
-}
-
-export function ligthNt2 (n) {
-  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth2)
-}
-export function darkNt (n) {
-  this.svg_ss.select("#_" + n).attr("fill", this.ntColorDark)
-}
-
-export function getNtBetween (i, j) {
+function getNtBetween(i, j) {
   let tab = []
   if (i < 0 || j < 0 || i == "-" || j == "-") {
     if (i > 0 && i != "-") { return [i] }
@@ -79,6 +80,49 @@ export function getNtBetween (i, j) {
   return tab
 }
 
+function ligthNt(n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth)
+}
+
+
+export function ilumineNt (d, i, secStructSelected_int, nt_mcff) {
+  let voisin = null
+  if (secStructSelected_int < nt_mcff) {
+    voisin = d.voisin_mcff[secStructSelected_int]
+  }
+  else {
+    voisin = d.voisin_so[secStructSelected_int - nt_mcff]
+  }
+  console.log(voisin)
+
+  if (voisin.p_i == -1) {
+
+    let tab1 = getNtBetween(voisin.vg, voisin.vd)
+    let tab2 = getNtBetween(voisin.p_vg, voisin.p_vd)
+    let tab3 = tab1.concat(tab2)
+    tab3.map(ligthNt)
+    this.ligthNt2(i)
+  }
+  else {
+    let tab1 = getNtBetween(voisin.vg, voisin.vd)
+    let tab2 = getNtBetween(voisin.p_vg, voisin.p_vd)
+    let tab3 = tab1.concat(tab2)
+    tab3.map(ligthNt)
+    this.ligthNt2(i)
+  }
+
+}
+
+
+export function ligthNt2 (n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth2)
+}
+export function darkNt (n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorDark)
+}
+
+
+
 export function ntColorLigth (d, i) {
   console.log(d)
   return d3.rgb(d.color).brighter(2)
@@ -97,30 +141,8 @@ export function google_colors(n) {
   return colores_g[n % colores_g.length];
 }
 
-export function filterMinus1(tab) {
-  let newTab = []
-  for (let i in tab) {
-    if (tab[i] != -999) {
-      newTab.push(tab[i])
-    }
-  }
-  return newTab
-}
 
-export function ntColor (d, i, pos) {
-  if (i != pos) {
-    let s = d.sorte
-    let c = s.toUpperCase()
-    let color = this.colorConverter[c]
-    d.color = color
-    return color
-  }
-  else {
-    let color = "yellow" //couleur du nucleotide !id
-    d.color = color
-    return color
-  }
-}
+
 
 export function click_ss(d, secStructSelected_int) {
 
@@ -366,14 +388,39 @@ export function click_ss(d, secStructSelected_int) {
 }
 
 
-var svg_ss = null
-var nt_mcff = null
+let svg_ss = null
+let nt_mcff = null
 
 let folder1 = ""
 let id = ""
 //d3.json("/JSON_FOLDER_10_9_poids/"+id+".json",function(err,data){
-export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, ntColor, filterMinus1, nodes_ss, pos, mouseOverF, mouseOutF, width_gt, force_gt, circleRadius_gt, gap_gt) {
-  let changeNodeColor = function (ntColorSwitch) {
+export const plotRNA = function (svg_ss, data, pos) {
+
+  const colorConverter = {};
+  colorConverter['A'] = google_colors(0);
+  colorConverter['C'] = google_colors(1);
+  colorConverter['G'] = google_colors(2);
+  colorConverter['U'] = google_colors(3);
+
+  function ntColor(d, i) {
+    if (i != pos) {
+      let s = d.sorte
+      let c = s.toUpperCase()
+      let color = colorConverter[c]
+      d.color = color
+      return color
+    }
+    else {
+      let color = "yellow" //couleur du nucleotide !id
+      d.color = color
+      return color
+    }
+  }
+
+  let ntColorSwitch = 0
+
+  function changeNodeColor() {
+
     console.log("ntcolorSwitch " + ntColorSwitch)
 
     if (ntColorSwitch == 2) { ntColorSwitch = 0 }
@@ -384,11 +431,11 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
       }
     }
 
-
     let color = null
     console.log("ntcolorSwitch " + ntColorSwitch)
+
     d3.selectAll(".nodes_ss")
-      .attr('fill', function (d:any, i) {
+      .attr('fill', function (d: any, i) {
         if (ntColorSwitch == 1) {
           if (d.score == -999) {
             color = "grey"
@@ -400,6 +447,7 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
           return color;
         }
         if (ntColorSwitch == 0) {
+          color = ntColor(d, i)
           color = ntColor(d, i)
           d.color = color
           return color;
@@ -415,10 +463,31 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
           return color;
         }
       })
-    }
+  }
+
+  const circleRadius_gt = 15;
+
+  const gap_gt = 50
+
+  function mouseOverF(d, i) {
+    //console.log(d)
+
+    //return ilumineNt(d,i);
+  }
+
+  function mouseOutF(d, i) {
+    //console.log(d)
+    //ntColorSwitch = (ntColorSwitch +2) % 3
+    //changeNodeColor()
+  }
+
+
+
+
+  nt_mcff = data.d3ForceLayout2p.mcff.length;
+
+
   let jsonData = data
-
-
 
   let reactivityScaleWs_helper = d3.scaleLinear()
     .domain([0, 1])
@@ -431,59 +500,77 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     else {
       return reactivityScaleWs_helper(Math.abs(sc_so[secStructSelected_int - nt_mcff]));
     }
+  }
 
+  function filterMinus1(tab) {
+    let newTab = []
+    for (let i in tab) {
+      if (tab[i] != -999) {
+        newTab.push(tab[i])
+      }
     }
+    return newTab
+  }
 
 
 
-  let filtered_score: [any] = filterMinus1(jsonData.scoreTab)
-  let filtered_erreur: [any] = filterMinus1(jsonData.erreurTab)
+
+  let filtered_score: any[] = filterMinus1(jsonData.scoreTab)
+  let filtered_erreur: any[] = filterMinus1(jsonData.erreurTab)
 
 
+  const reactivityScaleColor = d3.scaleLinear<RGBColor>()
+    .domain(d3.extent(filterMinus1(jsonData.scoreTab)))
+    .range([d3.rgb("red").brighter(), d3.rgb("blue").brighter()]);
 
-    
-    let reactivityScaleRay = d3.scaleLinear()
-      .domain(d3.extent(filtered_score))
+  const reactivityErrorScaleColor = d3.scaleLinear<RGBColor>()
+    .domain(d3.extent(filterMinus1(jsonData.erreurTab)))
+    .range([d3.rgb("white"), d3.rgb("yellow")]);
+
+
+  const reactivityScaleRay = d3.scaleLinear()
+    .domain(d3.extent(filtered_score))
     .range([9, 13]);
 
   let mcff_gt_scale = null
   let so_gt_scale = null
 
-    if (jsonData.sc_so) {
-      let scoh = jsonData.sc_mcff.concat(jsonData.sc_so)
+  if (jsonData.sc_so) {
+    let scoh = jsonData.sc_mcff.concat(jsonData.sc_so)
 
-      let score_tab_mcff: number[] = jsonData.sc_mcff
-      let score_tab_so: number[] = jsonData.sc_so
+    let score_tab_mcff: number[] = jsonData.sc_mcff
+    let score_tab_so: number[] = jsonData.sc_so
 
-      mcff_gt_scale = d3.scaleLinear<RGBColor>()
-        .domain(d3.extent(score_tab_mcff))
-        .range([d3.rgb("green").darker(2), d3.rgb("green").brighter(3)]);
+    mcff_gt_scale = d3.scaleLinear<RGBColor>()
+      .domain(d3.extent(score_tab_mcff))
+      .range([d3.rgb("green").darker(2), d3.rgb("green").brighter(3)]);
 
-      so_gt_scale = d3.scaleLinear<RGBColor>()
-        .domain(d3.extent(score_tab_so))
-        .range([d3.rgb("red").darker(2), d3.rgb("red").brighter(3)]);
-    }
-    else {
-      mcff_gt_scale = d3.scaleLinear<RGBColor>()
-        .domain([0, 1])
-        .range([d3.rgb("white"), d3.rgb("green")]);
+    so_gt_scale = d3.scaleLinear<RGBColor>()
+      .domain(d3.extent(score_tab_so))
+      .range([d3.rgb("red").darker(2), d3.rgb("red").brighter(3)]);
+  }
+  else {
+    mcff_gt_scale = d3.scaleLinear<RGBColor>()
+      .domain([0, 1])
+      .range([d3.rgb("white"), d3.rgb("green")]);
 
-      so_gt_scale = d3.scaleLinear<RGBColor>()
-        .domain([0, 1])
-        .range([d3.rgb("white"), d3.rgb("red")]);
+    so_gt_scale = d3.scaleLinear<RGBColor>()
+      .domain([0, 1])
+      .range([d3.rgb("white"), d3.rgb("red")]);
 
   }
 
   //----------------------------------------------------------------------------ss
   //------------------------------------------------------addUrl
-  
-  d3.select("body").append("a")
-        .attr("class","link")
-        .attr("href", jsonData['url'])
-        .html(jsonData['url'])
-  
 
-  let svg_ss = d3.select("#ss_svg")
+  d3.select("body").append("a")
+    .attr("class", "link")
+    .attr("href", jsonData['url'])
+    .html(jsonData['url'])
+
+
+  let ntTab = ['A', 'U', 'C', 'G'];
+
   let width_ss = +$("#ss_svg").width() / 2;
   let height_ss = +$("#ss_svg").height();
 
@@ -501,27 +588,32 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .attr("x", width_ss + width_ss / 2 + width_ss / 4)
     .attr("y", 10)
     .text("Mc-flashfold")
-    .on("click", mcffState)
+    //.on("click", mcffState)
     .style("cursor", "pointer")
 
 
-  let mcffOrSubopt = null
+  let mcffOrSubopt = "mcff"
 
 
   let interval_scroll = null;
-  let scrollOn = null;
+  let scrollOn = false;
 
-  let scrollGt = function (d, i){
+  
+  function scrollGt (d, i) {
     clearInterval(interval_scroll);
-    if (scrollOn) {
-      scrollOn = false
+    if (!scrollOn) {
+      scrollOn = true
       interval_scroll = setInterval(function () {
         secStructSelected_int += 1
         if (softSelected) {
-          if (mcffOrSubopt) {
+          if (mcffOrSubopt == "mcff") {
             secStructSelected_int = secStructSelected_int % nt_mcff
           }
-          else { secStructSelected_int = (secStructSelected_int % nt_so) + nt_mcff }
+          else {
+            if (mcffOrSubopt == "so") {
+              secStructSelected_int = (secStructSelected_int % nt_so) + nt_mcff
+            }
+          }
         }
         else {
           secStructSelected_int = secStructSelected_int % soNumber
@@ -530,31 +622,40 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
       }, 50);
     }
     else {
-      scrollOn = true
+      scrollOn = false
       clearInterval(interval_scroll);
     }
     force_ss.restart()
   }
 
-
-  function mcffState(scrollGt, scrollOn) {
-    scrollOn = true;
-    softSelected = true;
-    mcffOrSubopt = true;
-    scrollGt()
+  function mcffState() {
+    secStructSelected_int = 0
+    if (scrollOn) {
+      scrollOn = false;
+    }
+    else {
+      scrollOn = true;
+      softSelected = true;
+      mcffOrSubopt = "mcff";
+    }
+   
+    scrollGt({},0)
   }
-  function soState(secStructSelected_int, scrollOn, scrollGt) {
+
+  function soState() {
     secStructSelected_int = nt_mcff + 1
-    scrollOn = true;
-    softSelected = true;
-    mcffOrSubopt = false;
-    scrollGt()
+    if (scrollOn) {
+      scrollOn = false;
+    }
+    else {
+      scrollOn = true;
+      softSelected = true;
+      mcffOrSubopt = "so";
+    }
+    scrollGt({}, 0)
   }
+  
 
-  function mcffOrSuboptChange() {
-    if (mcffOrSubopt) { softSelected = true; mcffOrSubopt = false }
-    else { mcffOrSubopt = true }
-  }
 
   svg_ss.append("text")
     .attr("class", "so_legend")
@@ -578,15 +679,13 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .on("click", softSelectedChange)
     .style("cursor", "pointer")
 
-  nt_mcff = data.d3ForceLayout2p.mcff.length;
+
   let secStructSelected_int = nt_mcff
   var nt_so = data.d3ForceLayout2p.rnaSubOpt.length;
 
   let soNumber = nt_mcff + nt_so;
 
-
-
-  let links_ss = null
+  var links_ss: any[]
   if (secStructSelected_int < nt_mcff) {
     links_ss = data.d3ForceLayout2p.mcff[secStructSelected_int].slice();
   }
@@ -595,17 +694,27 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
   }
 
   function getStrokeColor(i, tab1, tab2) {
-    if (i < nt_mcff) {
-      return tab1[i]
+    if (tab1) {
+      if (i < nt_mcff) {
+        return tab1[i]
+      }
+      else {
+        return tab2[i - nt_mcff]
+      }
     }
     else {
-      return tab2[i - nt_mcff]
+      return "black"
     }
   }
 
-  for (let node of data.seq.length) {
-    
-    nodes_ss[node] = {}
+  let nodes_ss: MyNodeType[] = []
+
+  function range(l) {
+    return Array.apply(null, Array(l)).map(function (_, i) { return i; });
+  }
+
+  for (let node of range(data.seq.length)) {
+    nodes_ss[node] = new MyNodeType;
     nodes_ss[node].x = (Math.sin(node / 2) * node / 2) * 3 + width_ss / 2
     nodes_ss[node].y = (Math.cos(node / 2) * node / 2) * 3 + height_ss / 2
     nodes_ss[node].vx = 0
@@ -618,7 +727,6 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     nodes_ss[node].prediction_color_mcff = data.nts[node].prediction_color_mcff
     nodes_ss[node].ncm_so = data.nts[node].ncmTabDG_so
     nodes_ss[node].ncm_mcff = data.nts[node].ncmTabDG_mcff
-    let test = data.nts[node].ncmTabDG_mcff
     nodes_ss[node].voisin_so = data.nts[node].voisinPairAllsub_so.ncm
     nodes_ss[node].voisin_mcff = data.nts[node].voisinPairAllsub_mcff
     nodes_ss[node].color = null
@@ -628,6 +736,41 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     //console.log(node + " : "+ graph.nodes[node].x)
   }
 
+
+  let nodes_ss_c = svg_ss.append('g')
+    .attr('class', 'nodes_ss_g')
+    .selectAll('circle')
+    .data(nodes_ss)
+    .enter()
+    .append("circle")
+    .attr("class", "nodes_ss")
+    .attr("id", function (d, i) { return "_" + i })
+    .attr("r", function (d: any, i) {
+      if (i != pos) {
+        if (d.score == -999) { return 11 }
+        return reactivityScaleRay(d.score)
+      }
+      else { return 14 }
+    })
+    .attr("cx", function (d, i) { return (Math.sin(i / 2) * i / 2) * 3 - 5 + width_ss / 2 })
+    .attr("cy", function (d, i) { return (Math.cos(i / 2) * i / 2) * 3 + 5 + height_ss / 2 })
+    .attr('fill', ntColor)
+    .attr('stroke', function (d: any, i) {
+      return getStrokeColor(secStructSelected_int, d.prediction_color_mcff, d.prediction_color_so)
+    })
+    .attr('stroke-width', function (d: any, i) {
+      if (d.score == -999) { return 2 }
+      return reactivityScaleWs(secStructSelected_int, d.sc_pred_so, d.sc_pred_mcff)
+    })
+    .attr('opacity', 0.9)
+    .style("cursor", "pointer")
+    .on("mouseover", mouseOverF)
+    .on("mouseout", mouseOutF)
+    .on("mousedown", click_ss)
+    .call(d3.drag()
+      .on("start", dragstarted_ss)
+      .on("drag", dragged_ss)
+      .on("end", dragended_ss));
 
 
   function motion(e, index, array) {
@@ -641,19 +784,15 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     e.vy = e.vy + 10 * ((Math.random() - 0.5) - (e.y - height_ss * 0.5) / height_ss * 0.5);
   }
 
-
-
-
   var circleRadius_ss = 10;
 
-
-  let force_ss = d3.forceSimulation()
+  var force_ss = d3.forceSimulation<MyNodeType, MyLinkType>()
     .force("charge", d3.forceManyBody().strength(-200))
     .force("center", d3.forceCenter(width_ss / 2, height_ss / 2))
     .force("y", d3.forceY(0))
     .force("x", d3.forceX(0))
     .stop()
-
+  //debugger;
 
   var links_ss_l = svg_ss.insert('g', ":first-child")
     .attr('class', 'links_ss_g')
@@ -663,44 +802,6 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .append("line")
     .attr('class', 'links_ss')
     .attr("stroke", "black");
-
-
-
-  var nodes_ss_c = svg_ss.append('g')
-    .attr('class', 'nodes_ss_g')
-    .selectAll('circle')
-    .data(nodes_ss)
-    .enter()
-    .append("circle")
-    .attr("class", "nodes_ss")
-    .attr("id", function (d, i) { return "_" + i })
-    .attr("r", function (d:any, i) {
-      if (i != pos) {
-        if (d.score == -999) { return 11 }
-        return reactivityScaleRay(d.score)
-      }
-      else { return 14 }
-    })
-    .attr("cx", function (d, i) { return (Math.sin(i / 2) * i / 2) * 3 - 5 + width_ss / 2 })
-    .attr("cy", function (d, i) { return (Math.cos(i / 2) * i / 2) * 3 + 5 + height_ss / 2 })
-    .attr('fill', ntColor)
-    .attr('stroke', function (d:any, i) { return getStrokeColor(secStructSelected_int, d.prediction_color_mcff, d.prediction_color_so) })
-    .attr('stroke-width', function (d:any, i) {
-      if (d.score == -999) { return 2 }
-      return reactivityScaleWs(secStructSelected_int, d.sc_pred_so, d.sc_pred_mcff)
-    }
-    )
-    .attr('opacity', 0.9)
-    .style("cursor", "pointer")
-    .on("mouseover", mouseOverF)
-    .on("mouseout", mouseOutF)
-    .on("mousedown", click_ss)
-    .call(d3.drag()
-      .on("start", dragstarted_ss)
-      .on("drag", dragged_ss)
-      .on("end", dragended_ss));
-
-
 
 
   var text_ss = svg_ss.append('g').attr('class', 'label_ss_g')
@@ -716,11 +817,13 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .call(d3.drag()
       .on("start", dragstarted_ss)
       .on("drag", dragged_ss)
-      .on("end", dragended_ss));;
+      .on("end", dragended_ss));
+
+
   var textLabels_ss = text_ss
     .attr("x", function (d, i) { return (Math.sin(i / 2) * i / 2) * 3 - 4 + width_ss / 2 - 10 })
     .attr("y", function (d, i) { return (Math.cos(i / 2) * i / 2) * 3 + 4 + height_ss / 2 + 10 })
-    .text(function (d:any) { return d.sorte; })
+    .text(function (d: any) { return d.sorte; })
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px")
     .attr("font-weigth", "bold")
@@ -728,8 +831,8 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
 
   var nodeSS_Text = function (d, i) {
-    if (secStructSelected_int < nt_mcff) { return " |- " + d.reactivity_pred + " -|" + "Pos " + i + " | S: " + d.score + " |E :" + d.erreur + " | MCN gauche: " + d.ncm_mcff[secStructSelected_int].ncm.gauche + " | MCN droit: " + d.ncm_mcff[secStructSelected_int].ncm.droit + "|pred_mcff " + Math.round(d.sc_pred_mcff[secStructSelected_int] * 100) / 100; }
-    else { return " |- " + d.reactivity_pred + " -|" + "Pos " + i + " | S: " + d.score + " |E :" + d.erreur + " | MCN gauche: " + d.ncm_so[secStructSelected_int - nt_mcff].ncm.gauche + " | MCN droit: " + d.ncm_so[secStructSelected_int - nt_mcff].ncm.droit + "|pred_so " + Math.round(d.sc_pred_so[secStructSelected_int - nt_mcff] * 100) / 100; }
+    if (secStructSelected_int < nt_mcff) { return " |- " + d.reactivity_pred + " -|" + "Pos " + i + " | S: " + d.score + " |E :" + d.erreur + "|pred_mcff " + Math.round(d.sc_pred_mcff[secStructSelected_int] * 100) / 100; }
+    else { return " |- " + d.reactivity_pred + " -|" + "Pos " + i + " | S: " + d.score + " |E :" + d.erreur + "|pred_so " + Math.round(d.sc_pred_so[secStructSelected_int - nt_mcff] * 100) / 100; }
   }
 
   nodes_ss_c.append("title")
@@ -738,36 +841,40 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
   textLabels_ss.append("title")
     .text(nodeSS_Text);
 
+  //debugger;
 
   force_ss
     .nodes(nodes_ss)
     .on("tick", ticked_ss);
 
+
   force_ss
     .force("link", d3.forceLink(links_ss).distance(20).strength(5))
 
-  //force_ss.restart()
+ 
 
-  links_ss_l.filter(function (d:any) { return d.value == 2 })
-    .attr("x1", function (d:any) {
+ 
+
+  links_ss_l.filter(function (d: any) { return d.value == 2 })
+    .attr("x1", function (d: any) {
       var xPos = d.source.x;
       if (xPos < 0) return 0;
       if (xPos > (width_ss - circleRadius_ss)) return (width_ss - circleRadius_ss);
       return xPos;
     })
-    .attr("y1", function (d:any) {
+    .attr("y1", function (d: any) {
       var yPos = d.source.y;
       if (yPos < 0) return 0;
       if (yPos > (height_ss - circleRadius_ss)) return (height_ss - circleRadius_ss);
       return yPos;
     })
-    .attr("x2", function (d:any) {
+    .attr("x2", function (d: any) {
       var xPos = d.target.x;
       if (xPos < 0) return 0;
       if (xPos > (width_ss - circleRadius_ss)) return (width_ss - circleRadius_ss);
       return xPos;
     })
-    .attr("y2", function (d:any) {
+    .attr("y2", function (d: any) {
       var yPos = d.target.y;
       if (yPos < 0) return 0;
       if (yPos > (height_ss - circleRadius_ss)) return (height_ss - circleRadius_ss);
@@ -775,10 +882,14 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     })
     .attr("stroke-width", 5);
 
+
+  //force_ss.restart()
+
+
   function dragstarted_ss(d) {
     d3.select(this).raise().classed("active", true);
     //force_ss.stop()
-    force_ss.force("charge", d3.forceManyBody().strength(-100))
+    force_ss.force("charge", d3.forceManyBody().strength(-200))
     force_ss.restart()
   }
 
@@ -794,27 +905,27 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
   }
 
   function ticked_ss() {
-
+    //debugger;
     links_ss_l
-      .attr("x1", function (d:any) {
+      .attr("x1", function (d: any) {
         var xPos = d.source.x;
         if (xPos < 0) return 0;
         if (xPos > (width_ss - circleRadius_ss)) return (width_ss - circleRadius_ss);
         return xPos;
       })
-      .attr("y1", function (d:any) {
+      .attr("y1", function (d: any) {
         var yPos = d.source.y;
         if (yPos < 0) return 0;
         if (yPos > (height_ss - circleRadius_ss)) return (height_ss - circleRadius_ss);
         return yPos;
       })
-      .attr("x2", function (d:any) {
+      .attr("x2", function (d: any) {
         var xPos = d.target.x;
         if (xPos < 0) return 0;
         if (xPos > (width_ss - circleRadius_ss)) return (width_ss - circleRadius_ss);
         return xPos;
       })
-      .attr("y2", function (d:any) {
+      .attr("y2", function (d: any) {
         var yPos = d.target.y;
         if (yPos < 0) return 0;
         if (yPos > (height_ss - circleRadius_ss)) return (height_ss - circleRadius_ss);
@@ -822,13 +933,13 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
       });
 
     nodes_ss_c
-      .attr("cx", function (d:any) {
+      .attr("cx", function (d: any) {
         var xPos = d.x;
         if (xPos < 0) d.x = 0;
         if (xPos > (width_ss - circleRadius_ss)) d.x = (width_ss - circleRadius_ss);
         return d.x;
       })
-      .attr("cy", function (d:any) {
+      .attr("cy", function (d: any) {
         var yPos = d.y;
         if (yPos < 0) return 0;
         if (yPos > (height_ss - circleRadius_ss)) return (height_ss - circleRadius_ss);
@@ -854,22 +965,25 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     }
   }
 
-
+  /*
   d3.select("body")
-    .on("keyup", function (event:any) {
+    .on("keyup", function (event: any) {
       let keyName = event.key
       if (keyName === 'z') {
         move()
 
       }
     })
+
+  
   d3.select("body")
-    .on("keydown", function (event:any) {
+    .on("keydown", function (event: any) {
       let keyName = event.key
       if (keyName === 'z') {
         shuffleStop()
       }
     })
+*/
 
   svg_ss.append("rect")
     .attr("class", "button")
@@ -884,7 +998,7 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .on("mousedown", shuffle)
     .on("mouseup", shuffleStop)
 
-  let rose:any = null
+  let rose: any = null
   rose = d3.rgb(160, 0, 255)
   svg_ss.append("rect")
     .attr("class", "button")
@@ -930,6 +1044,10 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
 
   //----------------------------------------------------------------------------gt
+
+
+  
+
   function motionGT(e, index, array) {
     e.x = e.x + e.vx;
 
@@ -945,6 +1063,10 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     e.vx = e.vx + f * (Math.random() - 0.5);
 
   }
+
+
+
+
 
   let interval_motion_gt = null
 
@@ -980,8 +1102,9 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
   }
 
 
-  let svg_gt = d3.select("#ss_svg")
-  width_gt = +$("#ss_svg").width() / 2
+
+  var svg_gt = d3.select("#ss_svg")
+  const width_gt = +$("#ss_svg").width() / 2
   let height_gt = +$("#ss_svg").height()
 
   svg_gt.append("rect")
@@ -1021,8 +1144,16 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
     .on("mousedown", softSelectedChange)
 
   function softSelectedChange() {
-    if (softSelected) { softSelected = false }
-    else { softSelected = true }
+    if (softSelected) {
+      softSelected = false;
+      scrollGt({}, 0);
+    }
+    else {
+      softSelected = true;
+      mcffOrSubopt = "Both";
+      scrollGt({}, 0);
+    }
+
   }
 
 
@@ -1058,7 +1189,7 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
   console.log("link", data.graph_transition.links)
 
-  let links_gt = data.graph_transition.links.slice()
+  let links_gt: MyLinkType[] = data.graph_transition.links.slice()
 
   var mcff_so = function (e) {
 
@@ -1070,16 +1201,7 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
   }
 
 
-  links_gt = links_gt.filter(mcff_so)
-
-  force_gt = d3.forceSimulation()
-    .force("link", d3.forceLink().id((d, i) => {
-      return ""+i;
-    })
-      .distance(50))
-    .force("charge", d3.forceManyBody().strength(-200))
-    .force("center", d3.forceCenter(width_gt + width_gt / 2, height_gt / 2))
-
+  //links_gt = links_gt.filter(mcff_so)
 
 
   let link_gt_l = svg_gt.append('g')
@@ -1126,14 +1248,21 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
 
 
+  let force_gt = d3.forceSimulation<MyNodeType, MyLinkType>()
+     
+
   force_gt
     .nodes(nodes_gt)
     .on("tick", ticked_gt);
 
   force_gt
-    .force("link")
-    .links(links_gt);
-  //force_gt.restart()
+    .force("charge", d3.forceManyBody().strength(-200))
+    .force("center", d3.forceCenter(width_gt + width_gt / 2, height_gt / 2))
+
+  force_gt
+    .force("link", d3.forceLink(links_gt).distance(20).strength(5))
+
+  force_gt.restart()
 
   var secStructSelected = svg_gt.select("#gt_" + secStructSelected_int).style("stroke-width", 8)
 
@@ -1179,29 +1308,27 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
       textLabels_ss.append("title")
         .text(nodeSS_Text);
-
-
-
     }
+
     if (secStructSelected_int < nt_mcff) {
       links_ss = data.d3ForceLayout2p.mcff[secStructSelected_int].slice();
     }
     else {
       links_ss = data.d3ForceLayout2p.rnaSubOpt[secStructSelected_int - nt_mcff].slice();
     }
-    /*
-    force_ss
-      .force("link")
-      .links(links_ss);
-    */
+
     links_ss_l.remove()
+
+    force_ss
+      .force("link", d3.forceLink(links_ss).distance(20).strength(5))
+
     links_ss_l = svg_gt.insert('g', ":first-child")
       .attr('class', 'links_ss_g')
-      .selectAll('links_ss')
+      .selectAll('.links_ss')
       .data(links_ss)
       .enter()
       .append("line")
-      .attr('class', 'links_gt')
+      .attr('class', 'links_ss')
       .attr("stroke", "black");
 
     links_ss_l.filter(function (d:any) { return d.value == 2 })
@@ -1397,9 +1524,11 @@ export function plotRNA(data, reactivityErrorScaleColor, reactivityScaleColor, n
 
 
 
+/*
 alert("Utilisez le zoom du navigateur pour changer la vue\nz=10sec de mouvement aléatoire\nBouton noir=mouvement aléatoire\nBouton rouge=traverser le graphe des transition\nBouton bleu=changement de mode de couleur:\n  1-Selon la sorte du nt\n  2-Selon les scores de sondage\n  3-Selon l'erreur\n\nL'étiquette des nts représente : La classe (Low,Bg,Hi)|La position|Le score|L'erreur|MCN_Gauche|MCN_Droit|\nLe dernier champs est la contributionn du nt au score total (de RNASS) de la SS\n\nLe score total peut etre obtenue en passant la sourie au-dessus des cercles représentants les SS dans le graphes des transitions à droite de la SS (pour faire apparaître son étiquette)\n\nLes hauteurs des SS sont proportionnelles aux niveaux d'énergies des SS indépendament pour chaque logiciel de prédiction des SS (RNAsubopt à gauche et MCflashfold à droite)\n\nPlus un cercle est pâle meilleur est le score total (de RNASS), l'échelle des deux logiciels est indépendante là aussi")
 alert("Le developpement a été fait avec google chrome,\nVous pouvez accèder à la console en préssant sur f12, et les données sont dans la variable jsonData,\nles variables des champs de forces sont dans force_ss et force_gt (d3.forceSimulation())")
 alert("Vous pouvez clicker sur les nts pour intéroger la base de données des MCN, un panneau d'information est présent dans le bas de l'écran, soyez patient... Si cela prend plus de 10 secondes, reclickez. Le nombre de nucléotide à réactivité élevé, moyenne et basse est indiqué dans le premier panneau et 20 URL menant vers des nts homologues (par leur MCN) sont affichés. (10 nts de réactivité élevé au sondage chimique et 10 de réactivité basse.)")
 alert("z,rouge,bleu ... ")
 alert("\n\n\n\nEn cas d'emballement lors du monvement aléatoire : \n\n    respirez, dézoomez (ctrl + défilement vers le bas) et rafraîchissez le navigateur")
 alert("Pour des lien vers des nucléotides difficiles à prédire : http://majsrv1.iric.ca:3000/RDV")
+*/
