@@ -588,7 +588,7 @@ export const plotRNA = function (svg_ss, data, pos) {
     .attr("x", width_ss + width_ss / 2 + width_ss / 4)
     .attr("y", 10)
     .text("Mc-flashfold")
-    //.on("click", mcffState)
+    .on("click", mcffState)
     .style("cursor", "pointer")
 
 
@@ -599,8 +599,8 @@ export const plotRNA = function (svg_ss, data, pos) {
   let scrollOn = false;
 
   
-  function scrollGt (d, i) {
-    clearInterval(interval_scroll);
+  function scrollGt(d, i) {
+    console.log("scrollOn : ", scrollOn)
     if (!scrollOn) {
       scrollOn = true
       interval_scroll = setInterval(function () {
@@ -611,15 +611,12 @@ export const plotRNA = function (svg_ss, data, pos) {
           }
           else {
             if (mcffOrSubopt == "so") {
-              secStructSelected_int = (secStructSelected_int % nt_so) + nt_mcff
+              secStructSelected_int = ((secStructSelected_int - nt_mcff)  % nt_so) + nt_mcff
             }
           }
         }
-        else {
-          secStructSelected_int = secStructSelected_int % soNumber
-        }
         updateSS(secStructSelected_int)
-      }, 50);
+      }, 300);
     }
     else {
       scrollOn = false
@@ -630,28 +627,19 @@ export const plotRNA = function (svg_ss, data, pos) {
 
   function mcffState() {
     secStructSelected_int = 0
-    if (scrollOn) {
-      scrollOn = false;
-    }
-    else {
-      scrollOn = true;
-      softSelected = true;
-      mcffOrSubopt = "mcff";
-    }
-   
+    
+    softSelected = true;
+    mcffOrSubopt = "mcff";
+    
     scrollGt({},0)
   }
 
   function soState() {
-    secStructSelected_int = nt_mcff + 1
-    if (scrollOn) {
-      scrollOn = false;
-    }
-    else {
-      scrollOn = true;
-      softSelected = true;
-      mcffOrSubopt = "so";
-    }
+    secStructSelected_int = nt_mcff 
+   
+    softSelected = true;
+    mcffOrSubopt = "so";
+    
     scrollGt({}, 0)
   }
   
@@ -1282,39 +1270,32 @@ export const plotRNA = function (svg_ss, data, pos) {
 
   function updateSS(n) {
     if (n != -1) {
-      secStructSelected.style("stroke-width", 5)
+      secStructSelected.style("stroke-width", 5);
 
-      secStructSelected = svg_gt.select("#gt_" + n)
+      secStructSelected = svg_gt.select("#gt_" + (n % (nt_so + nt_mcff)));
 
-      secStructSelected.style("stroke-width", 8)
+      secStructSelected.style("stroke-width", 8);
 
     }
+
+    console.log("n : ",n)
     nodes_ss_c.attr('stroke', function (d:any, i) { return getStrokeColor(secStructSelected_int, d.prediction_color_mcff, d.prediction_color_so) })
     nodes_ss_c.attr('stroke-width', function (d:any, i) { return reactivityScaleWs(secStructSelected_int, d.sc_pred_so, d.sc_pred_mcff) })
 
     nodes_ss_c.selectAll("title").remove()
     textLabels_ss.selectAll("title").remove()
 
-    if (secStructSelected_int < nt_mcff) {
-      nodes_ss_c.append("title")
-        .text(nodeSS_Text);
+    nodes_ss_c.append("title")
+      .text(nodeSS_Text);
 
-      textLabels_ss.append("title")
-        .text(nodeSS_Text);
-    }
-    else {
-      nodes_ss_c.append("title")
-        .text(nodeSS_Text);
-
-      textLabels_ss.append("title")
-        .text(nodeSS_Text);
-    }
-
+    textLabels_ss.append("title")
+      .text(nodeSS_Text);
+    
     if (secStructSelected_int < nt_mcff) {
       links_ss = data.d3ForceLayout2p.mcff[secStructSelected_int].slice();
     }
     else {
-      links_ss = data.d3ForceLayout2p.rnaSubOpt[secStructSelected_int - nt_mcff].slice();
+      links_ss = data.d3ForceLayout2p.rnaSubOpt[(secStructSelected_int - nt_mcff) % nt_so].slice();
     }
 
     links_ss_l.remove()

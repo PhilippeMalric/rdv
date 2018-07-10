@@ -42,62 +42,7 @@ export class RdvComponent implements OnInit {
 
   createVizualisation(jsonData) {
 
-    /*
-    let id = ""
-    let folder1 = "new_bestRNA"
     let pos = 0
-    let folderName = ""
-
-    let force_ss = null
-    let links_ss = null
-    let nodes_ss = []
-    let links_gt = null
-    let nodes_gt = null
-    let force_gt = null
-    let link_gt_l = null
-    let node_gt_c = null
-    let svg_ss = null
-    let width_ss = null
-    let height_ss = null
-    let svg_gt = null
-    let width_gt = null
-    let height_gt = null
-
-    let shuffleStop = null
-
-
-    let circleRadius_gt = 15;
-
-    let rampEnergyMCff = null
-    let rampEnergySO = null
-
-    let secStructSelected_int = 0
-
-    let gap_gt = 50
-
-    let interval_motion = null
-
-    let interval_scroll = null
-
-    let scrollOn = true
-
-    let soNumber = null
-
-
-
-
-    let reactivityScaleWs = null
-
-    let reactivityScaleRayd = null
-
-    let reactivityScaleColor = null
-
-    let reactivityErrorScaleColor = null
-
-    let mcff_gt_scale = null
-
-    let so_gt_scale = null
-    */
 
     const element = this.chartContainer.nativeElement;
 
