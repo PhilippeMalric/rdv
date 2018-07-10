@@ -1,6 +1,127 @@
 import * as d3 from 'd3';
 import { RGBColor } from 'd3';
 
+
+//--------------------------------------------------------------Debut des fonctions generique (voir helper aussi)
+
+export function mouseOverF (d, i) {
+  //console.log(d)
+
+  //return ilumineNt(d,i);
+}
+
+
+
+export function mouseOutF (d, i) {
+  //console.log(d)
+  //ntColorSwitch = (ntColorSwitch +2) % 3
+  //changeNodeColor()
+}
+
+export function ilumineNt (d, i, secStructSelected_int, nt_mcff) {
+  let voisin = null
+  if (secStructSelected_int < nt_mcff) {
+    voisin = d.voisin_mcff[secStructSelected_int]
+  }
+  else {
+    voisin = d.voisin_so[secStructSelected_int - nt_mcff]
+  }
+  console.log(voisin)
+
+  if (voisin.p_i == -1) {
+
+    let tab1 = this.getNtBetween(voisin.vg, voisin.vd)
+    let tab2 = this.getNtBetween(voisin.p_vg, voisin.p_vd)
+    let tab3 = tab1.concat(tab2)
+    tab3.map(this.ligthNt)
+    this.ligthNt2(i)
+  }
+  else {
+    let tab1 = this.getNtBetween(voisin.vg, voisin.vd)
+    let tab2 = this.getNtBetween(voisin.p_vg, voisin.p_vd)
+    let tab3 = tab1.concat(tab2)
+    tab3.map(this.ligthNt)
+    this.ligthNt2(i)
+  }
+
+}
+export function ligthNt (n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth)
+}
+
+export function ligthNt2 (n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorLigth2)
+}
+export function darkNt (n) {
+  this.svg_ss.select("#_" + n).attr("fill", this.ntColorDark)
+}
+
+export function getNtBetween (i, j) {
+  let tab = []
+  if (i < 0 || j < 0 || i == "-" || j == "-") {
+    if (i > 0 && i != "-") { return [i] }
+    if (j > 0 && j != "-") { return [j] }
+    return tab
+  }
+
+
+  if (i > j) {
+    for (let k = j; k < i + 1; k++) {
+      tab.push(k)
+    }
+  }
+  else {
+
+    for (let k = i; k < j + 1; k++) {
+      tab.push(k)
+    }
+  }
+  return tab
+}
+
+export function ntColorLigth (d, i) {
+  console.log(d)
+  return d3.rgb(d.color).brighter(2)
+}
+export function ntColorLigth2 (d, i) {
+  console.log(d)
+  return d3.rgb(d.color).brighter(4)
+}
+export function ntColorDark (d, i) {
+  console.log(d)
+  return d3.rgb(d.color).brighter(3)
+}
+
+export function google_colors(n) {
+  let colores_g = ["#3075ff", "#ff5d35", "#ff16dc", "#109618"];
+  return colores_g[n % colores_g.length];
+}
+
+export function filterMinus1(tab) {
+  let newTab = []
+  for (let i in tab) {
+    if (tab[i] != -999) {
+      newTab.push(tab[i])
+    }
+  }
+  return newTab
+}
+
+export function ntColor (d, i, pos) {
+  if (i != pos) {
+    let s = d.sorte
+    let c = s.toUpperCase()
+    let color = this.colorConverter[c]
+    d.color = color
+    return color
+  }
+  else {
+    let color = "yellow" //couleur du nucleotide !id
+    d.color = color
+    return color
+  }
+}
+
 export function click_ss(d, secStructSelected_int) {
 
   //console.log(d)
