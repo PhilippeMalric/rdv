@@ -15,10 +15,7 @@ body {
   flex-direction: column;
 }
 
-p{
-  text-align: justify;
-  font-family: "Times New Roman", Times, serif;
-}
+
 
 .tdm {
   text-align: right;
