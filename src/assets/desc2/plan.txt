@@ -1,5 +1,7 @@
 **** 10-07-2018
 
--- fairte fonctionner RDV
+-- fairte fonctionner RDV > done
+
+*** 11-07-2018
 
 -- Ajouter la fin du chapitre 1

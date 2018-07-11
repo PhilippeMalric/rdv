@@ -46,7 +46,7 @@ import { DebutDeLetudeComponent } from './memoire_section/intro_sections/histori
 import { DeterminationDeLaStructureComponent } from './memoire_section/intro_sections/historique/determination-de-la-structure/determination-de-la-structure.component';
 import { PredictionDeLaStructureComponent } from './memoire_section/intro_sections/historique/prediction-de-la-structure/prediction-de-la-structure.component';
 import { FigureComponent } from './figure/figure.component';
-import { PourquoiEtudierLARNComponent } from './memoire_section/intro_sections/pourquoi-etudier-l-arn/pourquoi-etudier-l-arn.component';
+import { PourquoiEtudierLARNComponent } from './memoire_section/avant-propos/pourquoi-etudier-l-arn/pourquoi-etudier-l-arn.component';
 import { NucleotidesComponent } from './memoire_section/intro_sections/definitions/nucleotides/nucleotides.component';
 import { HistoriqueComponent } from './memoire_section/intro_sections/historique/historique.component';
 import { DefinitionsComponent } from './memoire_section/intro_sections/definitions/definitions.component';
