@@ -26,6 +26,8 @@ import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { NCMService } from './service/ncm.service';
+import { DomService } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/histo-actg/service/service-histo-actg.service';
+
 import { FormsModule } from '@angular/forms';
 
 import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
@@ -111,6 +113,9 @@ import { Conclusion3Component } from './memoire_section/chapitre3-coherence/conc
 import { RMDBExpNameComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
 import { OneLabComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
 import { RdvComponent } from './rdv/rdv.component';
+import { GraphACTGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/graph-actg.component';
+import { HistoACTGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/histo-actg/histo-actg.component';
+import { MyJoinPipe } from './pipes/my-join.pipe';
 
 
 
@@ -141,6 +146,7 @@ const ROUTES: Routes = [
 
 
 @NgModule({
+  entryComponents: [HistoACTGComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -223,7 +229,10 @@ const ROUTES: Routes = [
     Conclusion3Component,
     RMDBExpNameComponent,
     OneLabComponent,
-    RdvComponent
+    RdvComponent,
+    GraphACTGComponent,
+    HistoACTGComponent,
+    MyJoinPipe
     
   ],
   imports: [
@@ -255,7 +264,7 @@ const ROUTES: Routes = [
     AccordionModule
 
   ],
-  providers: [NCMService],
+  providers: [NCMService, DomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

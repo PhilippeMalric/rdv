@@ -86,6 +86,7 @@ export class NCM2Component implements OnInit {
     }
   }
 
+
   onDialogHide() {
     this.selectedNcm = null;
   }

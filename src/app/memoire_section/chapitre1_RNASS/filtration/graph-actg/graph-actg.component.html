@@ -1,0 +1,46 @@
+<p-dataView #dv [value]="allSequences" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="brand"
+            [sortField]="sortField" [sortOrder]="sortOrder">
+  <p-header>
+    <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <app-histo-actg seq="allSequences$|async|myjoin"></app-histo-actg>
+        </div>
+          <div class="ui-g-12 ui-md-4">
+            <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+          </div>
+          <div class="ui-g-12 ui-md-4">
+            <p-dropdown optionLabel="name" [options]="names" [(ngModel)]="sortKey" placeholder="Choose the experience" (onChange)="onExpChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+          </div>
+          <div class="ui-g-12 ui-md-12 filter-container">
+            <!--
+
+        <div style="position:relative">
+          <input type="search" pInputText placeholder="Search by ?" (keyup)="dv.filter($event.target.value)">
+        </div>
+      -->
+          </div>
+        </div>
+      </div>
+  </p-header>
+  <ng-template let-seq pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-12 ui-md-10" style="text-align:center; word-break: break-all;">
+        {{seq}}
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <button pButton type="button" icon="fa fa-fw fa-search" (click)="selectSeq($event, seq)"></button>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-dialog header="Séquence Détails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedSeq">
+    <div class="ui-g-12 ui-md-3" style="text-align:center; word-break: break-all;">
+      <app-histo-actg seq={{selectedSeq}}></app-histo-actg>
+    </div>
+  </div>
+</p-dialog>
+
+

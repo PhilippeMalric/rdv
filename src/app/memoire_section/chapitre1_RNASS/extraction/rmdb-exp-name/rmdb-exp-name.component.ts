@@ -15,7 +15,7 @@ export class RMDBExpNameComponent implements OnInit {
   display = false;
   
   constructor(private rmdbExpService: RmdbExpService) {
-    this.rmdbExpService.getFiles("ETERNA_R00_0000").subscribe(data => {
+    this.rmdbExpService.getFile("ETERNA_R00_0000").subscribe(data => {
       console.log(data)
       let authors = data.authors;
       let comments = data.comments;
@@ -39,7 +39,7 @@ export class RMDBExpNameComponent implements OnInit {
 
   buttonClick(event) {
     console.log("event",event)
-    this.rmdbExpService.getFiles(event.value.name).subscribe(data => {
+    this.rmdbExpService.getFile(event.value.name).subscribe(data => {
       console.log(data)
       let authors = data.authors;
       let comments = data.comments;
