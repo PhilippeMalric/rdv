@@ -49,7 +49,7 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
     this.allSequences$.subscribe((data:any) => {
 
       let mappedData = $.map(data.data_annotation, function (v) { return v; })
-      console.log("mappedData", mappedData)
+      //console.log("mappedData", mappedData)
       this.allSequences = mappedData.map(x => x.sequence[0])
 
     });
@@ -76,7 +76,7 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
 
   selectSeq(event: Event, seq: String) {
     this.selectedSeq = seq;
-    console.log("this.selectedSeq : ", this.selectedSeq)
+    //console.log("this.selectedSeq : ", this.selectedSeq)
     this.displayDialog = true;
     event.preventDefault();
   }
@@ -96,13 +96,13 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
 
 
   onExpChange(event) {
-    console.log("event", event)
+    //console.log("event", event)
     this.currentName = event.value.name;
     this.allSequences$ = this.getSeqByName(this.currentName);
     this.allSequences$.subscribe((data:any) => {
 
       let mappedData = $.map(data.data_annotation, function (v) { return v; })
-      console.log("mappedData", mappedData)
+      //console.log("mappedData", mappedData)
       this.allSequences = mappedData.map(x => x.sequence[0])
 
     });

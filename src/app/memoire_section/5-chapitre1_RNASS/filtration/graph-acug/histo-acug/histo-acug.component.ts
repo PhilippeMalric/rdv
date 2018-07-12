@@ -20,8 +20,8 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
 
   @Input()
   set seq(seq: string) {
-    console.log('prev value: ', this._seq);
-    console.log('got name: ', seq);
+    //console.log('prev value: ', this._seq);
+    //console.log('got name: ', seq);
     this._seq = seq;
     this.generateGraph();
   }
@@ -35,7 +35,7 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log("modal",this.seq)
+    //console.log("modal",this.seq)
     //this.generateGraph();
   }
 
@@ -58,10 +58,10 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
   }
 
   getNumberOfLetter(seq, letter) {
-    console.log("seq : " ,seq)
+    //console.log("seq : " ,seq)
     if (seq == "" || seq == null) return 0
     let matched = seq.match(new RegExp(letter, "g"))
-    console.log("matched : ", matched)
+    //console.log("matched : ", matched)
     if (matched == null) return 0
     return matched.length;
     // / seq.length

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Inject  } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, ViewChild, ElementRef, Inject  } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; 
 import { FigureComponent } from "../figure/figure.component"
 import { DOCUMENT } from '@angular/common';
@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild('container') private container: ElementRef;
   elems: any;
@@ -40,7 +40,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.elems = document.querySelector('.collapsible');
-    $('.collapsible').collapsible('open', 1)
+  }
+
+  ngAfterViewInit() {
+    setTimeout(function () {
+
+      let allCollapse: any = $('.collapsible')
+      allCollapse.collapsible('open', 0);
+
+    }, 1000);
+
   }
 
   transformToId = function (id) {
@@ -62,25 +71,16 @@ export class HomeComponent implements OnInit {
         numberId = 3
         break;
       }
-      case "historique": {
+      case "chapitre1-rnass": {
         numberId = 4
         break;
       }
-      case "pourquoi-etudier-l-arn": {
+      case "chapitre2-RDV": {
         numberId = 5
         break;
       }
-      
-      case "definitions": {
-        numberId = 6
-        break;
-      }
-      case "chapitre1-rnass": {
-        numberId = 7
-        break;
-      }
       case "chapitre3-coherence": {
-        numberId = 8
+        numberId = 6
         break;
       }
         

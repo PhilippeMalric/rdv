@@ -23,13 +23,13 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
 
   @Input()
   set seq$(seq$: Observable<any>) {
-    console.log('prev value: ', this._seq$);
-    console.log('got name: ', seq$);
+    //console.log('prev value: ', this._seq$);
+    //console.log('got name: ', seq$);
     this._seq$ = seq$;
     this.seq$.subscribe(data => {
-      console.log("data", data)
+      //console.log("data", data)
       let mappedData = $.map(data.data_annotation, function (v) { return v; })
-      console.log("mappedData", mappedData)
+      //console.log("mappedData", mappedData)
       let allSequences = mappedData.map(x => x.sequence[0])
       this.seq = allSequences.join();
       this.generateGraph()
@@ -68,10 +68,10 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
   }
 
   getNumberOfLetter(seq, letter) {
-    console.log("seq : " ,seq)
+    //console.log("seq : " ,seq)
     if (seq == "" || seq == null) return 0
     let matched = seq.match(new RegExp(letter, "g"))
-    console.log("matched : ", matched)
+    //console.log("matched : ", matched)
     if (matched == null) return 0
     return matched.length;
     // / seq.length

@@ -29,14 +29,26 @@ import { NCMService } from './service/ncm.service';
 
 import { FormsModule } from '@angular/forms';
 
+import { ContentsModule } from 'angular-contents';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
+
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+
+
+// ----------------------prime ng
+
 import { SidebarModule } from 'primeng/sidebar';
 import { AccordionModule } from 'primeng/accordion';
 
-import { MatMenuModule } from '@angular/material/menu';
 
 import { GraphLayoutComponent } from './shared/graph-layout/graph-layout.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+
+
+
 import { PagePresentationComponent } from './memoire_section/1-page-presentation/page-presentation.component';
 
 
@@ -105,27 +117,33 @@ import { RdatFormatComponent } from './memoire_section/5-chapitre1_RNASS/rdat-fo
 import { RepliementInSilicoComponent } from './memoire_section/5-chapitre1_RNASS/repliement-in-silico/repliement-in-silico.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { ContentsModule } from 'angular-contents';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { DataInfoComponent } from './memoire_section/5-chapitre1_RNASS/data-info/data-info.component';
 import { FreqPaireeComponent } from './memoire_section/5-chapitre1_RNASS/freq-pairee/freq-pairee.component';
 import { LongueurSeqComponent } from './memoire_section/5-chapitre1_RNASS/longueur-seq/longueur-seq.component';
 import { AlgoMcnComponent } from './memoire_section/5-chapitre1_RNASS/algo-mcn/algo-mcn.component';
 import { CompilationComponent } from './memoire_section/5-chapitre1_RNASS/compilation/compilation.component';
+import { RMDBExpNameComponent } from './memoire_section/5-chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
+import { OneLabComponent } from './memoire_section/5-chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
+import { GraphACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/graph-acug.component';
+import { HistoACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
+import { HistoACUG_obsComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug_obs/histo-acug_obs.component';
+
+
 
 import { Chapitre3CoherenceComponent } from './memoire_section/7-chapitre3-coherence/chapitre3-coherence.component';
 import { ApprentissageComponent } from './memoire_section/7-chapitre3-coherence/apprentissage/apprentissage.component';
 import { ComparaisonComponent } from './memoire_section/7-chapitre3-coherence/comparaison/comparaison.component';
 import { CombinaisonComponent } from './memoire_section/7-chapitre3-coherence/combinaison/combinaison.component';
 import { Conclusion3Component } from './memoire_section/7-chapitre3-coherence/conclusion3/conclusion3.component';
-import { RMDBExpNameComponent } from './memoire_section/5-chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
-import { OneLabComponent } from './memoire_section/5-chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
+
+
+
 import { RdvComponent } from './rdv/rdv.component';
-import { GraphACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/graph-acug.component';
-import { HistoACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
-import { HistoACUG_obsComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug_obs/histo-acug_obs.component';
 import { MyJoinPipe } from './pipes/my-join.pipe';
 import { NCM2Component } from 'src/app/ncm2/ncm2.component';
+
+
+import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitre2-rdv.component';
 
 
 
@@ -239,7 +257,8 @@ const ROUTES: Routes = [
     GraphACUGComponent,
     HistoACUGComponent,
     HistoACUG_obsComponent,
-    MyJoinPipe
+    MyJoinPipe,
+    Chapitre2RDVComponent
     
   ],
   imports: [

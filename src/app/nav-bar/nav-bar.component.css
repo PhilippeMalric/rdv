@@ -5,8 +5,13 @@
   z-index:1;
 }
 
-img {
+img.small-border-radius {
   border-radius: 7px;
+  margin: 4px 4px 4px 4px;
+}
+
+img.big-border-radius {
+  border-radius: 15px;
   margin: 4px 4px 4px 4px;
 }
 

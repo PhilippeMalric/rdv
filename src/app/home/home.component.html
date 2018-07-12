@@ -55,15 +55,26 @@
           <div class="collapsible-body"><app-chapitre1-rnass id="app-chapitre1-rnass_body"></app-chapitre1-rnass></div>
         </li>
         <li>
+          <div id="chapitre2-rdv" contentsSection="chapitre2-rdv" class="collapsible-header">
+            <i class="material-icons left">cloud</i>
+            <a href="chapitre1-rnass" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+              Chapitre 2 | RDV
+            </a>
+            <span class="badge">4</span>
+          </div>
+          <div class="collapsible-body"><app-chapitre2-rdv id="app-chapitre2-rdv_body"></app-chapitre2-rdv></div>
+ 
+        </li>
+        <li>
           <div id="chapitre3-coherence" contentsSection="chapitre3-coherence" class="collapsible-header">
             <i class="material-icons left">cloud</i>
             <a href="home#figure" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Chapitre 3 - la cohérence de la réactivité face aux prédictions des structures secondaires
+              Chapitre 3 | Apprentissage
             </a>
 
             <span class="badge">4</span>
           </div>
-          <div class="collapsible-body"><app-chapitre3-coherence ></app-chapitre3-coherence></div>
+          <div class="collapsible-body"><app-chapitre3-coherence></app-chapitre3-coherence></div>
         </li>
         <li>
           <div id="figure" contentsSection="figure" class="collapsible-header">
@@ -86,10 +97,8 @@
           <li><a href="#resume-abstract" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
           <li><a href="#avant-propos" (click)="buttonClick('avant-propos')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
           <li><a href="#begining" (click)="buttonClick('begining')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
-          <li><a href="#historique" (click)="buttonClick('historique')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Historique</a></li>
-          <li><a href="#pourquoi-etudier-l-arn" (click)="buttonClick('pourquoi-etudier-l-arn')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Pourquoi étudier l'ARN</a></li>
-          <li><a href="#definitions" (click)="buttonClick('definitions')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Définitions</a></li>
           <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
+          <li><a href="#chapitre2-rdv" (click)="buttonClick('chapitre2-RDV')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre2 | RDV</a></li>
           <li><a href="#chapitre3-coherence" (click)="buttonClick('chapitre3-coherence')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre 3 | Pouvoir discriminant des MCN</a></li>
           <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Figure</a></li>
           <li><a href="javascript:topFunction()">Top</a></li>
