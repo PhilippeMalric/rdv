@@ -4,11 +4,9 @@
     <div class="ui-helper-clearfix">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
+          <h4>Diagramme circulaire representant la proportion de chacun de nucléotide de l'ensemble des ARN de l'expérience choisi </h4>
           <app-histo-acug-obs [seq$]="allSequences$"></app-histo-acug-obs>
         </div>
-          <div class="ui-g-12 ui-md-4">
-            <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-          </div>
           <div class="ui-g-12 ui-md-4">
             <p-dropdown optionLabel="name" [options]="names" [(ngModel)]="sortKey" placeholder="Choose the experience" (onChange)="onExpChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
           </div>
