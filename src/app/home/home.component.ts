@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.elems = document.querySelector('.collapsible');
-
+    $('.collapsible').collapsible('open', 1)
   }
 
   transformToId = function (id) {

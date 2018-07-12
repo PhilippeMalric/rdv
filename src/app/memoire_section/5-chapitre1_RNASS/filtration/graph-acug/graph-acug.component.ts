@@ -5,7 +5,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs';
 import { MyJoinPipe } from '../../../../pipes/my-join.pipe';
-import { HistoACUGComponent } from 'src/app/memoire_section/chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
+import { HistoACUGComponent } from 'src/app/memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
 
 
 @Component({
