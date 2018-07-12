@@ -18,7 +18,7 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
   get seq$(): Observable<any> {
     // transform value for display
     return this._seq$
-  }
+  };
 
 
   @Input()
@@ -32,9 +32,9 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
       //console.log("mappedData", mappedData)
       let allSequences = mappedData.map(x => x.sequence[0])
       this.seq = allSequences.join();
-      this.generateGraph()
-    })
-  }
+      this.generateGraph();
+    });
+  };
 
 
   constructor() { }
@@ -43,11 +43,11 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
 
    
     
-  }
+  };
 
   ngAfterViewInit(): void {
     
-  }
+  };
 
   generateGraph() {
     let chart = c3.generate({
@@ -65,7 +65,7 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
         ]
       }
     });
-  }
+  };
 
   getNumberOfLetter(seq, letter) {
     //console.log("seq : " ,seq)
@@ -76,9 +76,5 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
     return matched.length;
     // / seq.length
 
-  }
-
-
-  
-
-}
+  };
+};

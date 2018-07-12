@@ -15,7 +15,7 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
   get seq(): string {
     // transform value for display
     return this._seq.toUpperCase();
-  }
+  };
 
 
   @Input()
@@ -24,7 +24,7 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
     //console.log('got name: ', seq);
     this._seq = seq;
     this.generateGraph();
-  }
+  };
 
   constructor() { }
 
@@ -32,12 +32,12 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
 
     
     
-  }
+  };
 
   ngAfterViewInit(): void {
     //console.log("modal",this.seq)
     //this.generateGraph();
-  }
+  };
 
   generateGraph() {
     let chart = c3.generate({
@@ -55,7 +55,7 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
         ]
       }
     });
-  }
+  };
 
   getNumberOfLetter(seq, letter) {
     //console.log("seq : " ,seq)
