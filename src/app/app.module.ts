@@ -26,7 +26,6 @@ import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { NCMService } from './service/ncm.service';
-import { DomService } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/histo-actg/service/service-histo-actg.service';
 
 import { FormsModule } from '@angular/forms';
 
@@ -113,8 +112,9 @@ import { Conclusion3Component } from './memoire_section/chapitre3-coherence/conc
 import { RMDBExpNameComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/rmdb-exp-name.component';
 import { OneLabComponent } from './memoire_section/chapitre1_RNASS/extraction/rmdb-exp-name/one-lab/one-lab.component';
 import { RdvComponent } from './rdv/rdv.component';
-import { GraphACTGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/graph-actg.component';
-import { HistoACTGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-actg/histo-actg/histo-actg.component';
+import { GraphACUGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-acug/graph-acug.component';
+import { HistoACUGComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
+import { HistoACUG_obsComponent } from './memoire_section/chapitre1_RNASS/filtration/graph-acug/histo-acug_obs/histo-acug_obs.component';
 import { MyJoinPipe } from './pipes/my-join.pipe';
 
 
@@ -146,7 +146,6 @@ const ROUTES: Routes = [
 
 
 @NgModule({
-  entryComponents: [HistoACTGComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -230,8 +229,9 @@ const ROUTES: Routes = [
     RMDBExpNameComponent,
     OneLabComponent,
     RdvComponent,
-    GraphACTGComponent,
-    HistoACTGComponent,
+    GraphACUGComponent,
+    HistoACUGComponent,
+    HistoACUG_obsComponent,
     MyJoinPipe
     
   ],
@@ -264,7 +264,7 @@ const ROUTES: Routes = [
     AccordionModule
 
   ],
-  providers: [NCMService, DomService],
+  providers: [NCMService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
