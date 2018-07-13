@@ -68,7 +68,7 @@ export class GaugeLocalComponent implements OnInit {
       }
     });
 
-    var value = Math.round(this.gauge_value);
+    var value = this.gauge_value;
     if (this.chart) {
       if (this.chart.arrows) {
         if (this.chart.arrows[0]) {

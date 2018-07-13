@@ -58,7 +58,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     console.log("id : " + this._id)
-    this.fromMergedToGraphLayout(this._id);
+    //this.fromMergedToGraphLayout(this._id);
 
   }
 
@@ -822,7 +822,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     return links
 
   }
-
+  */
 
   nodeGen = function (name, group) {
 
@@ -836,7 +836,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   }
 
-  */
+  
 
 
 }
