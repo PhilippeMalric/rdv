@@ -129,11 +129,11 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       if ("---" in this.ncm1) {
 
 
-        createNodesLoopG(loop,s1, s2,pos)
+        //createNodesLoopG(loop,s1, s2,pos)
 
       }
       if ("---" in this.ncm2) {
-        createNodesLoopD(loop,s1,s2,pos)
+        //createNodesLoopD(loop,s1,s2,pos)
       }
 
       this.createRedCircle()
