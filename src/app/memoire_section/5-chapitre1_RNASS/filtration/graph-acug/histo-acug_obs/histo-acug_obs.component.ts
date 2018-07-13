@@ -13,20 +13,20 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
   seq: String;
 
 
-  private _seq$: Observable<any>;
+  private _jsonFile$: Observable<any>;
 
-  get seq$(): Observable<any> {
+  get jsonFile$(): Observable<any> {
     // transform value for display
-    return this._seq$
+    return this._jsonFile$
   };
 
 
   @Input()
-  set seq$(seq$: Observable<any>) {
+  set jsonFile$(jsonFile$: Observable<any>) {
     //console.log('prev value: ', this._seq$);
     //console.log('got name: ', seq$);
-    this._seq$ = seq$;
-    this.seq$.subscribe(data => {
+    this._jsonFile$ = jsonFile$;
+    this.jsonFile$.subscribe(data => {
       //console.log("data", data)
       let mappedData = $.map(data.data_annotation, function (v) { return v; })
       //console.log("mappedData", mappedData)

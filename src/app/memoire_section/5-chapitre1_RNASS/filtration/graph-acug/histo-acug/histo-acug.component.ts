@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as c3 from 'c3';
-import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class HistoACUGComponent implements OnInit, AfterViewInit {
 
   get seq(): string {
     // transform value for display
-    return this._seq.toUpperCase();
+    return this._seq
   };
 
 

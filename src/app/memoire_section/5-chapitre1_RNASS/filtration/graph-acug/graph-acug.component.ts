@@ -15,6 +15,13 @@ import { HistoACUGComponent } from 'src/app/memoire_section/5-chapitre1_RNASS/fi
   providers: [MyJoinPipe]
 })
 export class GraphACUGComponent implements OnInit, AfterViewInit {
+  
+
+  myAverage(values:any[]): number {
+    let sum = values.reduce((previous, current) => current += previous);
+    let avg = sum / values.length;
+    return avg;
+  }
 
   /*
   @ViewChild('dynamic', {
@@ -25,10 +32,14 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
 
   currentName = "ETERNA_R00_0000";
 
-  allSequences:String[] = []
+  allSequences: String[] = []
+  allAvg: number[] = []
+  allSeqEtAvg : any[] = []
 
-  public allSequences$: Observable<String[]>
 
+  public jsonFile$: Observable<String[]>
+
+  selectedReactivityAvg: number;
   selectedSeq: String;
 
   displayDialog: boolean;
@@ -45,13 +56,34 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     let name = "ETERNA_R00_0000"
-    this.allSequences$ = this.getSeqByName(this.currentName);
-    this.allSequences$.subscribe((data:any) => {
+    this.jsonFile$ = this.getFileByName(name);
+    this.jsonFile$.subscribe((data: any) => {
 
-      let mappedData = $.map(data.data_annotation, function (v) { return v; })
+      let mappedSeq = $.map(data.data_annotation, function (v) { return v; })
       //console.log("mappedData", mappedData)
-      this.allSequences = mappedData.map(x => x.sequence[0])
+      this.allSequences = mappedSeq.map(x => x.sequence[0])
+      //console.log("data.data_reactivity : ", data.data_reactivity)
+      let mappedReactivityArray = Object.values(data.data_reactivity)
+      //console.log("mappedReactivityArray : ", mappedReactivityArray)
+      
+      let mappedReactivityArray_num = mappedReactivityArray.map((x: any[]) => {
+          //console.log(x);
+          return x.map(y => Number(y))
+      });
+      //console.log("mappedReactivityArray_num : ", mappedReactivityArray_num)
+      
+      this.allAvg = mappedReactivityArray_num.map((x :number[]) => this.myAverage(x))
 
+      //console.log("this.allAvg", this.allAvg);
+
+      //console.log("this.allSequences :", this.allSequences);
+
+      this.allSeqEtAvg = this.allSequences.map((seq, i) => {
+        return { seq: seq , reactivityAvg: this.allAvg[i] };
+      });
+
+      //console.log(" this.allSeqEtAvg : ",this.allSeqEtAvg)
+    
     });
 
    
@@ -69,13 +101,14 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
     
   }
 
-  getSeqByName(name): Observable<any>{
+  getFileByName(name): Observable<any>{
     return this.rmdbExpService.getFile(name)
   }
 
 
-  selectSeq(event: Event, seq: String) {
+  selectSeqEtAvg(event: Event, seq: String, reactivityAvg:number) {
     this.selectedSeq = seq;
+    this.selectedReactivityAvg = reactivityAvg
     //console.log("this.selectedSeq : ", this.selectedSeq)
     this.displayDialog = true;
     event.preventDefault();
@@ -98,8 +131,8 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
   onExpChange(event) {
     //console.log("event", event)
     this.currentName = event.value.name;
-    this.allSequences$ = this.getSeqByName(this.currentName);
-    this.allSequences$.subscribe((data:any) => {
+    this.jsonFile$ = this.getFileByName(this.currentName);
+    this.jsonFile$.subscribe((data:any) => {
 
       let mappedData = $.map(data.data_annotation, function (v) { return v; })
       //console.log("mappedData", mappedData)
@@ -108,7 +141,6 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
     });
     
   }
-
 
   onDialogHide() {
     this.selectedSeq = null;

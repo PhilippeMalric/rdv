@@ -144,6 +144,8 @@ import { NCM2Component } from 'src/app/ncm2/ncm2.component';
 
 
 import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitre2-rdv.component';
+import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global/gauge-global.component';
+import { GaugeLocalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local/gauge-local.component';
 
 
 
@@ -258,7 +260,9 @@ const ROUTES: Routes = [
     HistoACUGComponent,
     HistoACUG_obsComponent,
     MyJoinPipe,
-    Chapitre2RDVComponent
+    Chapitre2RDVComponent,
+    GaugeGlobalComponent,
+    GaugeLocalComponent
     
   ],
   imports: [

@@ -1,34 +1,39 @@
-<p-dataView #dv [value]="allSequences" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="brand"
+<p-dataView #dv [value]="allSeqEtAvg" [paginator]="true" [rows]="5" paginatorPosition="both" filterBy="brand"
             [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
+          <h4>Gauge de réactivité</h4>
+          <h5>Moyenne des réactivités de toutes les séquences</h5>
+          <app-gauge-global [jsonFile$]="jsonFile$"></app-gauge-global>
+        </div>
+        <div class="ui-g-12 ui-md-12">
           <h4>Diagramme circulaire </h4>
           <h5>Proportion de chacun des nucléotides de l'ensemble des ARN de l'expérience</h5>
-          <app-histo-acug-obs [seq$]="allSequences$"></app-histo-acug-obs>
+          <app-histo-acug-obs [jsonFile$]="jsonFile$"></app-histo-acug-obs>
         </div>
-          <div class="ui-g-12 ui-md-4">
-            <p-dropdown optionLabel="name" [options]="names" [(ngModel)]="sortKey" placeholder="Choose the experience" (onChange)="onExpChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-          </div>
-          <div class="ui-g-12 ui-md-12 filter-container">
-            <!--
+        <div class="ui-g-12 ui-md-4">
+          <p-dropdown optionLabel="name" [options]="names" [(ngModel)]="sortKey" placeholder="Choose the experience" (onChange)="onExpChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-12 filter-container">
+          <!--
 
-        <div style="position:relative">
-          <input type="search" pInputText placeholder="Search by ?" (keyup)="dv.filter($event.target.value)">
-        </div>
-      -->
-          </div>
+      <div style="position:relative">
+        <input type="search" pInputText placeholder="Search by ?" (keyup)="dv.filter($event.target.value)">
+      </div>
+    -->
         </div>
       </div>
+    </div>
   </p-header>
-  <ng-template let-seq pTemplate="listItem">
+  <ng-template let-SeqEtAvg pTemplate="listItem">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
       <div class="ui-g-12 ui-md-10" style="text-align:center; word-break: break-all;">
-        {{seq}}
+        {{SeqEtAvg.seq}}
       </div>
       <div class="ui-g-12 ui-md-1 search-icon">
-        <button pButton type="button" icon="fa fa-fw fa-search" (click)="selectSeq($event, seq)"></button>
+        <button pButton type="button" icon="fa fa-fw fa-search" (click)="selectSeqEtAvg($event, SeqEtAvg.seq,SeqEtAvg.reactivityAvg)"></button>
       </div>
     </div>
   </ng-template>
@@ -36,6 +41,9 @@
 
 <p-dialog header="Séquence Détails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
   <div class="ui-g" *ngIf="selectedSeq">
+    <div class="ui-g-12 ui-md-3" style="text-align:center; word-break: break-all;">
+      <app-gauge-local [gauge_value]="selectedReactivityAvg"></app-gauge-local>
+    </div>
     <div class="ui-g-12 ui-md-3" style="text-align:center; word-break: break-all;">
       <app-histo-acug seq={{selectedSeq}}></app-histo-acug>
     </div>
