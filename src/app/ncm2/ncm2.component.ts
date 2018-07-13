@@ -37,12 +37,23 @@ export class NCM2Component implements OnInit {
 
   displayDialog: boolean;
 
+  filterD:any
+
   constructor(private ncmService: NCMService) { }
 
 
   ngOnInit() {
+
+
+    this.filterD = {}
+    this.filterD["-&-"] = 1;
+    this.filterD["noVG_notPaired&-"] = 1;
+    this.filterD["Premier_notPaired&-"] = 1;
+
     //this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms = ncms });
-    this.ncms$ = this.ncmService.createNCMObservable(this.skip, this.limit, this.cmin, this.stdDevMax)
+    this.ncms$ = this.ncmService.createNCMObservable(this.skip, this.limit, this.cmin, this.stdDevMax);
+
+
     this.sortOptions = [
       { label: 'Nombre (ordre croissant)', value: 'count' },
       { label: 'Nombre (ordre décroissant)', value: '!count' },

@@ -13,14 +13,28 @@ export class GaugeGlobalComponent implements OnInit {
   private chart: any;
   
   generateGraph(): void {
-    this.gauge_value
+    
+    let value = this.gauge_value;
+    if (this.chart) {
+      if (this.chart.arrows) {
+        if (this.chart.arrows[0]) {
+          if (this.chart.arrows[0].setValue) {
+            this.chart.arrows[0].setValue(value);
+            this.chart.axes[0].setBottomText(value);
+          }
+        }
+      }
+    }
+    
   }
   gauge_value: number;
 
   myAverage(values): number {
 
     let sum = values.reduce((previous, current) => current += Number(previous));
+    //console.log("sum",sum)
     let avg = sum / values.length;
+    //console.log("avg", avg)
     return avg;
   }
 
@@ -38,12 +52,19 @@ export class GaugeGlobalComponent implements OnInit {
     //console.log('got name: ', gauge_value$);
     this._jsonFile$ = jsonFile$;
     this.jsonFile$.subscribe(data => {
-      //console.log("data", data)
-      let arrayOfArray = $.map(data.data_reactivity, function (v) { return Number(v); })
-      //let arrayOfAvg = arrayOfArray.map(this.myAverage)
-      //let arrayOfAvg_num = arrayOfAvg.map(x => Number(x))
-      this.gauge_value = this.myAverage(arrayOfArray)
+      console.log("data", data.data_reactivity)
+      //let arrayOfArray = $.map(data.data_reactivity, function (v) { return Number(v); })
+      let arrayOfArray = Object.values(data.data_reactivity)
+      console.log("arrayOfArray", arrayOfArray)
+      
+      let arrayOfArray_num = arrayOfArray.map((x: string[],i,st) => x.map(y=>Number(y)))
+      //console.log("arrayOfArray_num", arrayOfArray_num)
+      let arrayOfAvg_num = arrayOfArray_num.map(x => this.myAverage(x))
+      //console.log("arrayOfAvg_num : ", arrayOfAvg_num)
+      this.gauge_value = this.myAverage(arrayOfAvg_num)
+      console.log("genChart", this.gauge_value)
       this.generateGraph();
+      
     });
   };
 
@@ -75,7 +96,7 @@ export class GaugeGlobalComponent implements OnInit {
         }],
         "bottomText": "0",
         "bottomTextYOffset": -20,
-        "endValue": 10
+        "endValue": 2
       }],
       "arrows": [{}],
       "export": {
@@ -83,19 +104,7 @@ export class GaugeGlobalComponent implements OnInit {
       }
     } );
 
-    var value = this.gauge_value;
-    if (this.chart) {
-      if (this.chart.arrows) {
-        if (this.chart.arrows[0]) {
-          if (this.chart.arrows[0].setValue) {
-            this.chart.arrows[0].setValue(value);
-            this.chart.axes[0].setBottomText(value);
-          }
-        }
-      }
-    }
-
-  }
+   }
 
   ngOnDestroy() {
     this.AmCharts.destroyChart(this.chart);

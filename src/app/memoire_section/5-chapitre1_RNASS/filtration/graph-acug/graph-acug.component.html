@@ -41,10 +41,10 @@
 
 <p-dialog header="Séquence Détails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
   <div class="ui-g" *ngIf="selectedSeq">
-    <div class="ui-g-12 ui-md-3" style="text-align:center; word-break: break-all;">
-      <app-gauge-local [gauge_value]="selectedReactivityAvg"></app-gauge-local>
+    <div class="ui-g-12 ui-md-12" style="text-align:center; word-break: break-all;">
+      <app-gauge-local [gauge_value_Local]="selectedReactivityAvg"></app-gauge-local>
     </div>
-    <div class="ui-g-12 ui-md-3" style="text-align:center; word-break: break-all;">
+    <div class="ui-g-12 ui-md-12" style="text-align:center; word-break: break-all;">
       <app-histo-acug seq={{selectedSeq}}></app-histo-acug>
     </div>
   </div>

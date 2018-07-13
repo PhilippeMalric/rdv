@@ -28,6 +28,8 @@
     "@material/checkbox": "^0.36.1",
     "@material/fab": "^0.36.1",
     "@types/c3": "^0.6.0",
+    "amcharts3": "^3.21.13",
+    "amcharts3-angular2": "^1.2.1",
     "angular-contents": "^2.1.0",
     "angular2-http": "^1.2.0",
     "body-parser": "^1.18.2",

@@ -58,24 +58,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     console.log("id : " + this._id)
-    //this.fromMergedToGraphLayout(this._id);
+    this.fromMergedToGraphLayout(this._id);
 
   }
 
 
-  nCMfilterD = {
-    "-&-": 1,
-    "noVG_notPaired&-": 1,
-    "Premier_notPaired&-":1,
-  }
  
-
 
   fromMergedToGraphLayout = function (merged: string) {
 
     let graphLayout = {}
 
-    if (! (merged in this.nCMfilterD)) {
       if (merged.indexOf("&") != -1) {
 
         this.manageMerged(merged)
@@ -87,7 +80,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
       }
     }
-  }
+  
 
   manageMerged = function (merged: String) {
 
@@ -128,12 +121,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     else {
       if ("---" in this.ncm1) {
 
-
-        //createNodesLoopG(loop,s1, s2,pos)
+        let loop = this.ncm1.split("---")[1].split("_")[0]
+        let s1 = ncm2_splitted[2].split("_")[0]
+        let s2 = ncm2_splitted[1]
+        this.createNodesLoopG(loop,s1,s2,pos)
 
       }
       if ("---" in this.ncm2) {
-        //createNodesLoopD(loop,s1,s2,pos)
+        let loop = this.ncm2.split("---")[1].split("_")[0]
+        let s1 = ncm1_splitted[2].split("_")[0]
+        let s2 = ncm1_splitted[1]
+        this.createNodesLoopD(loop,s1,s2,pos)
       }
 
       this.createRedCircle()
@@ -580,63 +578,56 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   }
 
-  /*
-  createNodesLoopG = function (loop: String, s21: String, s22: String, pos: string) {
-    let nodes = []
+  
+  createNodesLoopG = function (loop: String, s1: String, s2: String, pos: string): void {
 
 
-    console.log("nodes creation")
-    for (let c of s11.split("")) {
+    let nodes = [];
 
-      nodes.push(this.nodeGen(c, 1))
 
-    }
-    for (let c of s12.split("")) {
+    console.log("loop", loop, "s : ", s1, s2);
 
-      nodes.push(this.nodeGen(c, 1))
+    console.log("nodes creation");
 
-    }
+    for (let c of loop.split("")) {
 
-    for (let c of s21.split("").slice(1)) {
-
-      nodes.push(this.nodeGen(c, 1))
+      nodes.push(this.nodeGen(c, 1));
 
     }
 
-    for (let c of s22.split("").slice(0, s22.length - 1)) {
+    for (let c of s1.split("")) {
 
-      nodes.push(this.nodeGen(c, 1))
+      nodes.push(this.nodeGen(c, 1));
 
     }
-    console.log("nodes : ", nodes)
 
-    nodes[Number(pos)].group = 2
+    for (let c of s2.split("").slice(1)) {
 
+      nodes.push(this.nodeGen(c, 1));
 
-    return nodes
+    }
+
+    console.log("nodes : ", nodes);
+
+    nodes[Number(pos)].group = 2;
 
     // create Link
 
+    let linkTab = [];
 
 
-    let nodeTab = []
-    let linkTab = []
-    console.log("s : ", s11, s12, s21, s22)
+    linkTab = this.createLinksLoopG(loop, s1, s2);
 
 
-    nodeTab = this.createNodes2(s11, s12, s21, s22, pos)
-    linkTab = this.createLinks2(s11, s12, s21, s22)
-
-
-    let graph = { "nodes": nodeTab, "links": linkTab }
+    let graph = { "nodes": nodes, "links": linkTab };
 
     if (!graph.nodes) {
       graph = { "nodes": [], "links": [] }
     }
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200
-    this.width = 200
+    this.height = 200;
+    this.width = 200;
 
     const svg = d3.select(element).append('svg')
       .attr('width', element.offsetWidth)
@@ -654,70 +645,59 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         console.log("linkTab : ")
         console.log(linkTab)
 
-      }
+      })
    }
 
 
-  createLinksLoopG = function (loop: String, s21: String, s22: String) {
+  createLinksLoopG = function (loop: String, s1: String, s2: String) {
 
-    let links = []
-    console.log("Links creation")
+    let links = [];
+    console.log("Links creation");
 
-    let l_s1 = s11.length + s12.length
-    let l_s2 = s21.length + s22.length
+    let indexLastNode = loop.length - 1 + s1.length - 1 + s2.length + 1;
+    let indexBeforeLastNode = loop.length - 1 + s1.length - 1 + s2.length;
 
-    let index2eLink1 = s11.length - 1
-    let index2eLink2 = s11.length
+    let index2eLink1 = s1.length - 1;
 
     // lien des paires de bases
-    links.push(this.linkGen(0, l_s1 - 1, 1))
-    links.push(this.linkGen(index2eLink1, index2eLink2, 1))
-    links.push(this.linkGen(l_s1 + s21.length - 2, l_s1 + s21.length - 1, 1))
+    links.push(this.linkGen(0, loop.length - 1, 1));
+    links.push(this.linkGen(indexLastNode, indexBeforeLastNode - 1, 1));
 
     // lien phosphate
 
-    // premier segment
-    for (let i of this.range(0, index2eLink1)) {
-      links.push(this.linkGen(i, i + 1, 2))
+    // loop
+    for (let i of this.range(0, loop.length - 1)) {
+      links.push(this.linkGen(i, i + 1, 2));
     }
 
-    // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
-    for (let i of this.range(index2eLink2, l_s1 - 1)) {
-      links.push(this.linkGen(i, i + 1, 2))
+    // premier segment du ncm de droite
+    for (let i of this.range(loop.length -1, loop.length -1 + s1.length -1)) {
+      links.push(this.linkGen(i, i + 1, 2));
     }
 
     // troisieme segment
-    for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
-      links.push(this.linkGen(i, i + 1, 2))
-    }
-
-    // quatrieme segment
-
-    for (let i of this.range(l_s1 + s21.length - 1, l_s1 + l_s2 - 3)) {
-      links.push(this.linkGen(i, i + 1, 2))
+    for (let i of this.range(loop.length - 1 // index de fin de la loop
+                              + s1.length  // index de debut du 2e segment
+                              , loop.length - 1 + s1.length + s2.length - 2)) {
+      links.push(this.linkGen(i, i + 1, 2));
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1, 2))
-    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 2))
+    links.push(this.linkGen(loop.length - 1 + s1.length + s2.length - 2, 0));
 
-    console.log("Links : ", links)
+    console.log("Links : ", links);
 
-    return links
+    return links;
 
   }
 
 
-  createNodesLoopD = function (loop: String, s1: String, s2: String, pos: string) {
+  createNodesLoopD = function (loop: String, s1: String, s2: String, pos: string):void {
     let nodes = []
 
 
     console.log("nodes creation")
-    for (let c of loop.split("")) {
-
-      nodes.push(this.nodeGen(c, 1))
-
-    }
+ 
     for (let c of s1.split("")) {
 
       nodes.push(this.nodeGen(c, 1))
@@ -730,20 +710,23 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     }
 
+    for (let c of loop.split("")) {
+
+      nodes.push(this.nodeGen(c, 1))
+
+    }
+
     console.log("nodes : ", nodes)
 
     nodes[Number(pos)].group = 2
     
-    let nodeTab = nodes
     let linkTab = this.createLinksLoopD(loop, s1, s2)
     console.log("s : ",loop, s1, s2)
 
 
-    nodeTab = this.createNodes2(s11, s12, s21, s22, pos)
-    linkTab = this.createLinks2(s11, s12, s21, s22)
 
 
-    let graph = { "nodes": nodeTab, "links": linkTab }
+    let graph = { "nodes": nodes, "links": linkTab }
 
     if (!graph.nodes) {
       graph = { "nodes": [], "links": [] }
@@ -769,60 +752,54 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         console.log("linkTab : ")
         console.log(linkTab)
 
-      }
+      })
 
   }
 
 
   createLinksLoopD = function (loop: String, s1: String, s2: String) {
 
+
     let links = []
     console.log("Links creation")
 
-    let l_s1 = s1.length + s2.length
-    let l_s2 = s21.length + s22.length
+    let indexFinSection1 = s1.length - 1
+    let indexFinSection2 = s1.length - 1 + s2.length
 
-    let index2eLink1 = s11.length - 1
-    let index2eLink2 = s11.length
+    let index2eLink1 = s1.length - 1
 
     // lien des paires de bases
-    links.push(this.linkGen(0, l_s1 - 1, 1))
-    links.push(this.linkGen(index2eLink1, index2eLink2, 1))
-    links.push(this.linkGen(l_s1 + s21.length - 2, l_s1 + s21.length - 1, 1))
+    links.push(this.linkGen(0, indexFinSection2, 1))
+    links.push(this.linkGen(indexFinSection1 , indexFinSection1 + 1, 1))
 
     // lien phosphate
-
-    // premier segment
-    for (let i of this.range(0, index2eLink1)) {
+    
+    // premier segment du ncm de gauche
+    for (let i of this.range(0, indexFinSection1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
-    // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
-    for (let i of this.range(index2eLink2, l_s1 - 1)) {
+    // deuxieme segment du ncm de gauche
+    for (let i of this.range(indexFinSection1 +1 // index debut du 2e segment
+                              , indexFinSection2)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
-    // troisieme segment
-    for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
+    // loop
+    for (let i of this.range(indexFinSection2, indexFinSection2 + loop.length - 1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
-    // quatrieme segment
-
-    for (let i of this.range(l_s1 + s21.length - 1, l_s1 + l_s2 - 3)) {
-      links.push(this.linkGen(i, i + 1, 2))
-    }
 
     // connecter les deux ncm
-    links.push(this.linkGen(index2eLink1, l_s1, 2))
-    links.push(this.linkGen(index2eLink2, l_s1 + l_s2 - 3, 2))
+    links.push(this.linkGen(indexFinSection2 + loop.length - 1, 0))
 
     console.log("Links : ", links)
 
     return links
 
   }
-  */
+  
 
   nodeGen = function (name, group) {
 

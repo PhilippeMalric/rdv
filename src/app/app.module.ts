@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Routes, RouterModule, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { AmChartsModule } from "amcharts3-angular2";
 
 import { DataScrollerModule } from 'primeng/primeng';
 import { DataViewModule } from 'primeng/dataview';
@@ -128,7 +127,7 @@ import { GraphACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtrati
 import { HistoACUGComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
 import { HistoACUG_obsComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug_obs/histo-acug_obs.component';
 
-
+import { AmChartsModule } from "amcharts3-angular2";
 
 import { Chapitre3CoherenceComponent } from './memoire_section/7-chapitre3-coherence/chapitre3-coherence.component';
 import { ApprentissageComponent } from './memoire_section/7-chapitre3-coherence/apprentissage/apprentissage.component';
@@ -146,6 +145,7 @@ import { NCM2Component } from 'src/app/ncm2/ncm2.component';
 import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitre2-rdv.component';
 import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global/gauge-global.component';
 import { GaugeLocalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local/gauge-local.component';
+import { FilterNcmPipe } from './pipes/filter-ncm.pipe';
 
 
 
@@ -262,7 +262,8 @@ const ROUTES: Routes = [
     MyJoinPipe,
     Chapitre2RDVComponent,
     GaugeGlobalComponent,
-    GaugeLocalComponent
+    GaugeLocalComponent,
+    FilterNcmPipe
     
   ],
   imports: [

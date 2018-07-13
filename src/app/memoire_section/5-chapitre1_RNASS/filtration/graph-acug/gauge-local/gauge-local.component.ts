@@ -9,41 +9,65 @@ import { AmChartsService } from 'amcharts3-angular2';
 })
 export class GaugeLocalComponent implements OnInit {
 
-  private chart: any;
+  private chartL: any;
 
-  generateGraph(): void {
-    this.gauge_value
+  generateGraph(gauge_value_Local): void {
+    console.log("gauge_value_Local!!!",gauge_value_Local)
+    let valueLocal = gauge_value_Local;
+    if (this.chartL) {
+      if (this.chartL.arrows) {
+        if (this.chartL.arrows[0]) {
+          if (this.chartL.arrows[0].setValue) {
+            this.chartL.arrows[0].setValue(valueLocal);
+            this.chartL.axes[0].setBottomText(valueLocal);
+          }
+        }
+      }
+    }
+    // Pour le premier ...
+    setTimeout(() => {
+    if (this.chartL) {
+      if (this.chartL.arrows) {
+        if (this.chartL.arrows[0]) {
+          if (this.chartL.arrows[0].setValue) {
+            this.chartL.arrows[0].setValue(valueLocal);
+            this.chartL.axes[0].setBottomText(valueLocal);
+          }
+        }
+      }
+      }
+    }, 1000)
   }
   
 
-  private _gauge_value: number;
+  private _gauge_value_Local: number;
 
-  get gauge_value(): number {
+  get gauge_value_Local(): number {
     // transform value for display
-    return this._gauge_value
+    return this._gauge_value_Local
   };
 
 
   @Input()
-  set gauge_value(gauge_value: number) {
-    //console.log('prev value: ', this._seq);
-    //console.log('got name: ', seq);
-    this._gauge_value = gauge_value;
-    this.generateGraph();
+  set gauge_value_Local(gauge_value_Local: number) {
+    console.log('prev value: ', this._gauge_value_Local);
+    console.log('new: ', gauge_value_Local);
+    this._gauge_value_Local = gauge_value_Local;
+    this.generateGraph(gauge_value_Local);
   };
 
   constructor(private AmCharts: AmChartsService) { }
 
   ngOnInit() {
 
-    this.chart = this.AmCharts.makeChart("chartdiv", {
+    this.chartL = this.AmCharts.makeChart("chartdivLocal", {
       "type": "gauge",
       "theme": "light",
       "axes": [{
         "axisThickness": 1,
         "axisAlpha": 0.2,
         "tickAlpha": 0.2,
-        "valueInterval": 0.1,
+        "valueInterval": 0.2,
         "bands": [{
           "color": "#84b761",
           "endValue": 0.5,
@@ -60,7 +84,7 @@ export class GaugeLocalComponent implements OnInit {
         }],
         "bottomText": "0",
         "bottomTextYOffset": -20,
-        "endValue": 10
+        "endValue": 2
       }],
       "arrows": [{}],
       "export": {
@@ -68,24 +92,12 @@ export class GaugeLocalComponent implements OnInit {
       }
     });
 
-    var value = this.gauge_value;
-    if (this.chart) {
-      if (this.chart.arrows) {
-        if (this.chart.arrows[0]) {
-          if (this.chart.arrows[0].setValue) {
-            this.chart.arrows[0].setValue(value);
-            this.chart.axes[0].setBottomText(value);
-          }
-        }
-      }
-    }
-
 
 
   }
 
   ngOnDestroy() {
-    this.AmCharts.destroyChart(this.chart);
+    this.AmCharts.destroyChart(this.chartL);
   }
 
 }

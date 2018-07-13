@@ -9,6 +9,9 @@ import { Ncm } from '../objectDef/Ncm';
 })
 export class NCMService {
 
+
+  
+
   constructor(private http: HttpClient) { }
 
   getNCM(skip: Number, limit: Number, cmin: Number, stdDevMax: Number) {
@@ -40,6 +43,11 @@ export class NCMService {
      
   }
 
+  /*.pipe(filter((x, idx) => {
+      return x[idx]._id in this.filterD;
+    }));
+
+*/
  
 
 }
