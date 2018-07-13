@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as c3 from 'c3';
+
+import { AmChartsService } from 'amcharts3-angular2';
 
 @Component({
   selector: 'app-gauge-local',
@@ -8,42 +9,10 @@ import * as c3 from 'c3';
 })
 export class GaugeLocalComponent implements OnInit {
 
+  private chart: any;
+
   generateGraph(): void {
-    var chart = c3.generate({
-      bindto: '#gaugeL',
-      data: {
-        columns: [
-          ['data', this.gauge_value]
-        ],
-        type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-      },
-      gauge: {
-        //        label: {
-        //            format: function(value, ratio) {
-        //                return value;
-        //            },
-        //            show: false // to turn off the min/max labels.
-        //        },
-        //    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 2, // 100 is default
-        units: 'value',
-            width: 20 // for adjusting arc thickness
-      },
-      color: {
-        pattern: ['#0011ff', '#00ff00', '#7700ff', '#ff0000'], // the three color levels for the percentage values.
-        threshold: {
-                      unit: 'value', // percentage is default
-                      max: 2, // 100 is default
-          values: [0, 0.5, 1, 2]
-        }
-      },
-      size: {
-        height: 100
-      }
-    });
+    this.gauge_value
   }
   
 
@@ -63,9 +32,60 @@ export class GaugeLocalComponent implements OnInit {
     this.generateGraph();
   };
 
-  constructor() { }
+  constructor(private AmCharts: AmChartsService) { }
 
   ngOnInit() {
+
+    this.chart = this.AmCharts.makeChart("chartdiv", {
+      "type": "gauge",
+      "theme": "light",
+      "axes": [{
+        "axisThickness": 1,
+        "axisAlpha": 0.2,
+        "tickAlpha": 0.2,
+        "valueInterval": 0.1,
+        "bands": [{
+          "color": "#84b761",
+          "endValue": 0.5,
+          "startValue": 0
+        }, {
+          "color": "#fdd400",
+          "endValue": 1,
+          "startValue": 0.5
+        }, {
+          "color": "#cc4748",
+          "endValue": 2,
+          "innerRadius": "95%",
+          "startValue": 1
+        }],
+        "bottomText": "0",
+        "bottomTextYOffset": -20,
+        "endValue": 10
+      }],
+      "arrows": [{}],
+      "export": {
+        "enabled": true
+      }
+    });
+
+    var value = Math.round(this.gauge_value);
+    if (this.chart) {
+      if (this.chart.arrows) {
+        if (this.chart.arrows[0]) {
+          if (this.chart.arrows[0].setValue) {
+            this.chart.arrows[0].setValue(value);
+            this.chart.axes[0].setBottomText(value);
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+  ngOnDestroy() {
+    this.AmCharts.destroyChart(this.chart);
   }
 
 }

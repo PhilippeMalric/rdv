@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Routes, RouterModule, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-
+import { AmChartsModule } from "amcharts3-angular2";
 
 import { DataScrollerModule } from 'primeng/primeng';
 import { DataViewModule } from 'primeng/dataview';
@@ -266,7 +266,7 @@ const ROUTES: Routes = [
     
   ],
   imports: [
-    
+    AmChartsModule,
     TableModule,
     MatMenuModule,
     NgxPageScrollModule,
