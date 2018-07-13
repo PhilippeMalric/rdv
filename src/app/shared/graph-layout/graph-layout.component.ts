@@ -119,7 +119,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       this.graphLayout = this.deuxNcm_tx_togL(ncm1_splitted[1], ncm1_end, ncm2_splitted[1], ncm2_end, pos)
     }
     else {
-      if ("---" in this.ncm1) {
+      if (this.ncm1.indexOf("---") != -1) {
 
         let loop = this.ncm1.split("---")[1].split("_")[0]
         let s1 = ncm2_splitted[2].split("_")[0]
@@ -127,7 +127,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         this.createNodesLoopG(loop,s1,s2,pos)
 
       }
-      if ("---" in this.ncm2) {
+      if (this.ncm2.indexOf("---") != -1) {
         let loop = this.ncm2.split("---")[1].split("_")[0]
         let s1 = ncm1_splitted[2].split("_")[0]
         let s2 = ncm1_splitted[1]
