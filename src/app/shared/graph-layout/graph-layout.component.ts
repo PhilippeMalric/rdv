@@ -5,6 +5,8 @@ import { Node } from '../../objectDef/Node';
 import { Link } from '../../objectDef/Link';
 import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
+import { move } from './helper';
+
 
 @Component({
   selector: 'app-graph-layout',
@@ -212,17 +214,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
 
-    svg.append("rect")
-      .style("fill", this.fillcolorRect())
-      .attr("width", 50)
-      .attr("height", 50)
-      .attr("x", 5)
-      .attr("y", 5)
-      .on('click', (d, i) => {
-        console.log("graph : ", graph)
 
-        console.log("seq : ", seq, "pos : ", pos);
-      });
 
 
     let simulation = d3.forceSimulation()
@@ -289,6 +281,25 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
       .on("tick", ticked);
 
     simulation.force<d3.ForceLink<any, any>>('link').links(graph.links);
+
+
+    
+
+    let moveF = function(commonArg, d, i) {
+      console.log("graph : ", graph)
+      move(commonArg.nodes, commonArg.force, commonArg.interval_motion)
+      console.log("seq : ", seq, "pos : ", pos);
+    }
+
+     moveF.bind(null, { nodes: node, force: simulation, interval_motion: null })
+
+    svg.append("rect")
+      .style("fill", this.fillcolorRect())
+      .attr("width", 50)
+      .attr("height", 50)
+      .attr("x", 5)
+      .attr("y", 5)
+      .on('click', moveF) ;
 
 
 
