@@ -508,13 +508,25 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   
   move = () => {
     this.shuffle()
-    setTimeout(() => { this.shuffleStop(this.interval_motion) }, 2000);
+    setTimeout(() => {
+      this.shuffleStop(this.interval_motion)
+      var x = 10;
+      var interval = 500;
+
+      for (var i = 0; i < x; i++) {
+        setTimeout(() => {
+          this.force.restart()
+        }, i * interval)
+      }
+    }, 2000);
   /*
   for (let i = 0; i < 300; i++) {
     this.shuffle()
     setTimeout(() => { this.shuffleStop(this.interval_motion) }, 20);
   }
   */
+    
+   
 }
 
   shuffle = () => {
@@ -546,8 +558,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   e.y = e.y + e.vy;
   //console.log(e.x)
   //console.log(e.y)
-    e.vx = e.vx + 10 * ((Math.random() - 0.5)/5 - ((e.x - this.width * 0.5) / this.width * 0.5))/5;
-    e.vy = e.vy + 10 * ((Math.random() - 0.5)/5 - ((e.y - this.height * 0.5) / this.height * 0.5))/5;
+    e.vx = e.vx + 5 * ((Math.random() - 0.5) - ((e.x - this.width * 0.5) / this.width * 0.5));
+    e.vy = e.vy + 5 * ((Math.random() - 0.5) - ((e.y - this.height * 0.5) / this.height * 0.5));
 }
 
 
