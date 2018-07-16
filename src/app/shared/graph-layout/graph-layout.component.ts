@@ -5,8 +5,12 @@ import { Node } from '../../objectDef/Node';
 import { Link } from '../../objectDef/Link';
 import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
-import { move } from './helper';
 
+import { fillcolorNode, fillcolorRect } from './functionUtiles'
+
+function range(start, end): any {
+ return Array.from({ length: (end - start) }, (v, k) => k + start);
+}
 
 @Component({
   selector: 'app-graph-layout',
@@ -25,33 +29,12 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   private ncm1: string;
   private ncm2: string;
   constructor() { }
-
-  //fonction util
-  color = d3.scaleOrdinal(d3.schemeCategory10);
-
-  colorScale = d3.scaleLinear<string>()
-    .domain([0, 1])
-    .range(['red', 'blue'])
-    .interpolate(d3.interpolateHcl);
-
-  fillcolorNode = (d: Node) => {
-  if (d.group == 1) {
-    return "gainsboro"
-  }
-  else {
-
-    return this.colorScale(Number(this.score))
-    }
-
-  }
-
-  fillcolorRect = () => {
-      return this.colorScale(Number(this.score))
-    }
-  range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start);
+  private interval_motion = null
+  private force = null
 
   ngOnInit() {
-
+    this.height = 300
+    this.width = 300
     console.log("id : ", this._id)
     console.log("score : ", this.score)
 
@@ -142,8 +125,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   }
 
 
-  
-
   // test
   createNodes1 = function (seq: string, pos: string) {
 
@@ -166,7 +147,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     let links = []
 
-    for (let i of this.range(0,seq.length - 1)) {
+    for (let i of range(0,seq.length - 1)) {
 
       links.push(this.linkGen(i,i+1, 1))
 
@@ -196,168 +177,26 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     linkTab = this.createLinks1(seq);
 
 
-    let graph = { "nodes": nodeTab, "links": linkTab }
+    this.graph = { "nodes": nodeTab, "links": linkTab }
 
-    if (!graph.nodes) {
-      graph = { "nodes": [], "links": [] }
+    if (!this.graph.nodes) {
+      this.graph = { "nodes": [], "links": [] }
     }
-    console.log("graph : ", graph)
+    console.log("graph : ", this.graph)
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200
-    this.width = 200
-
-    const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
-
-
-
-
-
-
-
-    let simulation = d3.forceSimulation()
-      .force("link", d3.forceLink().distance(20))
-      .force("charge", d3.forceManyBody().strength(-20))
-      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
-
-    let link = svg.append("g")
-      .attr("class", "links")
-      .selectAll("line")
-      .data(graph.links)
-      .enter().append("line")
-      .attr("stroke-width", function (d: Link) { return Number(d.value) + 1 });
-
-
-    console.log("nodes : ", graph.nodes)
-
-    let node = svg.append("g")
-      .attr("class", "nodes")
-      .selectAll("circle")
-      .data(graph.nodes)
-      .enter().append("circle")
-      .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
-      .attr("fill", this.fillcolorNode)
-      .attr("stroke-opacity", 1)
-      .attr("stroke", "#000000")
-      .attr("stroke-width", 1)
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-    let text = svg.append('g').attr('class', 'label_g')
-      .selectAll("text")
-      .data(graph.nodes)
-      .enter()
-      .append("text")
-      .style("cursor", "pointer")
-      .attr("id", "label")
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-
-    text
-      .text((d) => { return d.id; })
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "20px")
-      .attr("font-weigth", "bold")
-      .attr("fill", "black")
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-
-
-    node.append("title")
-      .text(function (d: Node) { return d.id; });
-
-    simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
-
-    simulation.force<d3.ForceLink<any, any>>('link').links(graph.links);
-
-
-    
-
-    let moveF = function(commonArg, d, i) {
-      console.log("graph : ", graph)
-      move(commonArg.nodes, commonArg.force, commonArg.interval_motion)
-      console.log("seq : ", seq, "pos : ", pos);
-    }
-
-     moveF.bind(null, { nodes: node, force: simulation, interval_motion: null })
-
-    svg.append("rect")
-      .style("fill", this.fillcolorRect())
-      .attr("width", 50)
-      .attr("height", 50)
-      .attr("x", 5)
-      .attr("y", 5)
-      .on('click', moveF) ;
-
-
-
-    function ticked() {
-      link
-        .attr("x1", function (d) { return d.source.x; })
-        .attr("y1", function (d) { return d.source.y; })
-        .attr("x2", function (d) { return d.target.x; })
-        .attr("y2", function (d) { return d.target.y; });
-
-      node
-        .attr("cx", function (d) { return d.x; })
-        .attr("cy", function (d) { return d.y; });
-
-      text
-        .attr("x", (d, i) => { return graph.nodes[i].x - 8 })
-        .attr("y", (d, i) => { return graph.nodes[i].y + 8 })
-    }
-
-    function dragstarted(d) {
-      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }
-
-    function dragged(d) {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
-    }
-
-    function dragended(d) {
-      if (!d3.event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
-    }
-
+   
 
   }
 
   createRedCircle() {
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200
-    this.width = 200
-
-    const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
-
-    svg.append("circle").attr("cx", function (d) { return 100; })
-      .attr("cy", function (d) { return 100; })
-      .attr("r", function (d) { return 100; })
-      .style("fill", function (d) { return "red"; });
-
+    //createGraph(element,graph)
   }
 
 
-  deuxNcm_tx_togL =  (s11: String, s12: String, s21: String, s22: String, pos: string) => {
+  deuxNcm_tx_togL = (s11: String, s12: String, s21: String, s22: String, pos: string) => {
 
     let nodeTab = []
     let linkTab = []
@@ -368,139 +207,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     linkTab = this.createLinks2(s11, s12, s21, s22)
 
 
-    let graph = { "nodes": nodeTab, "links": linkTab }
+    this.graph = { "nodes": nodeTab, "links": linkTab }
 
-    if (!graph.nodes) {
-      graph = { "nodes": [], "links": [] }
+    if (!this.graph.nodes) {
+      this.graph = { "nodes": [], "links": [] }
     }
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200
-    this.width = 200
 
-    const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
+    this.createGraph(element)
 
-    svg.append("rect")
-      .style("fill", this.fillcolorRect())
-      .attr("width", 30)
-      .attr("height", 30)
-      .attr("x", 5)
-      .attr("y", 5)
-      .on('click',  (d, i) => {
-
-        console.log("ncm1 : ", this.ncm1, " ncm2 : ", this.ncm2)
-        console.log("linkTab : ")
-        console.log( linkTab)
-    });
-
-
-    let color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    let simulation = d3.forceSimulation()
-      .force("link", d3.forceLink().distance(20))
-      .force("charge", d3.forceManyBody().strength(-30))
-      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
-
-    let link = svg.append("g")
-      .attr("class", "links")
-      .selectAll("line")
-      .data(graph.links)
-      .enter().append("line")
-      .attr("stroke-width", function (d) { return d.value + 1 });
-
-
-    console.log("nodes : ", graph.nodes)
-
-
-    
-
-    let node = svg.append("g")
-      .attr("class", "nodes")
-      .selectAll("circle")
-      .data(graph.nodes)
-      .enter().append("circle")
-      .attr("r", function (d) { return d.group * 5 + 8; })
-      .attr("fill", this.fillcolorNode)
-      .attr("stroke-opacity", 1)
-      .attr("stroke", "#000000")
-      .attr("stroke-width", 1)
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-    let text = svg.append('g').attr('class', 'label_ss_g')
-              .selectAll("text")
-              .data(graph.nodes)
-              .enter()
-              .append("text")
-              .style("cursor", "pointer")
-              .attr("id", "label")
-              .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-
-
-    text
-      .text( (d) =>  { return d.id; })
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "20px")
-      .attr("font-weigth", "bold")
-      .attr("fill", "black")
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
-
-    node.append("title")
-      .text(function (d) { return d.id; });
-
-    simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
-
-    simulation.force<d3.ForceLink<any, any>>('link').links(graph.links);
-
-    
-  function ticked() {
-    link
-      .attr("x1", function (d) { return d.source.x; })
-      .attr("y1", function (d) { return d.source.y; })
-      .attr("x2", function (d) { return d.target.x; })
-      .attr("y2", function (d) { return d.target.y; });
-
-    node
-      .attr("cx", function (d) { return d.x; })
-      .attr("cy", function (d) { return d.y; });
-
-    text
-      .attr("x", (d, i) => { return graph.nodes[i].x - 8 })
-      .attr("y", (d, i) => { return graph.nodes[i].y + 8 })
-  }
-
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-  }
-
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-  }
-
-    
-
-  }
+  }
 
 
   // --------------- fonctions utiles
@@ -559,23 +276,23 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     // lien phosphate
 
     // premier segment
-    for (let i of this.range(0, index2eLink1)) {
+    for (let i of range(0, index2eLink1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
-    for (let i of this.range(index2eLink2, l_s1 - 1)) {
+    for (let i of range(index2eLink2, l_s1 - 1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // troisieme segment
-    for (let i of this.range(l_s1, l_s1 + s21.length - 2)) {
+    for (let i of range(l_s1, l_s1 + s21.length - 2)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // quatrieme segment
 
-    for (let i of this.range(l_s1 + s21.length-1, l_s1 + l_s2 - 3)) {
+    for (let i of range(l_s1 + s21.length-1, l_s1 + l_s2 - 3)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
@@ -630,33 +347,14 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     linkTab = this.createLinksLoopG(loop, s1, s2);
 
 
-    let graph = { "nodes": nodes, "links": linkTab };
+    this.graph = { "nodes": nodes, "links": linkTab };
 
-    if (!graph.nodes) {
-      graph = { "nodes": [], "links": [] }
+    if (!this.graph.nodes) {
+      this.graph = { "nodes": [], "links": [] }
     }
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200;
-    this.width = 200;
-
-    const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
-
-    svg.append("rect")
-      .style("fill", this.fillcolorRect())
-      .attr("width", 30)
-      .attr("height", 30)
-      .attr("x", 5)
-      .attr("y", 5)
-      .on('click', (d, i) => {
-
-        console.log("ncm1 : ", this.ncm1, " ncm2 : ", this.ncm2)
-        console.log("linkTab : ")
-        console.log(linkTab)
-
-      })
+    this.createGraph(element)
    }
 
 
@@ -677,17 +375,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     // lien phosphate
 
     // loop
-    for (let i of this.range(0, loop.length - 1)) {
+    for (let i of range(0, loop.length - 1)) {
       links.push(this.linkGen(i, i + 1, 2));
     }
 
     // premier segment du ncm de droite
-    for (let i of this.range(loop.length -1, loop.length -1 + s1.length -1)) {
+    for (let i of range(loop.length -1, loop.length -1 + s1.length -1)) {
       links.push(this.linkGen(i, i + 1, 2));
     }
 
     // troisieme segment
-    for (let i of this.range(loop.length - 1 // index de fin de la loop
+    for (let i of range(loop.length - 1 // index de fin de la loop
                               + s1.length  // index de debut du 2e segment
                               , loop.length - 1 + s1.length + s2.length - 2)) {
       links.push(this.linkGen(i, i + 1, 2));
@@ -737,33 +435,14 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
 
-    let graph = { "nodes": nodes, "links": linkTab }
+    this.graph = { "nodes": nodes, "links": linkTab }
 
-    if (!graph.nodes) {
-      graph = { "nodes": [], "links": [] }
+    if (!this.graph.nodes) {
+      this.graph = { "nodes": [], "links": [] }
     }
 
     const element = this.chartContainer.nativeElement;
-    this.height = 200
-    this.width = 200
-
-    const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
-
-    svg.append("rect")
-      .style("fill", this.fillcolorRect())
-      .attr("width", 30)
-      .attr("height", 30)
-      .attr("x", 5)
-      .attr("y", 5)
-      .on('click', (d, i) => {
-
-        console.log("ncm1 : ", this.ncm1, " ncm2 : ", this.ncm2)
-        console.log("linkTab : ")
-        console.log(linkTab)
-
-      })
+    this.createGraph(element)
 
   }
 
@@ -786,7 +465,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     // lien phosphate
     
     // premier segment du ncm de gauche
-    for (let i of this.range(0, indexFinSection1)) {
+    for (let i of range(0, indexFinSection1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
@@ -797,7 +476,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
 
     // loop
-    for (let i of this.range(indexFinSection2, indexFinSection2 + loop.length - 1)) {
+    for (let i of range(indexFinSection2, indexFinSection2 + loop.length - 1)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
@@ -824,7 +503,168 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   }
 
-  
+  //--------------------------------------------------------- core
 
+  
+  move = () => {
+    this.shuffle()
+    setTimeout(() => { this.shuffleStop(this.interval_motion) }, 2000);
+  /*
+  for (let i = 0; i < 300; i++) {
+    this.shuffle()
+    setTimeout(() => { this.shuffleStop(this.interval_motion) }, 20);
+  }
+  */
+}
+
+  shuffle = () => {
+
+    this.force.restart()
+    this.force.alpha(0.1)
+    if (this.graph.nodes.length < 200) {
+      this.interval_motion = setInterval(() => {
+
+        this.graph.nodes.forEach(this.motion);
+        this.force.restart()
+
+      }, 5);
+    }
+    else {
+      this.graph.nodes.forEach(this.motion)
+      this.force.restart()
+    }
+}
+
+  shuffleStop = (interval_motion) => {
+  clearInterval(interval_motion);
+}
+
+  motion = ( e, index, array) => {
+  if (e.vx > 5) { e.vx = 5 }
+  if (e.vy > 5) { e.vy = 5 }
+  e.x = e.x + e.vx;
+  e.y = e.y + e.vy;
+  //console.log(e.x)
+  //console.log(e.y)
+    e.vx = e.vx + 10 * ((Math.random() - 0.5)/5 - ((e.x - this.width * 0.5) / this.width * 0.5))/5;
+    e.vy = e.vy + 10 * ((Math.random() - 0.5)/5 - ((e.y - this.height * 0.5) / this.height * 0.5))/5;
+}
+
+
+ createGraph = (element) => {
+
+
+   let ticked = () => {
+     link
+       .attr("x1", function (d: any) { return d.source.x; })
+       .attr("y1", function (d: any) { return d.source.y; })
+       .attr("x2", function (d: any) { return d.target.x; })
+       .attr("y2", function (d: any) { return d.target.y; });
+
+     node
+       .attr("cx", function (d: any) { return d.x; })
+       .attr("cy", function (d: any) { return d.y; });
+
+     text
+       .attr("x", (d, i) => { return this.graph.nodes[i].x - 8 })
+       .attr("y", (d, i) => { return this.graph.nodes[i].y + 8 })
+   }
+
+   let dragstarted = (d: any) => {
+     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+     d.fx = d.x;
+     d.fy = d.y;
+   }
+
+   let dragged = (d: any) => {
+     d.fx = d3.event.x;
+     d.fy = d3.event.y;
+   }
+
+   let dragended = (d: any) => {
+     if (!d3.event.active) simulation.alphaTarget(0);
+     d.fx = null;
+     d.fy = null;
+   }
+
+  const svg = d3.select(element).append('svg')
+    .attr('width', this.width)
+    .attr('height', this.height);
+
+
+  let simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().distance(20))
+    .force("charge", d3.forceManyBody().strength(-100))
+    .force("center", d3.forceCenter(this.width / 2, this.height / 2));
+
+  let link = svg.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(this.graph.links)
+    .enter().append("line")
+    .attr("stroke-width", function (d: Link) { return Number(d.value) + 1 });
+
+
+  console.log("nodes : ", this.graph.nodes)
+
+   let myDrag = function(e, i):any{
+     d3.drag()
+       .on("start", dragstarted)
+       .on("drag", dragged)
+       .on("end", dragended)(e,i)
+   }
+
+  let node = svg.append("g")
+    .attr("class", "nodes")
+    .selectAll("circle")
+    .data(this.graph.nodes)
+    .enter().append("circle")
+    .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
+    .attr("fill", fillcolorNode)
+    .attr("stroke-opacity", 1)
+    .attr("stroke", "#000000")
+    .attr("stroke-width", 1)
+    .call(myDrag);
+
+  let text = svg.append('g').attr('class', 'label_g')
+    .selectAll("text")
+    .data(this.graph.nodes)
+    .enter()
+    .append("text")
+    .style("cursor", "pointer")
+    .attr("id", "label")
+    .call(myDrag);
+
+
+  text
+    .text((d: Node) => { return d.id; })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("font-weigth", "bold")
+    .attr("fill", "black")
+    .call(myDrag);
+
+
+
+  node.append("title")
+    .text(function (d: Node) { return d.id; });
+
+  simulation
+    .nodes(this.graph.nodes)
+    .on("tick", ticked);
+
+   simulation.force<d3.ForceLink<any, any>>('link').links(this.graph.links);
+
+   this.force = simulation;
+
+  svg.append("rect")
+    .style("fill", fillcolorRect(this.score))
+    .attr("width", 50)
+    .attr("height", 50)
+    .attr("x", 5)
+    .attr("y", 5)
+    .on('click', this.move);
+
+ } ;
 
 }
