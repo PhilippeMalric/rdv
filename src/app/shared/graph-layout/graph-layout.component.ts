@@ -23,6 +23,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() _id: string;
   @Input() score: string;
+  @Input() items: any[];
   private width: number;
   private height: number;
   private graph: Graph;
@@ -31,13 +32,55 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   constructor() { }
   private interval_motion = null
   private force = null
+  private options = null
+  private options2 = null
+  private data = null
+
 
   ngOnInit() {
     this.height = 300
     this.width = 300
     console.log("id : ", this._id)
     console.log("score : ", this.score)
+    //
+    this.options = {
+      chart: {
+        type: 'scatterChart',
+        useInteractiveGuideline: true,
+        height: this.height,
+        width: this.width,
+        transitionDuration: 350,
+        showLegend: false,
+        margin: {
+          top: 20,
+          right: 20,
+          bottom: 40,
+          left: 70
+        },
+        color: [
+          (d) => { return fillcolorRect(d.score) }
+        ],
+        x: (d, i) => { return i; },
+        y: (d) => { return d.score; },
+        yAxis: {
+          axisLabel: 'Réactivité',
+          tickFormat: (d) => {
+            if (d == null) {
+              return 0;
+            }
+            return d3.format('.02f')(d);
+          },
 
+          axisLabelDistance: 1
+        },
+        yDomain: [
+          -1,
+          6
+        ],
+      }
+    }
+
+    this.data = [{ values: this.items }];
   }
 
   ngAfterViewInit() {

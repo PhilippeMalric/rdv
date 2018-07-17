@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { ContentsModule } from 'angular-contents';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 
+import { NvD3Module } from 'angular2-nvd3';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -270,6 +271,7 @@ const ROUTES: Routes = [
     
   ],
   imports: [
+    NvD3Module,
     MatFormFieldModule,
     MatSelectModule,
     AmChartsModule,
