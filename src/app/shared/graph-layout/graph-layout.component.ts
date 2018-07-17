@@ -34,9 +34,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   constructor() { }
   private interval_motion = null
   private force = null
-  private options = null
-  private options2 = null
-  private data = null
+  public options = null
+  public data = null
 
 
   ngOnInit() {
@@ -83,7 +82,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         tooltip: {
           contentGenerator: function (d) {
             //console.log("data:", d);
-            return '<p>RNA : ' + d.point.rna + '</p><p>' + d.point.pos+'</p>'; }
+            return '<p>RNA : ' + d.point.rna + '</p><p>Pos : ' + d.point.pos+'</p>'; }
         }
       }
     }
