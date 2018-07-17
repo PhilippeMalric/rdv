@@ -6,7 +6,7 @@ import { Link } from '../../objectDef/Link';
 import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
 
-import { fillcolorNode, fillcolorRect } from './functionUtiles'
+import { fillcolorNode, fillcolorRect, fillcolorLink} from './functionUtiles'
 
 function range(start, end): any {
  return Array.from({ length: (end - start) }, (v, k) => k + start);
@@ -105,17 +105,18 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
     else {
       if (this.ncm1.indexOf("---") != -1) {
-
+        let pos = this.ncm1.split("_")[2]
         let loop = this.ncm1.split("---")[1].split("_")[0]
-        let s1 = ncm2_splitted[2].split("_")[0]
-        let s2 = ncm2_splitted[1]
+        let s1 = ncm2_splitted[1]
+        let s2 = ncm2_splitted[2].split("_")[0] 
         this.createNodesLoopG(loop,s1,s2,pos)
 
       }
       if (this.ncm2.indexOf("---") != -1) {
+        let pos = this.ncm1.split("_")[3]
         let loop = this.ncm2.split("---")[1].split("_")[0]
-        let s1 = ncm1_splitted[2].split("_")[0]
-        let s2 = ncm1_splitted[1]
+        let s1 = ncm1_splitted[1]
+        let s2 = ncm1_splitted[2].split("_")[0]
         this.createNodesLoopD(loop,s1,s2,pos)
       }
 
@@ -149,11 +150,11 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     for (let i of range(0,seq.length - 1)) {
 
-      links.push(this.linkGen(i,i+1, 1))
+      links.push(this.linkGen(i,i+1, 2))
 
     }
 
-    links.push(this.linkGen(0, seq.length - 1, 2))
+    links.push(this.linkGen(0, seq.length - 1, 1))
 
     return links
 
@@ -186,7 +187,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     const element = this.chartContainer.nativeElement;
    
-
+    this.createGraph(element);
   }
 
   createRedCircle() {
@@ -309,11 +310,12 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   
   createNodesLoopG = function (loop: String, s1: String, s2: String, pos: string): void {
 
+    
 
     let nodes = [];
 
 
-    console.log("loop", loop, "s : ", s1, s2);
+    console.log("loop", loop, "s : ", s1, s2,"pos",pos);
 
     console.log("nodes creation");
 
@@ -323,13 +325,16 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     }
 
-    for (let c of s1.split("")) {
+
+    let s1Sliced = s1.split("").slice(1)
+    for (let c of s1Sliced) {
 
       nodes.push(this.nodeGen(c, 1));
 
     }
 
-    for (let c of s2.split("").slice(1)) {
+    let s2Sliced = s2.split("").slice(0, s2.length - 1)
+    for (let c of s2Sliced) {
 
       nodes.push(this.nodeGen(c, 1));
 
@@ -349,6 +354,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     this.graph = { "nodes": nodes, "links": linkTab };
 
+    
+
     if (!this.graph.nodes) {
       this.graph = { "nodes": [], "links": [] }
     }
@@ -363,14 +370,14 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let links = [];
     console.log("Links creation");
 
-    let indexLastNode = loop.length - 1 + s1.length - 1 + s2.length + 1;
-    let indexBeforeLastNode = loop.length - 1 + s1.length - 1 + s2.length;
+    let index1Node2ePB = loop.length - 1 + s1.length - 1 ;
+    let index2Node2ePB = loop.length - 1 + s1.length;
 
     let index2eLink1 = s1.length - 1;
 
     // lien des paires de bases
     links.push(this.linkGen(0, loop.length - 1, 1));
-    links.push(this.linkGen(indexLastNode, indexBeforeLastNode - 1, 1));
+    links.push(this.linkGen(index1Node2ePB, index2Node2ePB, 1));
 
     // lien phosphate
 
@@ -392,7 +399,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
 
     // connecter les deux ncm
-    links.push(this.linkGen(loop.length - 1 + s1.length + s2.length - 2, 0));
+    links.push(this.linkGen(loop.length - 1 + s1.length + s2.length - 2, 0 , 2));
 
     console.log("Links : ", links);
 
@@ -403,40 +410,53 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   createNodesLoopD = function (loop: String, s1: String, s2: String, pos: string):void {
     let nodes = []
-
+    pos = "" + 0
 
     console.log("nodes creation")
- 
-    for (let c of s1.split("")) {
+
+
+    let s1reversed = s1.split("").reverse()
+
+    for (let c of s1reversed) {
 
       nodes.push(this.nodeGen(c, 1))
 
     }
 
-    for (let c of s2.split("").slice(1)) {
+    let s2Reversed = s2.split("").reverse()
+
+    for (let c of s2Reversed) {
 
       nodes.push(this.nodeGen(c, 1))
 
     }
 
-    for (let c of loop.split("")) {
+
+
+    let loopStripped = loop.split("").slice(1, loop.length - 1).reverse()
+
+    for (let c of loopStripped) {
 
       nodes.push(this.nodeGen(c, 1))
 
     }
+
+
+  
+
 
     console.log("nodes : ", nodes)
 
     nodes[Number(pos)].group = 2
     
     let linkTab = this.createLinksLoopD(loop, s1, s2)
-    console.log("s : ",loop, s1, s2)
+    console.log("s : ", s1, s2, loop)
 
 
 
 
     this.graph = { "nodes": nodes, "links": linkTab }
-
+    
     if (!this.graph.nodes) {
       this.graph = { "nodes": [], "links": [] }
     }
@@ -456,7 +476,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let indexFinSection1 = s1.length - 1
     let indexFinSection2 = s1.length - 1 + s2.length
 
-    let index2eLink1 = s1.length - 1
 
     // lien des paires de bases
     links.push(this.linkGen(0, indexFinSection2, 1))
@@ -470,19 +489,19 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     }
 
     // deuxieme segment du ncm de gauche
-    for (let i of this.range(indexFinSection1 +1 // index debut du 2e segment
+    for (let i of range(indexFinSection1 +1 // index debut du 2e segment
                               , indexFinSection2)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
     // loop
-    for (let i of range(indexFinSection2, indexFinSection2 + loop.length - 1)) {
+    for (let i of range(indexFinSection2, indexFinSection2 + loop.length - 2)) {
       links.push(this.linkGen(i, i + 1, 2))
     }
 
 
     // connecter les deux ncm
-    links.push(this.linkGen(indexFinSection2 + loop.length - 1, 0))
+    links.push(this.linkGen(indexFinSection2 + loop.length - 2, 2))
 
     console.log("Links : ", links)
 
@@ -563,76 +582,79 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 }
 
 
- createGraph = (element) => {
+  createGraph = (element) => {
 
 
-   let ticked = () => {
-     link
-       .attr("x1", function (d: any) { return d.source.x; })
-       .attr("y1", function (d: any) { return d.source.y; })
-       .attr("x2", function (d: any) { return d.target.x; })
-       .attr("y2", function (d: any) { return d.target.y; });
+    let ticked = () => {
+      link
+        .attr("x1", function (d: any) { return d.source.x; })
+        .attr("y1", function (d: any) { return d.source.y; })
+        .attr("x2", function (d: any) { return d.target.x; })
+        .attr("y2", function (d: any) { return d.target.y; });
 
-     node
-       .attr("cx", function (d: any) { return d.x; })
-       .attr("cy", function (d: any) { return d.y; });
+      node
+        .attr("cx", function (d: any) { return d.x; })
+        .attr("cy", function (d: any) { return d.y; });
 
-     text
-       .attr("x", (d, i) => { return this.graph.nodes[i].x - 8 })
-       .attr("y", (d, i) => { return this.graph.nodes[i].y + 8 })
-   }
+      text
+        .attr("x", (d, i) => { return this.graph.nodes[i].x - 8 })
+        .attr("y", (d, i) => { return this.graph.nodes[i].y + 8 })
+    }
 
-   let dragstarted = (d: any) => {
-     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-     d.fx = d.x;
-     d.fy = d.y;
-   }
+    let dragstarted = (d: any) => {
+      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
 
-   let dragged = (d: any) => {
-     d.fx = d3.event.x;
-     d.fy = d3.event.y;
-   }
+    let dragged = (d: any) => {
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+    }
 
-   let dragended = (d: any) => {
-     if (!d3.event.active) simulation.alphaTarget(0);
-     d.fx = null;
-     d.fy = null;
-   }
+    let dragended = (d: any) => {
+      if (!d3.event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
 
-  const svg = d3.select(element).append('svg')
-    .attr('width', this.width)
-    .attr('height', this.height);
-
-
-  let simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().distance(20))
-    .force("charge", d3.forceManyBody().strength(-100))
-    .force("center", d3.forceCenter(this.width / 2, this.height / 2));
-
-  let link = svg.append("g")
-    .attr("class", "links")
-    .selectAll("line")
-    .data(this.graph.links)
-    .enter().append("line")
-    .attr("stroke-width", function (d: Link) { return Number(d.value) + 1 });
+    const svg = d3.select(element).append('svg')
+      .attr('width', this.width)
+      .attr('height', this.height);
 
 
-  console.log("nodes : ", this.graph.nodes)
+    let simulation = d3.forceSimulation()
+      .force("link", d3.forceLink().distance(20))
+      .force("charge", d3.forceManyBody().strength(-100))
+      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
-   let myDrag = function(e, i):any{
-     d3.drag()
-       .on("start", dragstarted)
-       .on("drag", dragged)
-       .on("end", dragended)(e,i)
-   }
+    let link = svg.append("g")
+      .attr("class", "links")
+      .selectAll("line")
+      .data(this.graph.links)
+      .enter().append("line")
+      .attr("stroke", fillcolorLink)
+      .attr("stroke-width", function (d: Link) { return Number(d.value) + 1 });
 
-  let node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
-    .data(this.graph.nodes)
-    .enter().append("circle")
-    .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
-    .attr("fill", fillcolorNode)
+
+    console.log("nodes : ", this.graph.nodes)
+
+    let myDrag = function (e, i): any {
+      d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended)(e, i)
+    }
+
+    let node = svg.append("g")
+      .attr("class", "nodes")
+      .selectAll("circle")
+      .data(this.graph.nodes)
+      .enter().append("circle")
+      .attr("r", function (d: Node) { return Number(d.group) * 5 + 8; })
+      .attr("fill",  (d, i) => {
+          return fillcolorNode(d,this.score)
+        })
     .attr("stroke-opacity", 1)
     .attr("stroke", "#000000")
     .attr("stroke-width", 1)

@@ -32,8 +32,9 @@ import { ContentsModule } from 'angular-contents';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 
@@ -146,6 +147,7 @@ import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitr
 import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global/gauge-global.component';
 import { GaugeLocalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local/gauge-local.component';
 import { FilterNcmPipe } from './pipes/filter-ncm.pipe';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -160,7 +162,7 @@ const ROUTES: Routes = [
   },
   {
     path: 'test',
-    component: NCM2Component
+    component: TestComponent
   },
   {
     path: '',
@@ -263,10 +265,13 @@ const ROUTES: Routes = [
     Chapitre2RDVComponent,
     GaugeGlobalComponent,
     GaugeLocalComponent,
-    FilterNcmPipe
+    FilterNcmPipe,
+    TestComponent
     
   ],
   imports: [
+    MatFormFieldModule,
+    MatSelectModule,
     AmChartsModule,
     TableModule,
     MatMenuModule,

@@ -11,27 +11,39 @@ import { google_colors, plotRNA, click_ss } from './helper'
 })
 export class RdvComponent implements OnInit {
 
+  rnas:string[] = []
+  svg: any;
+
 
   @ViewChild('chart') private chartContainer: ElementRef;
   
 
   constructor( private rnaJsonService: RnaJsonService) {
-   
+
+    for (let i = 1; i <= 30; i++) {
+
+      this.rnas.push(""+i);
+
+    }
+
+
   }
-
-
 
   ngOnInit() {
 
-    this.loadJson()
+    //this.loadJson("1")
 
   }
 
 
 
-  loadJson() {
+  changeRNA(name) {
+    console.log("changeRNA : name : ",name)
+   this.loadJson(name)
+}
 
-    let name = "ETERNA_R74_0000-942"
+
+  loadJson(name) {
 
     this.rnaJsonService.getRNA(name).subscribe(data => {
       console.log("data: ",data)
@@ -48,15 +60,15 @@ export class RdvComponent implements OnInit {
 
     let height = 1000
     let width = "100%"
-
-    const svg = d3.select(element).append('svg')
+    d3.select("#ss_svg").remove()
+    this.svg = d3.select(element).append('svg')
       .attr('width', width)
       .attr('height', height)
       .attr("id","ss_svg");
 
 
 
-    plotRNA(svg, jsonData, pos)
+    plotRNA(this.svg, jsonData, pos)
 
   }
 

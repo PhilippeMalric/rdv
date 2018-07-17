@@ -4,12 +4,10 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Ncm } from '../objectDef/Ncm';
 import { map } from "rxjs/operators";
 
-//import { Http, Response } from 'angular2/http';
-
 @Injectable({
   providedIn: 'root'
 })
-export class NCMService {
+export class MajsrvService {
 
   filterD: any = null
 
@@ -23,17 +21,29 @@ export class NCMService {
 
   }
 
-  getNCM(skip: Number, limit: Number, cmin: Number, stdDevMax: Number) {
+  test(): Observable<any> {
 
-    let configUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
-    return this.http.get(configUrl)
-      .toPromise()
-      .then(data => { return data; });
+      let url = "http://majsrv1.iric.ca:3000/test";
+    console.log("url : ",url)
+    return Observable.create(observer => {
+      fetch(url).then(response => {
+        let test = response;
+        console.log("test11 : ",test)
+        return test;
+
+      }).then(body => {
+
+        observer.next(body)
+        observer.complete()
+
+      })
+
+    })
   }
 
   createNCMObservable(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
     console.log("ncmUrl : ",ncmUrl)
     return Observable.create(observer => {
       fetch(ncmUrl).then(response => {
@@ -49,11 +59,12 @@ export class NCMService {
 
     })
   }
+   
   createNCMObservableFiltered(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
-
+   
     return this.createNCMObservable(skip, limit, cmin, stdDevMax)
       .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
-
+      
   }
-
+  
 }

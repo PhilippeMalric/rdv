@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NCMService } from '../service/ncm.service';
+import { MajsrvService } from "../service/majsrv.service"
+//import { NCMService } from '../service/ncm.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { Ncm } from '../objectDef/Ncm';
 import { Observable } from 'rxjs';
@@ -16,8 +17,8 @@ export class NCM2Component implements OnInit {
   ncms$: Observable<Ncm[]>
 
   skip = 0;
-  limit = 100;
-  cmin = 2;
+  limit = 1000;
+  cmin = 0;
   stdDevMax = 10
 
   ncm1_Only_seq = ""
@@ -39,19 +40,14 @@ export class NCM2Component implements OnInit {
 
   filterD:any
 
-  constructor(private ncmService: NCMService) { }
+  constructor(private ncmService: MajsrvService) { }
 
 
   ngOnInit() {
 
 
-    this.filterD = {}
-    this.filterD["-&-"] = 1;
-    this.filterD["noVG_notPaired&-"] = 1;
-    this.filterD["Premier_notPaired&-"] = 1;
-
     //this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms = ncms });
-    this.ncms$ = this.ncmService.createNCMObservable(this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered(this.skip, this.limit, this.cmin, this.stdDevMax);
 
 
     this.sortOptions = [

@@ -1,18 +1,28 @@
-<h4>RDV : RNA dynamic viewer</h4>
+<div class="container-fluid">
+  <div class="row">
+    <h4 class="col-xs-12 col-md-8">RDV : RNA dynamic viewer</h4>
+    <mat-form-field class="col-xs-12 col-md-4">
+      <mat-select (selectionChange)="changeRNA($event.value)" placeholder="Choose your RNA">
+        <mat-option *ngFor="let rna of rnas" [value]="rna">
+          {{rna}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="d3-chart" #chart></div>
 
-<div class="d3-chart" #chart></div>
 
-
-<!--
-    <svg id="ss_svg" width=100% height="1000px"></svg>
-     <svg id="svgStat" width=100% height="100px"></svg>
+  <!--
+      <svg id="ss_svg" width=100% height="1000px"></svg>
+       <svg id="svgStat" width=100% height="100px"></svg>
 
 
 
-    <div id="hiDiv"> </div>
-    <div id="lowDiv"></div>
+      <div id="hiDiv"> </div>
+      <div id="lowDiv"></div>
 
 
--->
+  -->
 
-<p>Fin</p>
+
+</div>
