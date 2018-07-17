@@ -42,5 +42,7 @@ Thumbs.db
 
 ./test
 
+# Asset to Big
+/src/assets/rnaJson
 
 \.vs/

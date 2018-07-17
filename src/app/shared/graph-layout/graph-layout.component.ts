@@ -8,6 +8,7 @@ import { LNode } from '@angular/core/src/render3/interfaces/node';
 
 import { fillcolorNode, fillcolorRect, fillcolorLink} from './functionUtiles'
 
+
 function range(start, end): any {
  return Array.from({ length: (end - start) }, (v, k) => k + start);
 }
@@ -21,6 +22,7 @@ function range(start, end): any {
 export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   @ViewChild('chart') private chartContainer: ElementRef;
+  @ViewChild('chart2') el: ElementRef;
   @Input() _id: string;
   @Input() score: string;
   @Input() items: any[];
@@ -42,6 +44,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     this.width = 300
     console.log("id : ", this._id)
     console.log("score : ", this.score)
+    //plotly
+   
     //
     this.options = {
       chart: {
@@ -70,13 +74,17 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
             }
             return d3.format('.02f')(d);
           },
-
           axisLabelDistance: 1
         },
         yDomain: [
           -1,
           6
         ],
+        tooltip: {
+          contentGenerator: function (d) {
+            //console.log("data:", d);
+            return '<p>RNA : ' + d.point.rna + '</p><p>' + d.point.pos+'</p>'; }
+        }
       }
     }
 
