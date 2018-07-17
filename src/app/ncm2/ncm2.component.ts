@@ -18,7 +18,7 @@ export class NCM2Component implements OnInit {
 
   skip = 0;
   limit = 1000;
-  cmin = 0;
+  cmin = 5;
   stdDevMax = 10
 
   ncm1_Only_seq = ""
