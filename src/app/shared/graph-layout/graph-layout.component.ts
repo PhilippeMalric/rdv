@@ -456,7 +456,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     this.graph = { "nodes": nodes, "links": linkTab }
-    
+    debugger
     if (!this.graph.nodes) {
       this.graph = { "nodes": [], "links": [] }
     }
@@ -501,7 +501,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     // connecter les deux ncm
-    links.push(this.linkGen(indexFinSection2 + loop.length - 2, 2))
+    links.push(this.linkGen(0, indexFinSection2 + loop.length - 2, 2))
 
     console.log("Links : ", links)
 
