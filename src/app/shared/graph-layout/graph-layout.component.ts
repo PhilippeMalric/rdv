@@ -456,7 +456,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
 
     this.graph = { "nodes": nodes, "links": linkTab }
-    debugger
+    
     if (!this.graph.nodes) {
       this.graph = { "nodes": [], "links": [] }
     }
