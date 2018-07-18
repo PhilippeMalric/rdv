@@ -23,12 +23,12 @@ export class MajsrvService {
 
   test(): Observable<any> {
 
-      let url = "http://majsrv1.iric.ca:3000/test";
-    console.log("url : ",url)
+    let url = "http://majsrv1.iric.ca:3000/test";
+    console.log("url : ", url)
     return Observable.create(observer => {
       fetch(url).then(response => {
         let test = response;
-        console.log("test11 : ",test)
+        console.log("test11 : ", test)
         return test;
 
       }).then(body => {
@@ -44,7 +44,7 @@ export class MajsrvService {
   createNCMObservable(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
-    console.log("ncmUrl : ",ncmUrl)
+    console.log("ncmUrl : ", ncmUrl)
     return Observable.create(observer => {
       fetch(ncmUrl).then(response => {
 
@@ -59,12 +59,40 @@ export class MajsrvService {
 
     })
   }
-   
+
   createNCMObservableFiltered(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
-   
+
     return this.createNCMObservable(skip, limit, cmin, stdDevMax)
       .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
-      
+
   }
-  
+
+
+
+
+  createNCM_stat_Observable(collection, soft): Observable<Ncm[]> {
+
+    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=:${collection}/soft=${soft}`
+    console.log("ncmUrl : ", ncmUrl)
+    return Observable.create(observer => {
+      fetch(ncmUrl).then(response => {
+
+        return response.json();
+
+      }).then(body => {
+
+        observer.next(body)
+        observer.complete()
+
+      })
+
+    })
+  }
+
+
+
+
+
+
 }
+

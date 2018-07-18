@@ -49,11 +49,17 @@ export class NCMService {
 
     })
   }
+
   createNCMObservableFiltered(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     return this.createNCMObservable(skip, limit, cmin, stdDevMax)
       .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
 
   }
+
+
+
+
+
 
 }

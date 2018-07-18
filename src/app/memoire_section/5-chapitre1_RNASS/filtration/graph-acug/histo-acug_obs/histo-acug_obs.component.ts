@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import * as c3 from 'c3';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { AmChartsService } from 'amcharts3-angular2';
+
 import { Observable } from 'rxjs/internal/Observable';
 
 
@@ -8,10 +10,11 @@ import { Observable } from 'rxjs/internal/Observable';
   templateUrl: './histo-acug_obs.component.html',
   styleUrls: ['./histo-acug_obs.component.css']
 })
-export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
+export class HistoACUG_obsComponent implements OnInit {
 
   seq: String;
 
+  private chartG: any;
 
   private _jsonFile$: Observable<any>;
 
@@ -36,36 +39,77 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
     });
   };
 
+  constructor(private AmCharts: AmChartsService) { }
 
-  constructor() { }
+  generateGraph() {
+
+
+    this.chartG = this.AmCharts.makeChart("chart_histoGlobal", {
+      "type": "pie",
+      "startDuration": 0,
+      "theme": "light",
+      "addClassNames": true,
+      "legend": {
+        "position": "right",
+        "marginRight": 100,
+        "autoMargins": false
+      },
+      "innerRadius": "30%",
+      "defs": {
+        "filter": [{
+          "id": "shadow",
+          "width": "200%",
+          "height": "200%",
+          "feOffset": {
+            "result": "offOut",
+            "in": "SourceAlpha",
+            "dx": 0,
+            "dy": 0
+          },
+          "feGaussianBlur": {
+            "result": "blurOut",
+            "in": "offOut",
+            "stdDeviation": 5
+          },
+          "feBlend": {
+            "in": "SourceGraphic",
+            "in2": "blurOut",
+            "mode": "normal"
+          }
+        }]
+      },
+      "dataProvider": [{
+        "nucleotide": "A",
+        "v": this.getNumberOfLetter(this.seq, 'A')
+      },
+      {
+        "nucleotide": "C",
+        "v": this.getNumberOfLetter(this.seq, 'C')
+      },
+      {
+        "nucleotide": "U",
+        "v": this.getNumberOfLetter(this.seq, 'U')
+      },
+      {
+        "nucleotide": "G",
+        "v": this.getNumberOfLetter(this.seq, 'G')
+      },],
+      "valueField": "v",
+      "titleField": "nucleotide",
+      "export": {
+        "enabled": true
+      }
+    });
+
+  }
 
   ngOnInit() {
 
-   
-    
   };
 
-  ngAfterViewInit(): void {
-    
-  };
 
-  generateGraph() {
-    let chart = c3.generate({
-      bindto: '#chart2',
-      data: {
-        type: 'pie',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); },
-        columns: [
-          ['A', this.getNumberOfLetter(this.seq, 'A')],
-          ['C', this.getNumberOfLetter(this.seq, 'C')],
-          ['U', this.getNumberOfLetter(this.seq, 'U')],
-          ['G', this.getNumberOfLetter(this.seq, 'G')]
-        ]
-      }
-    });
-  };
+
+
 
   getNumberOfLetter(seq, letter) {
     //console.log("seq : " ,seq)
@@ -76,5 +120,11 @@ export class HistoACUG_obsComponent implements OnInit, AfterViewInit {
     return matched.length;
     // / seq.length
 
-  };
-};
+  }
+
+
+  ngOnDestroy() {
+    this.AmCharts.destroyChart(this.chartG);
+  }
+
+}

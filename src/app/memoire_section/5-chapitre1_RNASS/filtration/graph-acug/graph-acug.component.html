@@ -40,14 +40,14 @@
 </p-dataView>
 
 <p-dialog header="Séquence Détails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
-  <div class="ui-g" *ngIf="selectedSeq">
-    <div class="ui-g-12 ui-md-12" style="text-align:center; word-break: break-all;">
-      <app-gauge-local [gauge_value_Local]="selectedReactivityAvg"></app-gauge-local>
+    <div class="ui-g-8 col-g-offset-2" *ngIf="selectedSeq">
+      <div class="ui-g-6 ui-md-12">
+        <app-gauge-local [gauge_value_Local]="selectedReactivityAvg"></app-gauge-local>
+      </div>
+      <div class="ui-g-6 ui-md-12">
+        <app-histo-acug seq={{selectedSeq}}></app-histo-acug>
+      </div>
     </div>
-    <div class="ui-g-12 ui-md-12" style="text-align:center; word-break: break-all;">
-      <app-histo-acug seq={{selectedSeq}}></app-histo-acug>
-    </div>
-  </div>
 </p-dialog>
 
 

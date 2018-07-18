@@ -14,7 +14,11 @@ export class TestComponent implements OnInit {
   constructor(private majsrvService: MajsrvService) { }
 
   ngOnInit() {
-    this.majsrvService.test().subscribe(x => console.log("test : ", x))
+
+    let collection = "MCN_from_ETERNA_R95_0000_noPred_col_collectionName_stat_A_0_5_S_1_5_stn_1_5"
+    let soft = "mcff"
+
+    this.majsrvService.createNCM_stat_Observable(collection, soft).subscribe(x => console.log("test : ", x))
   }
 
 }
