@@ -149,6 +149,8 @@ import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtra
 import { GaugeLocalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local/gauge-local.component';
 import { FilterNcmPipe } from './pipes/filter-ncm.pipe';
 import { TestComponent } from './test/test.component';
+import { SortPipe } from './pipes/sort.pipe';
+import { Nvd3ScatterComponent } from './shared/nvd3-scatter/nvd3-scatter.component';
 
 
 
@@ -267,7 +269,9 @@ const ROUTES: Routes = [
     GaugeGlobalComponent,
     GaugeLocalComponent,
     FilterNcmPipe,
-    TestComponent
+    TestComponent,
+    SortPipe,
+    Nvd3ScatterComponent
     
   ],
   imports: [

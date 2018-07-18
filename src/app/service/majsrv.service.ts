@@ -68,28 +68,17 @@ export class MajsrvService {
   }
 
 
+  sortNcm = (a,b) => {
+    ((a - b) < 0 )?1:-1
+    }
 
+  createNCM_stat_Observable(collection, soft): Observable<any[]> {
 
-  createNCM_stat_Observable(collection, soft): Observable<Ncm[]> {
-
-    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=:${collection}/soft=${soft}`
+    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=${collection}/soft=${soft}`
     console.log("ncmUrl : ", ncmUrl)
-    return Observable.create(observer => {
-      fetch(ncmUrl).then(response => {
+    return this.http.get<Ncm[]>(ncmUrl)
 
-        return response.json();
-
-      }).then(body => {
-
-        observer.next(body)
-        observer.complete()
-
-      })
-
-    })
-  }
-
-
+}
 
 
 
