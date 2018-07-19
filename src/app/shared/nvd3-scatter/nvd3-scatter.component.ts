@@ -18,18 +18,19 @@ export class Nvd3ScatterComponent implements OnInit {
   @Input() soft: string;
   ncm = null;
   score = 2;
-
+  min = 1
 
   mySort = (a: any, b: any): number => {
-    if (a.hi == 0 && b.hi == 0) {
+    if ((a.low + a.hi) == 0 && (b.low + b.hi) == 0) {
       return 0;
     }
     else {
-      if (a.low > 0) {
-        let ratioA = a.hi / a.low;
-        if (b.low > 0) {
-          let ratioB = b.hi / b.low;
-          return (ratioA > ratioB) ? 1 : -1;
+      if ((a.low + a.hi) > 0) {
+        let ratioA = (a.hi - a.low) / (a.low + a.hi);
+        if ((b.low + b.hi) > 0) {
+          let ratioB = (b.hi - b.low) / (b.low + b.hi);
+          if (ratioA == ratioB) {return 0}
+            return (ratioA > ratioB) ? 1 : -1;
         }
         else {
           return -1;
@@ -88,7 +89,7 @@ export class Nvd3ScatterComponent implements OnInit {
     }
 
     
-    this.data$ = this.majsrvService.createNCM_stat_Observable(this.collection, this.soft)
+    this.data$ = this.majsrvService.createNCM_stat_Observable(this.collection, this.soft,this.min)
     console.log("data$", this.data$)
 
     this.data$.subscribe((x) => {

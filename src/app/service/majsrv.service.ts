@@ -72,9 +72,9 @@ export class MajsrvService {
     ((a - b) < 0 )?1:-1
     }
 
-  createNCM_stat_Observable(collection, soft): Observable<any[]> {
+  createNCM_stat_Observable(collection, soft, min): Observable<any[]> {
 
-    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=${collection}/soft=${soft}`
+    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
     console.log("ncmUrl : ", ncmUrl)
     return this.http.get<Ncm[]>(ncmUrl)
 
