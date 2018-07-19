@@ -64,8 +64,9 @@ export class Nvd3ScatterComponent implements OnInit {
         //color: [],
         x: (d, i) => { return i; },
         y: (d) => {
-          return (d.low + d.hi == 0) ? 0 : d.hi - d.low / d.low + d.hi;
+          return (d.low + d.hi == 0) ? 0 : (d.hi - d.low) / (d.low + d.hi);
         },
+        yDomain:[-1,1],
         yAxis: {
           axisLabel: 'Ratio',
           tickFormat: (d) => {
