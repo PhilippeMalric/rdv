@@ -20,5 +20,7 @@ export class TestComponent implements OnInit {
   collection4 = "test1_noPred__A_0_5_S_5_stn_1_5_stat"
   collection5 = "real_noPred__A_0_5_S_5_stn_1_5_stat"
   collection6 = "test_Majsrv1_noPred__A_0_5_S_5_stn_1_5_stat"
+  collection7 = "test_qsub_ETERNA_R9_noPred__A_0_5_S_1_0_stn_1_5_ed_0_5_stat"
+  collection8 = "qsub_ETERNA_R_noPred__A_0_5_S_1_0_stn_1_5_ed_0_5_stat"
   }
 
