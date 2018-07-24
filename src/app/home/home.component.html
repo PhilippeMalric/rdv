@@ -79,14 +79,14 @@
       </div>
       <div class="col-md-2 hide-on-small-only">
         <ul class="contents-table tdm" contentsTable>
-          <li><a  (click)="activatePanel(0);goTo('#page_presentation');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
-          <li><a  (click)="activatePanel(1);goTo('#resume-abstract');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
-          <li><a  (click)="activatePanel(2);goTo('#avant-propos');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
-          <li><a  (click)="activatePanel(3);goTo('#begining');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
-          <li><a  (click)="activatePanel(4);goTo('#chapitre1-rnass');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
-          <li><a  (click)="activatePanel(5);goTo('#chapitre2-rdv');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre2 | RDV</a></li>
-          <li><a  (click)="activatePanel(6);goTo('#chapitre3-coherence');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre 3 | Pouvoir discriminant des MCN</a></li>
-          <li><a  (click)="activatePanel(0);goTo('#page_presentation');">^Top^</a></li>
+          <li><a  href="#page_presentation" (click)="activatePanel(0);goTo('#page_presentation');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
+          <li><a  href="#resume-abstract" (click)="activatePanel(1);goTo('#resume-abstract');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
+          <li><a  href="#avant-propos" (click)="activatePanel(2);goTo('#avant-propos');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
+          <li><a  href="#begining" (click)="activatePanel(3);goTo('#begining');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
+          <li><a  href="#chapitre1-rnass" (click)="activatePanel(4);goTo('#chapitre1-rnass');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
+          <li><a  href="#chapitre2-rdv" (click)="activatePanel(5);goTo('#chapitre2-rdv');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre2 | RDV</a></li>
+          <li><a  href="#chapitre3-coherence" (click)="activatePanel(6);goTo('#chapitre3-coherence');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre 3 | Pouvoir discriminant des MCN</a></li>
+          <li><a  href="#page_presentation" (click)="activatePanel(0);goTo('#page_presentation');">^Top^</a></li>
         </ul>
       </div>
     </div>

@@ -1,11 +1,19 @@
 <div>
   <h3>Résumé</h3>
-  <p>
-    Mesurer la réactivité chimique d’un nucléotide d’une séquence d’ARN permet d’inférer sa conformation locale. L’interprétation la plus simple de la conformation locale d’un nucléotide est de le qualifier par le terme pairé ou non pairé. Bien qu’ils soient reliés à la réactivité chimique des nucléotides, ces deux états ne l’expliquent pas entièrement.
-    Actuellement, la RNA mapping database (RMDB) contient 131,271 séquences sondées dans différentes conditions, ce qui donne un bon jeu de données pour étudier la structure des ARN en utilisant des algorithmes d’apprentissages machines. Dans mon projet de recherche, j’ai tenté de prédire et de comprendre la réactivité ou la non-réactivité des nucléotides à partir de plusieurs ensembles de données obtenues de la RMDB. Pour cela, j’ai utilisé deux algorithmes de repliement des ARN en structures secondaires : MC-FlashFold du laboratoire du Dr François Major et RNAsubopt de la collection Vienna package. L’originalité de mon projet de recherche est qu’il se base sur une abstraction des composants de la structure secondaire nommée motif cyclique nucléotidique (MCN) pour caractériser les nucléotides.
-    Dans ce mémoire, je fais la démonstration que la majorité des valeurs de réactivités discrètes (hautes/basses) des nucléotides peuvent être prédites. L’apport majeur de ce mémoire est la mise sur pied d’une interface permettant d’évaluer la cohérence de la réactivité des nucléotides en les comparant à l’ensemble des nucléotides d’un même MCN, leurs homologues.
-    Vous constaterez aussi que le nombre de caractéristiques mesurables d’un nucléotide croît de façon exponentielle lorsqu’on considère les MCN adjacents. Ceci nous mène donc à nous poser la question suivante : peut-on expliquer la réactivité des nucléotides par un ensemble fini de règles formelles?
-  </p>
-    <h5>Mots-clés : ARN, MCN, structure secondaire, SHAPE, Eterna, RMDB</h5>
- 
+  <div>
+    <p>
+      Mesurer la réactivité chimique des nucléotides d’une séquence d’ARN permet d’inférer sa conformation locale. L’interprétation la plus simple de la conformation locale d’un nucléotide est de le qualifier par le terme pairé ou non pairé. Bien qu’ils soient reliés à la réactivité chimique des nucléotides, ces deux états ne l’expliquent pas entièrement.
+      Actuellement, la RNA mapping database (RMDB) contient 131,271 séquences sondées dans différentes conditions, ce qui donne un bon jeu de données pour étudier la structure des ARN. Dans mon projet de recherche, j’ai tenté de prédire et de comprendre la réactivité ou la non-réactivité des nucléotides à partir de plusieurs ensembles de données obtenues de la RMDB. Pour cela, j’ai utilisé deux algorithmes de repliement des ARN en structures secondaires : MC-FlashFold du laboratoire du Dr François Major et RNAsubopt de la collection Vienna package. L’originalité de mon projet de recherche est qu’il se base sur une abstraction des composants de la structure secondaire nommée motif cyclique nucléotidique (MCN) pour caractériser les nucléotides.
+      Dans ce mémoire, je fais la démonstration que la majorité des valeurs de réactivités discrètes (hautes/basses) des nucléotides peuvent être prédites. L’apport majeur de ma maîtrise à la communauté scientifique est la mise sur pied d’une interface permettant d’évaluer la cohérence de la réactivité des nucléotides en les comparant à l’ensemble des nucléotides d’un même MCN, leurs homologues.
+      Autrement dit, ce mémoire répond à la question suivante : Quelles sont les meilleurs caractéristiques pour prédire la réactivité d'un nucléotide?
+      Pour chaque sous-structure, je propose un niveau de confiance basé sur 3 mesures de l'ARN sondé :
+    </p>
+    <ul>
+      <li style='list-style-type: disc;'>La moyenne de réactivité</li>
+      <li style='list-style-type: disc;'>Un attribut fourni par le «SHAPE-seq» nommé «signal to noise»</li>
+      <li style='list-style-type: disc;'>La diversité de l'ensemble des structures secondaires obtenu par le logiciel<i>RNAfold</i>.</li>
+    </ul>
+  </div>
+  <h5>Mots-clés : ARN, MCN, structure secondaire, SHAPE, Eterna, RMDB</h5>
+
 </div>

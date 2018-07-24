@@ -6,3 +6,7 @@ p {
   line-height: 1.6;
 }
 
+.ui-accordion-header{
+
+  font-size:20px;
+}

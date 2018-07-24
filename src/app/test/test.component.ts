@@ -16,7 +16,7 @@ export class TestComponent implements OnInit {
   }
 
   
-  collection9 = "qsub_all2_ETERNA_R_noPred__A_0_5_S_2_0_stn_6_0_ed_10_0_stat"
+  collection9 = "qsub_all4__Filter_ETERNA_R_noPred__A_0_5_S_1_0_stn_1_5_ed_0_5_stat"
   
   }
 

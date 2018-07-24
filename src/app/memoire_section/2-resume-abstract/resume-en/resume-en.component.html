@@ -1,13 +1,19 @@
 <div>
   <h3>Abstract</h3>
-  <p>
-    Measuring the chemical reactivity of a nucleotide within a sequence can infer the local conformation of a nucleotide most of the time. The simplest interpretation of the local conformation of a nucleotide is by the term paired or non-paired. However, these two states do not fully explain the reactivity of nucleotides in chemical probing experiments.
-
-    Currently, the RNA mapping database (RMDB) contains 131,271 sequences probed under different conditions, which gives us a relatively good data set to learn using machine learning algorithms. In my research project, I attempted to predict and understand the reactivity or non-reactivity of nucleotides of thousand of RNA obtained from RMDB. For this, I used two secondary structure RNA folding algorithms: MCFlashFold from Dr. François Major's laboratory and RNAsubopt from the Vienna package collection. The originality of my project is that it is based on an abstraction of the secondary structure called nucleotide cyclic motif.
-    In this thesis, I demonstrate that the majority of the discretized (high / low) reactivities values of nucleotides can be predicted, but not all. The proposed interface gives us the opportunity to quickly and easily compare homolog nucleotides between RNA.
-
-    You will also find that the number of measurable features of a nucleotide exponentially increases when nucleotide neighbors are considered. So, the question is what characteristics should be extracted to accurately predict the reactivity of a nucleotide?
-  </p>
-    <h5>Keywords : RNA, NCM, secondary structure, SHAPE, Eterna, RMDB</h5>
+  <div>
+    <p>
+      Measuring the chemical reactivity of a nucleotide within a sequence can infer the local conformation of a nucleotide most of the time. The simplest interpretation of the local conformation of a nucleotide is to qualified it by the term paired or non-paired. However, these two states do not fully explain the reactivity of nucleotides in chemical probing experiments.
+      Currently, the RNA mapping database (RMDB) contains 131,271 sequences probed under different conditions, which gives us a relatively good data set to study RNA structure. In my research project, I attempted to predict and understand the reactivity or non-reactivity of nucleotides of thousand of RNA obtained from RMDB. For this, I used two secondary structure RNA folding algorithms: MCFlashFold from Dr. François Major's laboratory and RNAsubopt from the Vienna package collection. The originality of my project is that it is based on an abstraction of the secondary structure called nucleotide cyclic motif.
+      In this thesis, I demonstrate that the majority of the discretized (high / low) reactivities values of nucleotides can be predicted, but not all. The proposed interface gives us the opportunity to quickly and easily compare homolog nucleotides between RNA.
+      The question that I will answer in this master thesis is : what is the best set of characteristics that we should consider to predict the reactivity of a nucleotide?
+      For each NCM, I propose a level of confidance based on 3 features of that RNA probed :
+    </p>
+    <ul>
+      <li style='list-style-type: disc;'>The reactivity score average</li>
+      <li style='list-style-type: disc;'>The signal to noise</li>
+      <li style='list-style-type: disc;'>the ensemble diversity given by <i>RNAfold</i> software .</li>
+    </ul>
+  </div>
+  <h5>Keywords : RNA, NCM, secondary structure, SHAPE, Eterna, RMDB</h5>
 
 </div>
