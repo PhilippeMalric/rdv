@@ -1,3 +1,10 @@
+a {
+cursor:pointer;
+color:dodgerblue;
+font-size:20px;
+
+}
+
 .custom-button {
   position: fixed;
   right: 30px;

@@ -17,8 +17,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
   elems: any;
   index = 0;
   visibleSidebar1 = false;
+  activPanel = 0
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) { }
+
+
+  public goTo(x): void {
+    setTimeout(() => {
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, x);
+      this.pageScrollService.start(pageScrollInstance);
+    },500)
+    
+  }; 
+
+  activatePanel(x) {
+
+    this.activPanel = x
+
+  }
 
   buttonClick = (id) =>{
     //debugger;

@@ -5,7 +5,7 @@
   Il y a plus de 4 ans, l’écriture d’un script faisant le lien entre deux logiciels de repliement des ARN, MCFlashfold et RNAsubopt, débute. Ce script, maintenant long de plusieurs centaines de lignes, prend en entrée, un identifiant, une séquence et un vecteur de valeur réels représentant les valeurs de réactivité chimique d’un ARN. Il produit en sortie un fichier JSON standardisé et une base de données des nucléotides analysés. Le nom de ce script est RNASS. Le fichier qu’il produit en sortie est utilisé par les algorithmes d’exploration et d’analyse de données qui seront présentés dans le reste de ce mémoire. Dans ce chapitre, je décris les étapes de son fonctionnement. Il a été amélioré tout au long de mon parcours et j’espère qu’il le sera encore dans le futur.
 </p>
 <p-accordion>
-  <p-accordionTab>
+  <p-accordionTab [selected]="true">
     <p-header>
       Extraction des données
     </p-header>

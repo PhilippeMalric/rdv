@@ -40,7 +40,7 @@
 </p-dataView>
 
 <p-dialog header="Séquence Détails" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
-    <div class="ui-g-8 col-g-offset-2" *ngIf="selectedSeq">
+    <div class="ui-g-8 ui-g-offset-2" *ngIf="selectedSeq">
       <div class="ui-g-6 ui-md-12">
         <app-gauge-local [gauge_value_Local]="selectedReactivityAvg"></app-gauge-local>
       </div>

@@ -1,107 +1,92 @@
 <div class="marginTop">
   <div class="columnify container" contents>
     <div class="row">
-      <ul class="col s12 l10 collapsible">
-        <li>
-          <div id="page_presentation" contentsSection="page_presentation" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="page_presentation" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Présentation
-            </a>
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-page-presentation id="page_presentation_body" class="section scrollspy"></app-page-presentation></div>
-        </li>
-        <li>
-          <div id="resume-abstract" contentsSection="resume-abstract" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="resume-abstract" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Résumé/abstract
-            </a>
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-resume-abstract id="resume-abstract_body" class="section scrollspy"></app-resume-abstract></div>
-        </li>
+      <div class="col-xs-12 col-md-10">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="activatePanel(0);goTo('#page_presentation')" [expanded]="activPanel == 0" id="page_presentation" contentsSection="page_presentation">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <i class="material-icons left">cloud</i>
+                <a href="page_presentation" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                  Présentation
+                </a>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-page-presentation id="page_presentation_body" class="section scrollspy"></app-page-presentation>
+          </mat-expansion-panel>
 
-        <li>
-          <div id="avant-propos" contentsSection="avant-propos" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="avant-propos" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Avant-propos
-            </a>
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-avant-propos id="avant-propos_body" class="section scrollspy"></app-avant-propos></div>
-        </li>
-        <li>
-          <div id="begining" contentsSection="begining" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="begining" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Introduction
-            </a>
+          <mat-expansion-panel (opened)="activatePanel(1);goTo('#resume-abstract');" [expanded]="activPanel == 1" id="resume-abstract" contentsSection="resume-abstract">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="resume-abstract" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Résumé/abstract
+              </a>
+            </mat-expansion-panel-header>
+            <app-resume-abstract id="resume-abstract_body" class="section scrollspy"></app-resume-abstract>
+          </mat-expansion-panel>
 
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-begining id="app-begining_body" class="section scrollspy myjustify"></app-begining></div>
-        </li>
-        <li>
-          <div id="chapitre1-rnass" contentsSection="chapitre1-rnass" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="chapitre1-rnass" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Chapitre 1 | RNASS
-            </a>
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-chapitre1-rnass id="app-chapitre1-rnass_body"></app-chapitre1-rnass></div>
-        </li>
-        <li>
-          <div id="chapitre2-rdv" contentsSection="chapitre2-rdv" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="chapitre1-rnass" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Chapitre 2 | RDV
-            </a>
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-chapitre2-rdv id="app-chapitre2-rdv_body"></app-chapitre2-rdv></div>
- 
-        </li>
-        <li>
-          <div id="chapitre3-coherence" contentsSection="chapitre3-coherence" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="home#figure" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              Chapitre 3 | Apprentissage
-            </a>
+          <mat-expansion-panel (opened)="activatePanel(2);goTo('#avant-propos');" [expanded]="activPanel == 2" id="avant-propos" contentsSection="avant-propos">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="avant-propos" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Avant-propos
+              </a>
+            </mat-expansion-panel-header>
+            <app-avant-propos id="app-avant-propos" class="section scrollspy myjustify"></app-avant-propos>
+          </mat-expansion-panel>
 
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-chapitre3-coherence></app-chapitre3-coherence></div>
-        </li>
-        <li>
-          <div id="figure" contentsSection="figure" class="collapsible-header">
-            <i class="material-icons left">cloud</i>
-            <a href="home#figure" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
-              jpg
-            </a>
+          <mat-expansion-panel (opened)="activatePanel(3);goTo('#begining');" [expanded]="activPanel == 3" id="begining" contentsSection="begining">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="begining" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Introduction
+              </a>
+            </mat-expansion-panel-header>
+            <app-begining id="app-begining_body" class="section scrollspy myjustify"></app-begining>
+          </mat-expansion-panel>
 
-            <span class="badge">4</span>
-          </div>
-          <div class="collapsible-body"><app-figure name="phosphate"></app-figure></div>
-        </li>
+          <mat-expansion-panel (opened)="activatePanel(4);goTo('#chapitre1-rnass');" [expanded]="activPanel == 4" id="chapitre1-rnass" contentsSection="chapitre1-rnass">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="chapitre1-rnass" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Chapitre 1 | RNASS
+              </a>
+            </mat-expansion-panel-header>
+            <app-chapitre1-rnass id="app-chapitre1-rnass_body"></app-chapitre1-rnass>
+          </mat-expansion-panel>
 
-      </ul>
-      <div class="divider"></div>
+          <mat-expansion-panel (opened)="activatePanel(5);goTo('#chapitre2-rdv');" [expanded]="activPanel == 5" id="chapitre2-rdv" contentsSection="chapitre2-rdv">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="chapitre2-RDV" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Chapitre 2 | RDV
+              </a>
+            </mat-expansion-panel-header>
+            <app-chapitre2-rdv id="app-chapitre2-rdv_body"></app-chapitre2-rdv>
+          </mat-expansion-panel>
 
-      <div class="col l2 hide-on-small-only">
+          <mat-expansion-panel (opened)="activatePanel(6);goTo('#chapitre3-coherence');" [expanded]="activPanel == 6" id="chapitre3-coherence" contentsSection="chapitre3-coherence">
+            <mat-expansion-panel-header>
+              <i class="material-icons left">cloud</i>
+              <a href="chapitre3-coherence" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">
+                Chapitre 3 | Apprentissage
+              </a>
+            </mat-expansion-panel-header>
+            <app-chapitre3-coherence></app-chapitre3-coherence>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- -->
+      </div>
+      <div class="col-md-2 hide-on-small-only">
         <ul class="contents-table tdm" contentsTable>
-          <li><a href="#page_presentation" (click)="buttonClick('page_presentation')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
-          <li><a href="#resume-abstract" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
-          <li><a href="#avant-propos" (click)="buttonClick('avant-propos')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
-          <li><a href="#begining" (click)="buttonClick('begining')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
-          <li><a href="#chapitre1-rnass" (click)="buttonClick('chapitre1-rnass')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
-          <li><a href="#chapitre2-rdv" (click)="buttonClick('chapitre2-RDV')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre2 | RDV</a></li>
-          <li><a href="#chapitre3-coherence" (click)="buttonClick('chapitre3-coherence')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre 3 | Pouvoir discriminant des MCN</a></li>
-          <li><a href="#figure" (click)="buttonClick('resume-abstract')" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Figure</a></li>
-          <li><a href="javascript:topFunction()">Top</a></li>
+          <li><a  (click)="activatePanel(0);goTo('#page_presentation');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Page de présentation</a></li>
+          <li><a  (click)="activatePanel(1);goTo('#resume-abstract');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Résumé/abstract</a></li>
+          <li><a  (click)="activatePanel(2);goTo('#avant-propos');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Avant-propos</a></li>
+          <li><a  (click)="activatePanel(3);goTo('#begining');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Introduction</a></li>
+          <li><a  (click)="activatePanel(4);goTo('#chapitre1-rnass');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre1 | RNASS</a></li>
+          <li><a  (click)="activatePanel(5);goTo('#chapitre2-rdv');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre2 | RDV</a></li>
+          <li><a  (click)="activatePanel(6);goTo('#chapitre3-coherence');" contentsLink pageScroll (pageScrollFinish)="doSmth($event)">Chapitre 3 | Pouvoir discriminant des MCN</a></li>
+          <li><a  (click)="activatePanel(0);goTo('#page_presentation');">^Top^</a></li>
         </ul>
       </div>
     </div>
