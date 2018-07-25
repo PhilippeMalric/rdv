@@ -10,3 +10,7 @@ p {
 
   font-size:20px;
 }
+
+td {
+  overflow-wrap: break-word;
+}

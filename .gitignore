@@ -42,7 +42,7 @@ Thumbs.db
 
 ./test
 
-# Asset to Big
+# Asset too Big
 /src/assets/rnaJson
 
 \.vs/
