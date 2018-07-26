@@ -4,13 +4,15 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Ncm } from '../objectDef/Ncm';
 import { map } from "rxjs/operators";
 
+import { environment } from "../../environments/environment"
+
 @Injectable({
   providedIn: 'root'
 })
 export class MajsrvService {
 
   filterD: any = null
-
+  devMode = !environment.production
 
   constructor(private http: HttpClient) {
 
@@ -43,21 +45,44 @@ export class MajsrvService {
 
   createNCMObservable(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
-    console.log("ncmUrl : ", ncmUrl)
-    return Observable.create(observer => {
-      fetch(ncmUrl).then(response => {
+    if (this.devMode){
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      console.log("ncmUrl : ", ncmUrl)
+      return Observable.create(observer => {
+        fetch(ncmUrl).then(response => {
 
-        return response.json();
+          return response.json();
 
-      }).then(body => {
+        }).then(body => {
 
-        observer.next(body)
-        observer.complete()
+          observer.next(body)
+          observer.complete()
+
+        })
+
+      })
+    }
+    else {
+
+      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      console.log("ncmUrl : ", ncmUrl)
+      return Observable.create(observer => {
+        fetch(ncmUrl).then(response => {
+
+          return response.json();
+
+         }).then(body => {
+
+           observer.next(body)
+          observer.complete()
+
+        })
 
       })
 
-    })
+}
+
+
   }
 
   createNCMObservableFiltered(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
@@ -74,9 +99,15 @@ export class MajsrvService {
 
   createNCM_stat_Observable(collection, soft, min): Observable<any[]> {
 
-    let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
-    console.log("ncmUrl : ", ncmUrl)
-    return this.http.get<Ncm[]>(ncmUrl)
+    if (this.devMode){
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
+      console.log("ncmUrl : ", ncmUrl)
+      return this.http.get<Ncm[]>(ncmUrl)
+    }
+    else {
+      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
+      console.log("ncmUrl : ", ncmUrl)
+      return this.http.get<Ncm[]>(ncmUrl)    }
 
 }
 

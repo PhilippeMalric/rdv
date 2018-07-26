@@ -19,7 +19,7 @@ export class GaugeLocalComponent implements OnInit {
         if (this.chartL.arrows[0]) {
           if (this.chartL.arrows[0].setValue) {
             this.chartL.arrows[0].setValue(valueLocal);
-            this.chartL.axes[0].setBottomText(valueLocal);
+            this.chartL.axes[0].setBottomText(valueLocal.toFixed(2));
           }
         }
       }

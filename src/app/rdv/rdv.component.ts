@@ -20,7 +20,7 @@ export class RdvComponent implements OnInit {
 
   constructor( private rnaJsonService: RnaJsonService) {
 
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 2; i++) {
 
       this.rnas.push(""+i);
 

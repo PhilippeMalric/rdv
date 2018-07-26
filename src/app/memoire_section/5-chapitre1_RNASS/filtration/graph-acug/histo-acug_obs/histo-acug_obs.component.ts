@@ -49,6 +49,12 @@ export class HistoACUG_obsComponent implements OnInit {
       "startDuration": 0,
       "theme": "light",
       "addClassNames": true,
+      autoMargins: false,
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      pullOutRadius: 0,
       "legend": {
         "position": "right",
         "marginRight": 100,

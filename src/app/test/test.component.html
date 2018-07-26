@@ -7,7 +7,23 @@
   <app-nvd3-scatter [collection]="collection2" soft="so"></app-nvd3-scatter>
   -->
 
-  <app-nvd3-scatter [collection]="collection9" soft="so"></app-nvd3-scatter>
-  <app-nvd3-scatter [collection]="collection9" soft="mcff"></app-nvd3-scatter>
+  <div *ngIf="!devMode">
+    <app-nvd3-scatter [collection]="prodExempleCollection" soft="so"></app-nvd3-scatter>
+    <app-nvd3-scatter [collection]="prodExempleCollection" soft="mcff"></app-nvd3-scatter>
+  </div>
+
+
+  <div *ngIf="devMode">
+
+    <app-nvd3-scatter [collection]="prodExempleCollection" soft="so"></app-nvd3-scatter>
+    <app-nvd3-scatter [collection]="prodExempleCollection" soft="mcff"></app-nvd3-scatter>
+
+    <hr />
+
+    <app-nvd3-scatter [collection]="collection11" soft="so"></app-nvd3-scatter>
+    <app-nvd3-scatter [collection]="collection11" soft="mcff"></app-nvd3-scatter>
+
+  </div>
+
 
 </div>

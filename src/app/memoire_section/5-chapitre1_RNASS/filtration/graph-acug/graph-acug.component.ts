@@ -5,7 +5,6 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs';
 import { MyJoinPipe } from '../../../../pipes/my-join.pipe';
-import { HistoACUGComponent } from 'src/app/memoire_section/5-chapitre1_RNASS/filtration/graph-acug/histo-acug/histo-acug.component';
 
 
 @Component({
@@ -33,12 +32,14 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
   currentName = "ETERNA_R00_0000";
 
   allSequences: String[] = []
+  allStn: number[] = []
   allAvg: number[] = []
-  allSeqEtAvg : any[] = []
-
+  allSeqAvgStn : any[] = []
+  
 
   public jsonFile$: Observable<String[]>
 
+  selectedStn: number;
   selectedReactivityAvg: number;
   selectedSeq: String;
 
@@ -62,6 +63,7 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
       let mappedSeq = $.map(data.data_annotation, function (v) { return v; })
       //console.log("mappedData", mappedData)
       this.allSequences = mappedSeq.map(x => x.sequence[0])
+      this.allStn = mappedSeq.map(x => Number((x.signal_to_noise[0]).split(":")[1]))
       //console.log("data.data_reactivity : ", data.data_reactivity)
       let mappedReactivityArray = Object.values(data.data_reactivity)
       //console.log("mappedReactivityArray : ", mappedReactivityArray)
@@ -78,8 +80,8 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
 
       //console.log("this.allSequences :", this.allSequences);
 
-      this.allSeqEtAvg = this.allSequences.map((seq, i) => {
-        return { seq: seq , reactivityAvg: this.allAvg[i] };
+      this.allSeqAvgStn = this.allSequences.map((seq, i) => {
+        return { seq: seq, reactivityAvg: this.allAvg[i], stn: this.allStn[i] };
       });
 
       //console.log(" this.allSeqEtAvg : ",this.allSeqEtAvg)
@@ -106,7 +108,9 @@ export class GraphACUGComponent implements OnInit, AfterViewInit {
   }
 
 
-  selectSeqEtAvg(event: Event, seq: String, reactivityAvg:number) {
+  selectSeqAvgStn(event: Event, seq: String, reactivityAvg: number, stn: number) {
+
+    this.selectedStn = stn;
     this.selectedSeq = seq;
     this.selectedReactivityAvg = reactivityAvg
     //console.log("this.selectedSeq : ", this.selectedSeq)

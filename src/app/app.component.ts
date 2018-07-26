@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { environment } from "../environments/environment"
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  devMode = !environment.production
   title = 'RDV';
 }

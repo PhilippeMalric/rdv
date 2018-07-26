@@ -20,7 +20,7 @@ export class GaugeGlobalComponent implements OnInit {
         if (this.chart.arrows[0]) {
           if (this.chart.arrows[0].setValue) {
             this.chart.arrows[0].setValue(value);
-            this.chart.axes[0].setBottomText(value);
+            this.chart.axes[0].setBottomText(value.toFixed(2));
           }
         }
       }

@@ -148,6 +148,8 @@ import { NCM2Component } from 'src/app/ncm2/ncm2.component';
 import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitre2-rdv.component';
 import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global/gauge-global.component';
 import { GaugeLocalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local/gauge-local.component';
+import { GaugeGlobalStnComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global-stn/gauge-global-stn.component';
+import { GaugeLocalStnComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-local-stn/gauge-local-stn.component';
 import { FilterNcmPipe } from './pipes/filter-ncm.pipe';
 import { TestComponent } from './test/test.component';
 import { SortPipe } from './pipes/sort.pipe';
@@ -269,6 +271,8 @@ const ROUTES: Routes = [
     Chapitre2RDVComponent,
     GaugeGlobalComponent,
     GaugeLocalComponent,
+    GaugeGlobalStnComponent,
+    GaugeLocalStnComponent,
     FilterNcmPipe,
     TestComponent,
     SortPipe,

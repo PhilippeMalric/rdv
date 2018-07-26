@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import { Component, OnInit } from '@angular/core';
 import { MajsrvService } from "../service/majsrv.service"
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from "../../environments/environment"
 
 @Component({
   selector: 'app-test',
@@ -12,11 +13,15 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class TestComponent implements OnInit {
 
+  devMode = !environment.production
+
   ngOnInit(): void {
   }
 
-  
-  collection9 = "qsub_all4__Filter_ETERNA_R_noPred__A_0_5_S_1_0_stn_1_5_ed_0_5_stat"
+  collection11 = "small2_Filter_ETERNA_R69_0001_noPred__A_0_5_S_1_5_stn_1_0_ed_20_0_stat"
+
+
+  prodExempleCollection = "small2_Filter_ETERNA_R87_0001_noPred__A_0_5_S_1_5_stn_1_0_ed_20_0_stat"
   
   }
 

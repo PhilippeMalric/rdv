@@ -39,15 +39,23 @@ export class HistoACUGComponent implements OnInit {
       "type": "pie",
       "startDuration": 0,
       "theme": "light",
-      "addClassNames": true,
+      labelsEnabled: false,
+      autoMargins: false,
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      pullOutRadius: 0,
+      "balloon": {
+        "fixedPosition": true
+      },
       "legend": {
+        "enabled":true,
         "position": "right",
         "marginRight": 100,
         "autoMargins": false
       },
-      "responsive": {
-        "enabled": false
-      },
+      "addClassNames": true,
       "innerRadius": "30%",
       "defs": {
         "filter": [{
