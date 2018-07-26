@@ -63,7 +63,7 @@ export class MajsrvService {
       })
     }
     else {
-
+      cmin = 0
       let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
@@ -105,9 +105,13 @@ export class MajsrvService {
       return this.http.get<Ncm[]>(ncmUrl)
     }
     else {
-      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
+      
+      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_stat/collection=${collection}/soft=${soft}/minimum=${min}`
       console.log("ncmUrl : ", ncmUrl)
-      return this.http.get<Ncm[]>(ncmUrl)    }
+      return this.http.get<Ncm[]>(ncmUrl)
+
+
+    }
 
 }
 
