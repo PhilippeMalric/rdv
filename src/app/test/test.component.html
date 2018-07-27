@@ -8,21 +8,16 @@
   -->
 
   <div *ngIf="!devMode">
-    <app-nvd3-scatter [collection]="prodExempleCollection" soft="so"></app-nvd3-scatter>
-    <app-nvd3-scatter [collection]="prodExempleCollection" soft="mcff"></app-nvd3-scatter>
+    <p>OneEXPatAtime_Filter_ETERNA_R00_0002_noPred__A_0_5_S_0_5_stn_0_5_ed_0_5_stat</p>
+    <app-nvd3-scatter></app-nvd3-scatter>
   </div>
 
 
   <div *ngIf="devMode">
+    <p>OneEXPatAtime_Filter_ETERNA_R00_0002_noPred__A_0_5_S_0_5_stn_0_5_ed_0_5_stat</p>use rdv
 
-    <app-nvd3-scatter [collection]="prodExempleCollection" soft="so"></app-nvd3-scatter>
-    <app-nvd3-scatter [collection]="prodExempleCollection" soft="mcff"></app-nvd3-scatter>
-
-    <hr />
-
-    <app-nvd3-scatter [collection]="collection11" soft="so"></app-nvd3-scatter>
-    <app-nvd3-scatter [collection]="collection11" soft="mcff"></app-nvd3-scatter>
-
+    <app-nvd3-scatter ></app-nvd3-scatter>
+   
   </div>
 
 

@@ -18,9 +18,7 @@ export class TestComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  collection11 = "small2_Filter_ETERNA_R69_0001_noPred__A_0_5_S_1_5_stn_1_0_ed_20_0_stat"
-
-
+ 
   prodExempleCollection = "small2_Filter_ETERNA_R87_0001_noPred__A_0_5_S_1_5_stn_1_0_ed_20_0_stat"
   
   }
