@@ -1,9 +1,9 @@
-<p-dataView #dv [value]="ncms$|async" [paginator]="true" [rows]="3" paginatorPosition="both" filterBy="brand"
+<p-dataView #dv [value]="ncms$|async" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand"
             [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-4">
+        <div class="ui-12">
           <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
@@ -15,41 +15,36 @@
     </div>
   </p-header>
   <ng-template let-ncm pTemplate="listItem">
-    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-      <div class="ui-g-12 ui-md-6" style="text-align:center">
-        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items] ="ncm.items"> </app-graph-layout>
+    <div class="row" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="col-12  col-md-8" style="text-align:center">
+        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items]="ncm.items"> </app-graph-layout>
       </div>
-      <div class="ui-g-12 ui-md-8 ncm-details">
+      <div class="col-12 col-md-4 ncm-details">
         <div class="ui-g">
           <div class="ui-g-2 ui-sm-6">Id: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm._id}}</b></div>
-
           <div class="ui-g-2 ui-sm-6">Écart type: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.stdDev}}</b></div>
-
           <div class="ui-g-2 ui-sm-6">Score moyen: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.scoreMoy}}</b></div>
-
           <div class="ui-g-2 ui-sm-6">Nombre d'occurence: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{ncm.count}}</b></div>
         </div>
       </div>
-      <div class="ui-g-12 ui-md-6 ui-lg-3 search-icon">
+    </div>
+    <div class="row" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-6 search-icon">
         <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
       </div>
-      <div class="ui-g-12 ui-md-6 ui-lg-3">
+      <div class="ui-6">
         <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
       </div>
     </div>
   </ng-template>
   <ng-template let-ncm pTemplate="gridItem">
-    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+    <div style="padding:.5em" class="ui-12 ui-md-6">
       <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
-        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy"> </app-graph-layout>
-        <div class="ncm-detail">{{ncm.scoreMoy}}</div>
-        <hr class="ui-widget-content" style="border-top:0">
-        <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
-        <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
+        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items]="ncm.items"> </app-graph-layout>
       </p-panel>
     </div>
   </ng-template>
