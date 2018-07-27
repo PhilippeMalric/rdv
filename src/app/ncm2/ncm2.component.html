@@ -20,26 +20,39 @@
         <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items]="ncm.items"> </app-graph-layout>
       </div>
       <div class="col-12 col-md-4 ncm-details">
-        <div class="ui-g">
-          <div class="ui-g-2 ui-sm-6">Id: </div>
-          <div class="ui-g-10 ui-sm-6"><b>{{ncm._id}}</b></div>
-          <div class="ui-g-2 ui-sm-6">Écart type: </div>
-          <div class="ui-g-10 ui-sm-6"><b>{{ncm.stdDev}}</b></div>
-          <div class="ui-g-2 ui-sm-6">Score moyen: </div>
-          <div class="ui-g-10 ui-sm-6"><b>{{ncm.scoreMoy}}</b></div>
-          <div class="ui-g-2 ui-sm-6">Nombre d'occurence: </div>
-          <div class="ui-g-10 ui-sm-6"><b>{{ncm.count}}</b></div>
+        <table>
+          <tr>
+            <th>Caractéristique</th>
+            <th>Valeur</th>
+          </tr>
+          <tr>
+            <td>Id</td>
+            <td>{{ncm._id}}</td>
+          </tr>
+          <tr>
+            <td>Écart type</td>
+            <td>{{ncm.stdDev}}</td>
+          </tr>
+          <tr>
+            <td>Score moyen</td>
+            <td>{{ncm.scoreMoy}}</td>
+          </tr>
+          <tr>
+            <td>Nombre d'occurence</td>
+            <td>{{ncm.count}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="row" style="padding: 2em;">
+        <div class="ui-6 search-icon">
+          <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+        </div>
+        <div class="ui-6">
+          <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
         </div>
       </div>
     </div>
-    <div class="row" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-      <div class="ui-6 search-icon">
-        <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
-      </div>
-      <div class="ui-6">
-        <p-button label="Process" icon="fa fa-fw fa-check" (click)="processNcm($event, ncm)"></p-button>
-      </div>
-    </div>
+    
   </ng-template>
   <ng-template let-ncm pTemplate="gridItem">
     <div style="padding:.5em" class="ui-12 ui-md-6">
