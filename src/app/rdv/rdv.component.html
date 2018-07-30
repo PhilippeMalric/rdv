@@ -9,20 +9,24 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <div class="row">
+    <input #textbox type="text" [(ngModel)]="rna" placeholder="Your RNA here">
+    <button (click)="click()">Update chart</button>
+  </div>
   <div class="d3-chart" #chart></div>
 
 
-  <!--
-      <svg id="ss_svg" width=100% height="1000px"></svg>
-       <svg id="svgStat" width=100% height="100px"></svg>
+    <!--
+        <svg id="ss_svg" width=100% height="1000px"></svg>
+         <svg id="svgStat" width=100% height="100px"></svg>
 
 
 
-      <div id="hiDiv"> </div>
-      <div id="lowDiv"></div>
+        <div id="hiDiv"> </div>
+        <div id="lowDiv"></div>
 
 
-  -->
+    -->
 
 
-</div>
+  </div>

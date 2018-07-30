@@ -13,7 +13,7 @@ export class RdvComponent implements OnInit {
 
   rnas:string[] = []
   svg: any;
-
+  rna = ""
 
   @ViewChild('chart') private chartContainer: ElementRef;
   
@@ -25,8 +25,10 @@ export class RdvComponent implements OnInit {
       this.rnas.push(""+i);
 
     }
-
-
+    this.rnas.push("ETERNA_R00_0002_37");
+    this.rnas.push("ETERNA_R69_0000_2674");
+    this.rnas.push("ETERNA_R69_0000_3008");
+    
   }
 
   ngOnInit() {
@@ -40,7 +42,15 @@ export class RdvComponent implements OnInit {
   changeRNA(name) {
     console.log("changeRNA : name : ",name)
    this.loadJson(name)
-}
+  }
+
+  click() {
+    let name = this.rna
+
+    console.log("changeRNA : name : ", name)
+    this.loadJson(name)
+  }
+
 
 
   loadJson(name) {

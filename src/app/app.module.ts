@@ -143,7 +143,7 @@ import { Conclusion3Component } from './memoire_section/7-chapitre3-coherence/co
 import { RdvComponent } from './rdv/rdv.component';
 import { MyJoinPipe } from './pipes/my-join.pipe';
 import { NCM2Component } from 'src/app/ncm2/ncm2.component';
-
+import { NCM_mcffComponent } from 'src/app/ncm_mcff/ncm_mcff.component';
 
 import { Chapitre2RDVComponent } from './memoire_section/6-chapitre2-rdv/chapitre2-rdv.component';
 import { GaugeGlobalComponent } from './memoire_section/5-chapitre1_RNASS/filtration/graph-acug/gauge-global/gauge-global.component';
@@ -162,6 +162,7 @@ const ROUTES: Routes = [
   { path: 'doc', component: DocComponent },
   { path: 'viewer', component: RdvComponent },
   { path: 'ncm', component: NCM2Component },
+  { path: 'ncm_mcff', component: NCM_mcffComponent },
   {
     path: 'about',
     component: AboutComponent
@@ -215,6 +216,7 @@ const ROUTES: Routes = [
     RMDBComponent,
     EternaComponent,
     NCM2Component,
+    NCM_mcffComponent,
     SousStructureComponent,
     AvantProposComponent,
     PredictionSSComponent,

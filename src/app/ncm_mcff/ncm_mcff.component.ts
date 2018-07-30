@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-ncm2',
-  templateUrl: './ncm2.component.html',
-  styleUrls: ['./ncm2.component.css']
+  selector: 'app-ncm-mcff',
+  templateUrl: './ncm_mcff.component.html',
+  styleUrls: ['./ncm_mcff.component.css']
 })
-export class NCM2Component implements OnInit {
+export class NCM_mcffComponent implements OnInit {
 
   ncms: Ncm[] = [];
   ncms$: Observable<Ncm[]>
@@ -47,7 +47,7 @@ export class NCM2Component implements OnInit {
 
 
     //this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms = ncms });
-    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_mcff(this.skip, this.limit, this.cmin, this.stdDevMax);
 
 
     this.sortOptions = [

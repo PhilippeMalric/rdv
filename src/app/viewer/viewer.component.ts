@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerComponent implements OnInit {
 
+  rna = ""
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
+
 
 }

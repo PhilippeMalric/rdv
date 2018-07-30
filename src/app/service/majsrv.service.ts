@@ -43,10 +43,10 @@ export class MajsrvService {
     })
   }
 
-  createNCMObservable(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservable_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     if (this.devMode){
-      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_so/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
         fetch(ncmUrl).then(response => {
@@ -64,7 +64,7 @@ export class MajsrvService {
     }
     else {
       cmin = 0
-      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev_so/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
         fetch(ncmUrl).then(response => {
@@ -85,12 +85,68 @@ export class MajsrvService {
 
   }
 
-  createNCMObservableFiltered(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservableFiltered_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    return this.createNCMObservable(skip, limit, cmin, stdDevMax)
+    return this.createNCMObservable_so(skip, limit, cmin, stdDevMax)
       .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
+      //.pipe(map(epics => epics.filter((ncm: any) => (ncm._id.indexOf("3_2") != -1))));
 
   }
+
+  //------- Mcff
+
+  createNCMObservable_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+
+    if (this.devMode) {
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_mcff/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      console.log("ncmUrl : ", ncmUrl)
+      return Observable.create(observer => {
+        fetch(ncmUrl).then(response => {
+
+          return response.json();
+
+        }).then(body => {
+
+          observer.next(body)
+          observer.complete()
+
+        })
+
+      })
+    }
+    else {
+      cmin = 0
+      let ncmUrl = `https://mlabapi.herokuapp.com/ncm_grouped_Low_std_dev_mcff/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      console.log("ncmUrl : ", ncmUrl)
+      return Observable.create(observer => {
+        fetch(ncmUrl).then(response => {
+
+          return response.json();
+
+        }).then(body => {
+
+          observer.next(body)
+          observer.complete()
+
+        })
+
+      })
+
+    }
+
+
+  }
+
+  createNCMObservableFiltered_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+
+    return this.createNCMObservable_mcff(skip, limit, cmin, stdDevMax)
+      .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
+      //.pipe(map(epics => epics.filter((ncm: any) => (ncm._id.indexOf("3_2") != -1 ))));
+  }
+
+
+
+
 
 
   sortNcm = (a,b) => {
