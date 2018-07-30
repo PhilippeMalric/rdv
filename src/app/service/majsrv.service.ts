@@ -17,10 +17,12 @@ export class MajsrvService {
   constructor(private http: HttpClient) {
 
     this.filterD = {}
-    this.filterD["-&-"] = 1;
-    this.filterD["noVG_notPaired&-"] = 1;
-    this.filterD["Premier_notPaired&-"] = 1;
-
+    this.filterD["-"] = 1;
+    this.filterD["noVG_notPaired"] = 1;
+    this.filterD["Premier_Paired"] = 1;
+    this.filterD["Premier_notPaired"] = 1;
+    this.filterD["noVG_Paired"] = 1;
+    
   }
 
   test(): Observable<any> {
@@ -88,7 +90,15 @@ export class MajsrvService {
   createNCMObservableFiltered_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     return this.createNCMObservable_so(skip, limit, cmin, stdDevMax)
-      .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
+      .pipe(map(epics => epics.filter((ncm: any) => {
+        if (ncm._id.indexOf("&") != -1) {
+          let splited = ncm._id.split("&");
+          return !(splited[0] in this.filterD || (splited[1] in this.filterD))
+        }
+        else {
+          return !(ncm._id in this.filterD);
+        }
+      })))
       //.pipe(map(epics => epics.filter((ncm: any) => (ncm._id.indexOf("3_2") != -1))));
 
   }
@@ -140,7 +150,15 @@ export class MajsrvService {
   createNCMObservableFiltered_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     return this.createNCMObservable_mcff(skip, limit, cmin, stdDevMax)
-      .pipe(map(epics => epics.filter((ncm: any) => !(ncm._id in this.filterD))));
+      .pipe(map(epics => epics.filter((ncm: any) => {
+        if (ncm._id.indexOf("&") != -1) {
+          let splited = ncm._id.split("&");
+          return !(splited[0] in this.filterD || (splited[1] in this.filterD))
+        }
+        else {
+          return !(ncm._id in this.filterD);
+        }
+    })))
       //.pipe(map(epics => epics.filter((ncm: any) => (ncm._id.indexOf("3_2") != -1 ))));
   }
 
@@ -169,10 +187,7 @@ export class MajsrvService {
 
     }
 
-}
-
-
-
+  }
 
 }
 
