@@ -40,7 +40,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.height = 300
-    this.width = 300
+    this.width = 400
+
     console.log("id : ", this._id)
     console.log("score : ", this.score)
     //plotly
@@ -96,7 +97,6 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     this.fromMergedToGraphLayout(this._id);
 
   }
-
 
  
 
@@ -210,34 +210,102 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
   }
 
-  unNcm_tx_togL = (loop: String) => {
+  unNcm_tx_togL = (merged: String) => {
 
     let nodeTab = [];
     let linkTab = [];
 
 
-    let pos = loop.split("_")[2]
-
-    let seq = loop.split("---")[1].split("_")[0]
-
-
-    console.log("s : ", loop, " pos : ", pos, " seq : ", seq);
+    let pos = merged.split("_")[2]
+    if (merged.indexOf("---") != -1) {
+      let seq = merged.split("---")[1].split("_")[0]
 
 
-    nodeTab = this.createNodes1(seq, pos);
-    linkTab = this.createLinks1(seq);
+      console.log("s : ", merged, " pos : ", pos, " seq : ", seq);
 
 
-    this.graph = { "nodes": nodeTab, "links": linkTab }
+      nodeTab = this.createNodes1(seq, pos);
+      linkTab = this.createLinks1(seq);
 
-    if (!this.graph.nodes) {
-      this.graph = { "nodes": [], "links": [] }
+
+      this.graph = { "nodes": nodeTab, "links": linkTab }
+
+      if (!this.graph.nodes) {
+        this.graph = { "nodes": [], "links": [] }
+      }
+      console.log("graph : ", this.graph)
+
+      const element = this.chartContainer.nativeElement;
+
+      this.createGraph(element);
     }
-    console.log("graph : ", this.graph)
+    else {
+      //------------------------------------------------------------------------------
+      let nodes = []
 
-    const element = this.chartContainer.nativeElement;
-   
-    this.createGraph(element);
+      let seq1 = merged.split("-")[1]
+      let seq2 = merged.split("-")[2].split("_")[0]
+
+
+      console.log("nodes creation")
+      for (let c of seq1.split("")) {
+
+        nodes.push(this.nodeGen(c, 1))
+
+      }
+      for (let c of seq2.split("")) {
+
+        nodes.push(this.nodeGen(c, 1))
+
+      }
+
+     
+      console.log("nodes : ", nodes)
+
+      let splitted = merged.split("_")
+
+      let p = splitted[3]
+
+      nodes[Number(p)].group = 2
+
+      let links = []
+      console.log("Links creation")
+
+      let l_s1 = seq1.length - 1
+      let l_total = seq1.length + seq2.length
+
+
+      // lien des paires de bases
+      links.push(this.linkGen(0, l_total-1, 1))
+      links.push(this.linkGen(l_s1 , l_s1 + 1, 1))
+
+      // lien phosphate
+
+      // premier segment
+      for (let i of range(0, l_s1)) {
+        links.push(this.linkGen(i, i + 1, 2))
+      }
+
+      // deuxieme segment (dernier si on considere les 2 NCM en tournant dans le sens des aiguilles d'une montre)
+      for (let i of range(l_s1 + 1, l_total - 1)) {
+        links.push(this.linkGen(i, i + 1, 2))
+      }
+
+      console.log("Links : ", links)
+
+      //debugger;
+      this.graph = { "nodes": nodes, "links": links };
+
+
+
+      if (!this.graph.nodes) {
+        this.graph = { "nodes": [], "links": [] }
+      }
+
+      const element = this.chartContainer.nativeElement;
+      this.createGraph(element)
+
+    }
   }
 
   createRedCircle() {
@@ -631,7 +699,18 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     e.vy = e.vy + 5 * ((Math.random() - 0.5) - ((e.y - this.height * 0.5) / this.height * 0.5));
 }
 
+colorScaleLegend = (arg1) => {
 
+  console.log("arg1 : ", arg1)
+  let result = d3.scaleLinear<string>()
+    .domain([-1, 0.5, 1, 6])
+    .range(['#160CAE', '#44098D', '#89055C', '#E5001A'])
+    .interpolate(d3.interpolateHcl)(arg1);
+
+  console.log("result : ", result)
+
+  return result
+}
   createGraph = (element) => {
 
 
@@ -676,7 +755,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink().distance(20))
       .force("charge", d3.forceManyBody().strength(-100))
-      .force("center", d3.forceCenter(this.width / 2, this.height / 2));
+      .force("center", d3.forceCenter((this.width / 2) +50 , this.height / 2));
 
     let link = svg.append("g")
       .attr("class", "links")
@@ -741,14 +820,27 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
    this.force = simulation;
 
-  svg.append("rect")
-    .style("fill", fillcolorRect(this.score))
-    .attr("width", 50)
-    .attr("height", 50)
-    .attr("x", 5)
-    .attr("y", 5)
-    .on('click', this.move);
+    let data = [-1,0,0.25,0.5,0.75,1,2,3,4,5]
 
+    data = data.reverse()
+
+    let bar = svg.selectAll(".g2")
+      .data(data)
+      .enter().append("g")
+      .attr("transform", (d, i) => { return "translate(20," + i * this.height / data.length + ")"; });
+
+    bar
+      .append("rect")
+      .style("fill", (d,i) => this.colorScaleLegend(d))
+      .attr("width", 50)
+      .attr("height", this.height / data.length )
+
+    bar
+      .append("text")
+      .attr("x", -20)
+      .attr("y", (d, i) => (this.height / data.length) -10)
+      .attr("dy", ".35em")
+      .text(function (d) { return d; });
  } ;
 
 }

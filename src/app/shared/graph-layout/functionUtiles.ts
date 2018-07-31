@@ -11,14 +11,15 @@ function colorScale(arg1) {
 
   console.log("arg1 : ", arg1)
   let result = d3.scaleLinear<string>()
-    .domain([0, 1])
-    .range(['red', 'blue'])
+    .domain([0, 0.5, 1, 6])
+    .range(['#160CAE', '#44098D', '#89055C', '#E5001A'])
     .interpolate(d3.interpolateHcl)(arg1);
 
   console.log("result : ", result)
 
   return result
 }
+
 
 export function fillcolorNode(d: Node,score){
     if (d.group == 1) {

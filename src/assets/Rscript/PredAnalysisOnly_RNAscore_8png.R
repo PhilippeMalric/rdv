@@ -1,4 +1,3 @@
-
 library("rjson")
 
 # pred analysis
@@ -74,6 +73,7 @@ getDetails = function(nt){
   
 }
 
+
 nt = predJson[[1]]$nts[[1]]
 
 nt.list = sapply(predJson,getNTS)
@@ -82,6 +82,12 @@ nt.list = sapply(predJson,getNTS)
 nt.v = unlist(nt.list,recursive=FALSE)
 
 my.nt = nt.v[[1]]
+
+
+
+
+
+
 
 get.rr = function(my.nt){
   my.nt$real.react
@@ -208,6 +214,7 @@ ratio.low.audessus.sous.mcff = length(low.audessus0.mcff)/length(low.predV.sous0
 low.pv.so = sapply(low.v,get.pred.val.so)
 
 plot(sort(low.pv.so))
+
 
 low.predV.sous0.so = low.v[which(low.pv.so < 0)]
 

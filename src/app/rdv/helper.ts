@@ -396,6 +396,39 @@ let id = ""
 //d3.json("/JSON_FOLDER_10_9_poids/"+id+".json",function(err,data){
 export const plotRNA = function (svg_ss, data, pos) {
 
+
+  let width_ss = +$("#ss_svg").width() / 2;
+  let height_ss = +$("#ss_svg").height();
+
+  const reactivityScaleColor = d3.scaleLinear<string>()
+    .domain([-1,0, 0.5, 1,5,10])
+    .range(['#160CAE', '#44098D', '#89055C',"#ff4da6","#ff4d4d", '#E5001A'])
+    .interpolate(d3.interpolateHcl);
+
+  let dataL = [-1, 0, 0.25, 0.5, 0.75, 1, 2, 3, 4, 5,6,7,8,9,10]
+
+  dataL = dataL.reverse()
+
+  let bar = svg_ss.selectAll(".g2")
+    .data(dataL)
+    .enter().append("g")
+    .attr("transform", (d, i) => { return "translate(30," + ((i * 30)+150) + ")"; });
+
+  bar
+    .append("rect")
+    .style("fill", (d, i) => reactivityScaleColor(d))
+    .attr("width", 50)
+    .attr("height", 30)
+    .attr("rx", 5) //rx and ry give the buttons rounded corners
+    .attr("ry", 5)
+
+  bar
+    .append("text")
+    .attr("x", 50)
+    .attr("y", 10)
+    .attr("dy", ".50em")
+    .text(function (d) { return d; });
+
   const colorConverter = {};
   colorConverter['A'] = google_colors(0);
   colorConverter['C'] = google_colors(1);
@@ -519,9 +552,7 @@ export const plotRNA = function (svg_ss, data, pos) {
   let filtered_erreur: any[] = filterMinus1(jsonData.erreurTab)
 
 
-  const reactivityScaleColor = d3.scaleLinear<RGBColor>()
-    .domain(d3.extent(filterMinus1(jsonData.scoreTab)))
-    .range([d3.rgb("red").brighter(), d3.rgb("blue").brighter()]);
+  
 
   const reactivityErrorScaleColor = d3.scaleLinear<RGBColor>()
     .domain(d3.extent(filterMinus1(jsonData.erreurTab)))
@@ -570,9 +601,6 @@ export const plotRNA = function (svg_ss, data, pos) {
 
 
   let ntTab = ['A', 'U', 'C', 'G'];
-
-  let width_ss = +$("#ss_svg").width() / 2;
-  let height_ss = +$("#ss_svg").height();
 
   svg_ss.on("mouseup", shuffleStop)
 

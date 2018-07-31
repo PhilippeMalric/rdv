@@ -98,6 +98,5 @@ export class NCM2Component implements OnInit {
     this.selectedNcm = null;
   }
 
-
 }
 
