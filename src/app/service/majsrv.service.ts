@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Ncm } from '../objectDef/Ncm';
 import { map } from "rxjs/operators";
-
 import { environment } from "../../environments/environment"
 
 @Injectable({
@@ -46,8 +45,9 @@ export class MajsrvService {
 
   createNCMObservable_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    if (this.devMode){
-      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_so/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+    if (this.devMode) {
+      let collection = "RNA_ALL_0_5_0_5_0_5"
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_so/collection=${collection}/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
         fetch(ncmUrl).then(response => {
@@ -121,7 +121,8 @@ export class MajsrvService {
   createNCMObservable_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     if (this.devMode) {
-      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_mcff/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
+      let collection = "RNA_ALL_0_5_0_5_0_5"
+      let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_mcff/collection=${collection}/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
         fetch(ncmUrl).then(response => {
@@ -216,6 +217,30 @@ export class MajsrvService {
     }
 
   }
+
+
+  getRNA(collection:string,exp:string,id:string):Observable<any[]> {
+    if (this.devMode) {
+      let rnaUrl = `http://majsrv1.iric.ca:3000/rna/collection=${collection}/exp=${exp}/id=${id}`
+      console.log("ncmUrl : ", rnaUrl)
+      return this.http.get<any[]>(rnaUrl)
+    }
+    else {
+     /* 
+      let ncmUrl = `https://mlabapi.herokuapp.com/rna/collection=/exp=:exp/id=:id"`
+      console.log("ncmUrl : ", ncmUrl)
+      return this.http.get<Ncm[]>(ncmUrl)
+      */
+      let name = "1"
+      let url = "./assets/rnaJson/" + name + ".json"
+      console.log("url", url)
+      return null
+       
+
+    }
+    
+  }
+
 
 }
 
