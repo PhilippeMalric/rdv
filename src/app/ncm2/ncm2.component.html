@@ -1,4 +1,4 @@
-<p-dataView #dv [value]="ncms$|async" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand"
+<p-dataView #dv [value]="ncms$|async" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="_id"
             [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
     <div class="ui-helper-clearfix">
@@ -7,6 +7,9 @@
           <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
+          <div style="position:relative">
+            <input type="search" pInputText placeholder="Recherche par Identifiant" (keyup)="dv.filter($event.target.value)">
+          </div>
         </div>
         <div class="ui-g-6 ui-md-4" style="text-align:right">
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>

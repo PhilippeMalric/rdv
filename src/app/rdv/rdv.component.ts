@@ -31,7 +31,13 @@ export class RdvComponent implements OnInit {
     this.rnas.push("ETERNA_R00_0002_2192");
     this.rnas.push("ETERNA_R70_0000_30");
     this.rnas.push("ETERNA_R77_0002_23");
-    
+    this.rnas.push("ETERNA_R70_0000_20");
+    this.rnas.push("ETERNA_R77_0001_23");
+    this.rnas.push("ETERNA_R70_0000_27");
+    this.rnas.push("ETERNA_R77_0002_30");
+
+    this.rnas.push("ETERNA_R70_0000_31");
+
     
   }
 

@@ -644,7 +644,7 @@ export const plotRNA = function (svg_ss, data, pos) {
           }
         }
         updateSS(secStructSelected_int)
-      }, 300);
+      }, 100);
     }
     else {
       scrollOn = false

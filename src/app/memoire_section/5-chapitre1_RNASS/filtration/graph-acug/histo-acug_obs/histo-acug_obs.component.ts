@@ -55,11 +55,6 @@ export class HistoACUG_obsComponent implements OnInit {
       marginLeft: 0,
       marginRight: 0,
       pullOutRadius: 0,
-      "legend": {
-        "position": "right",
-        "marginRight": 100,
-        "autoMargins": false
-      },
       "innerRadius": "30%",
       "defs": {
         "filter": [{
