@@ -82,7 +82,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         ],
         tooltip: {
           contentGenerator: function (d) {
-            //console.log("data:", d);
+            console.log(d.point.exp, d.point.rna, d.point.pos, d.point.score);
             return '<p>RNA : ' + d.point.rna + '</p><p>Exp : ' + d.point.exp + '</p><p>Pos : ' + d.point.pos + '</p><p>Score : ' + d.point.score+'</p>'; }
         }
       }

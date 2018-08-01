@@ -68,8 +68,8 @@ export class RdvComponent implements OnInit {
 
   click_api() {
     this.majsrvService.getRNA(this.collection, this.exp, this.id).subscribe(data => {
-      console.log("data: ", data)
-      this.createVizualisation(data)
+      console.log("data: ", data[0])
+      this.createVizualisation(data[0])
     })
 
 
@@ -98,13 +98,10 @@ export class RdvComponent implements OnInit {
       .attr('height', height)
       .attr("id","ss_svg");
 
-
-
     plotRNA(this.svg, jsonData, pos)
 
   }
 
-  
   // fin export
 }
 
