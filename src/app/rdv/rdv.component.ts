@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RnaJsonService } from 'src/app/service/rna-json.service';
+import { MajsrvService } from 'src/app/service/majsrv.service';
 import * as d3 from 'd3';
 import { google_colors, plotRNA, click_ss } from './helper'
 
@@ -13,12 +14,16 @@ export class RdvComponent implements OnInit {
 
   rnas:string[] = []
   svg: any;
+  collection = "RNA_ALL_0_5_0_5_0_5"
   rna = ""
+  id = ""
+  exp = ""
+
 
   @ViewChild('chart') private chartContainer: ElementRef;
   
 
-  constructor( private rnaJsonService: RnaJsonService) {
+  constructor(private rnaJsonService: RnaJsonService, private majsrvService: MajsrvService) {
 
     for (let i = 1; i <= 2; i++) {
 
@@ -61,7 +66,14 @@ export class RdvComponent implements OnInit {
     this.loadJson(name)
   }
 
+  click_api() {
+    this.majsrvService.getRNA(this.collection, this.exp, this.id).subscribe(data => {
+      console.log("data: ", data)
+      this.createVizualisation(data)
+    })
 
+
+  }
 
   loadJson(name) {
 
