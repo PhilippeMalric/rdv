@@ -5,9 +5,11 @@ import { Node } from '../../objectDef/Node';
 import { Link } from '../../objectDef/Link';
 import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
+import { Jerzy } from "jerzy"
 
 import { fillcolorNode, fillcolorRect, fillcolorLink} from './functionUtiles'
 
+declare var jerzy: any;
 
 function range(start, end): any {
  return Array.from({ length: (end - start) }, (v, k) => k + start);
@@ -90,6 +92,16 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     this.data = [{ values: this.items }];
   }
+
+  process() {
+
+    console.log(this.items)
+    let scores = this.items.map(x=>x.score)
+
+    let v = new jerzy.Vector(scores);
+    console.log(JSON.stringify(jerzy.Normality.shapiroWilk(v), null, 4));
+  }
+
 
   ngAfterViewInit() {
 
@@ -336,7 +348,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
 
     this.createGraph(element)
 
-  }
+  }
+
 
 
   // --------------- fonctions utiles
@@ -827,7 +840,7 @@ colorScaleLegend = (arg1) => {
     let bar = svg.selectAll(".g2")
       .data(data)
       .enter().append("g")
-      .attr("transform", (d, i) => { return "translate(20," + i * this.height / data.length + ")"; });
+      .attr("transform", (d, i) => { return "translate(0," + i * this.height / data.length + ")"; });
 
     bar
       .append("rect")
@@ -837,7 +850,7 @@ colorScaleLegend = (arg1) => {
 
     bar
       .append("text")
-      .attr("x", -20)
+      .attr("x", 55)
       .attr("y", (d, i) => (this.height / data.length) -10)
       .attr("dy", ".35em")
       .text(function (d) { return d; });

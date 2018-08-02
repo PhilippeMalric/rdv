@@ -157,6 +157,7 @@ import { Nvd3ScatterComponent } from './shared/nvd3-scatter/nvd3-scatter.compone
 
 
 
+
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'doc', component: DocComponent },

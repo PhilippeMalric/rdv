@@ -63,6 +63,7 @@ export class NCM2Component implements OnInit {
   }
 
 
+
   click() {
 
     this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);

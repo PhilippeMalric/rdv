@@ -34,7 +34,7 @@
               "./node_modules/primeng/resources/themes/omega/theme.css",
               "./node_modules/nvd3/build/nv.d3.css"
             ],
-            "scripts": []
+            "scripts": [ "./node_modules/jerzy/jerzy.js" ]
           },
           "configurations": {
             "production": {
