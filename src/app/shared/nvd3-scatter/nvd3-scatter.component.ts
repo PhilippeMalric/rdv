@@ -30,7 +30,7 @@ export class Nvd3ScatterComponent implements OnInit {
 
 
 
-  min = 1
+  min = 5
 
   mySort = (a: any, b: any): number => {
     if ((a.low + a.hi) == 0 && (b.low + b.hi) == 0) {
