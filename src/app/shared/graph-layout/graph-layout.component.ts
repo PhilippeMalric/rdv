@@ -40,7 +40,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   public options = null
   public data = null
   public stringV = ""
-
+  public ncmSelected = ""
   ngOnInit() {
     this.height = 300
     this.width = 400
@@ -86,6 +86,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
         tooltip: {
           contentGenerator: function (d) {
             console.log(d.point.exp, d.point.rna, d.point.pos, d.point.score);
+            this.ncmSelected = [d.point.exp d.point.rna, d.point.pos, d.point.score].join(" ")
             return '<p>RNA : ' + d.point.rna + '</p><p>Exp : ' + d.point.exp + '</p><p>Pos : ' + d.point.pos + '</p><p>Score : ' + d.point.score+'</p>'; }
         }
       }
