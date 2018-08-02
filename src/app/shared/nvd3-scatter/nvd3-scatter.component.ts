@@ -166,7 +166,7 @@ export class Nvd3ScatterComponent implements OnInit {
         },
         tooltip: {
           contentGenerator: (d) => {
-            this.ncm1 = d.point.ncm;
+            this.ncm2 = d.point.ncm;
             console.log("ncm : ", this.ncm1);
             let ratio = (d.point.low + d.point.hi == 0) ? 0 : (d.point.hi - d.point.low) / (d.point.low + d.point.hi)
             let power = Math.pow(1 - Math.abs(ratio), 2)
