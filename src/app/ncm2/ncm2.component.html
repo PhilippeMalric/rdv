@@ -55,37 +55,39 @@
         </table>
       </div>
       <div class="row" style="padding: 2em;">
-        <div class="ui-6 search-icon">
-          <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+        <!--
+          <div class="ui-6 search-icon">
+            <p-button label="Détails" icon="fa fa-fw fa-search" (click)="selectNcm($event, ncm)"></p-button>
+          </div>
+            -->
         </div>
       </div>
+
+    </ng-template>
+    <ng-template let-ncm pTemplate="gridItem">
+      <div style="padding:.5em" class="ui-12 ui-md-6">
+        <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
+          <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items]="ncm.items"> </app-graph-layout>
+        </p-panel>
+      </div>
+    </ng-template>
+  </p-dataView>
+
+  <p-dialog header="NCM Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
+    <div class="ui-g" *ngIf="selectedNcm">
+      <div class="ui-g-12" style="text-align:center">
+        <app-graph-layout [_id]="selectedNcm._id" [score]="selectedNcm.scoreMoy" [items] ="ncm.items"> </app-graph-layout>
+      </div>
+      <div class="ui-g-4">Id: </div>
+      <div class="ui-g-8">{{selectedNcm._id}}</div>
+
+      <div class="ui-g-4">Écart type: </div>
+      <div class="ui-g-8">{{selectedNcm.stdDev}}</div>
+
+      <div class="ui-g-4">Score moyen: </div>
+      <div class="ui-g-8">{{selectedNcm.scoreMoy}}</div>
+
+      <div class="ui-g-4">Nombre d'occurence: </div>
+      <div class="ui-g-8">{{selectedNcm.count}}</div>
     </div>
-    
-  </ng-template>
-  <ng-template let-ncm pTemplate="gridItem">
-    <div style="padding:.5em" class="ui-12 ui-md-6">
-      <p-panel [header]="ncm._id" [style]="{'text-align':'center'}">
-        <app-graph-layout [_id]="ncm._id" [score]="ncm.scoreMoy" [items]="ncm.items"> </app-graph-layout>
-      </p-panel>
-    </div>
-  </ng-template>
-</p-dataView>
-
-<p-dialog header="NCM Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
-  <div class="ui-g" *ngIf="selectedNcm">
-    <div class="ui-g-12" style="text-align:center">
-      <app-graph-layout [_id]="selectedNcm._id" [score]="selectedNcm.scoreMoy" [items] ="ncm.items"> </app-graph-layout>
-    </div>
-    <div class="ui-g-4">Id: </div>
-    <div class="ui-g-8">{{selectedNcm._id}}</div>
-
-    <div class="ui-g-4">Écart type: </div>
-    <div class="ui-g-8">{{selectedNcm.stdDev}}</div>
-
-    <div class="ui-g-4">Score moyen: </div>
-    <div class="ui-g-8">{{selectedNcm.scoreMoy}}</div>
-
-    <div class="ui-g-4">Nombre d'occurence: </div>
-    <div class="ui-g-8">{{selectedNcm.count}}</div>
-  </div>
-</p-dialog>
+  </p-dialog>
