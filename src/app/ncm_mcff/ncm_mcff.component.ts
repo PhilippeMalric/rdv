@@ -88,9 +88,6 @@ export class NCM_mcffComponent implements OnInit {
     event.preventDefault();
   }
 
-  processNcm() {
-    this.stringV = ""
-  }
 
 
   onSortChange(event) {
