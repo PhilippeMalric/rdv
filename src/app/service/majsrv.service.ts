@@ -43,10 +43,9 @@ export class MajsrvService {
     })
   }
 
-  createNCMObservable_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservable_so(collection:string,skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     if (this.devMode) {
-      let collection = "RNA_ALL_0_5_0_5_0_5"
       let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_so/collection=${collection}/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
@@ -86,9 +85,9 @@ export class MajsrvService {
 
   }
 
-  createNCMObservableFiltered_so(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservableFiltered_so(collection:string, skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    return this.createNCMObservable_so(skip, limit, cmin, stdDevMax)
+    return this.createNCMObservable_so(collection,skip, limit, cmin, stdDevMax)
       /*
       .pipe(map(epics => epics.filter((ncm: any) => {
 
@@ -118,10 +117,9 @@ export class MajsrvService {
 
   //------- Mcff
 
-  createNCMObservable_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservable_mcff(collection:string, skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     if (this.devMode) {
-      let collection = "RNA_ALL_0_5_0_5_0_5"
       let ncmUrl = `http://majsrv1.iric.ca:3000/ncm_grouped_Low_std_dev_mcff/collection=${collection}/skip=${skip}/limit=${limit}/countMin=${cmin}/stdDevMax=${stdDevMax}`
       console.log("ncmUrl : ", ncmUrl)
       return Observable.create(observer => {
@@ -161,9 +159,9 @@ export class MajsrvService {
 
   }
 
-  createNCMObservableFiltered_mcff(skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
+  createNCMObservableFiltered_mcff(collection:string, skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
-    return this.createNCMObservable_mcff(skip, limit, cmin, stdDevMax)
+    return this.createNCMObservable_mcff(collection, skip, limit, cmin, stdDevMax)
       /*
       .pipe(map(epics => epics.filter((ncm: any) => {
        

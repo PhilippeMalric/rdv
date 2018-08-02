@@ -38,7 +38,9 @@ export class NCM_mcffComponent implements OnInit {
 
   displayDialog: boolean;
 
-  filterD:any
+  filterD: any
+
+  collection: string
 
   constructor(private ncmService: MajsrvService) { }
 
@@ -47,7 +49,7 @@ export class NCM_mcffComponent implements OnInit {
 
 
     //this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms = ncms });
-    this.ncms$ = this.ncmService.createNCMObservableFiltered_mcff(this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_mcff(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);
 
 
     this.sortOptions = [
@@ -58,6 +60,12 @@ export class NCM_mcffComponent implements OnInit {
       { label: 'Score Moyen croissant', value: 'scoreMoy' },
       { label: 'Score Moyen décroissant', value: '!scoreMoy' }
     ];
+  }
+
+  click() {
+
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);
+
   }
 
   /*

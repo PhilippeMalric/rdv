@@ -38,7 +38,9 @@ export class NCM2Component implements OnInit {
 
   displayDialog: boolean;
 
-  filterD:any
+  filterD: any
+
+  collection: string
 
   constructor(private ncmService: MajsrvService) { }
 
@@ -47,7 +49,7 @@ export class NCM2Component implements OnInit {
 
 
     //this.ncmService.getNCM(this.skip, this.limit, this.cmin, this.stdDevMax).then((ncms: Ncm[]) => { this.ncms = ncms });
-    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);
 
 
     this.sortOptions = [
@@ -60,6 +62,12 @@ export class NCM2Component implements OnInit {
     ];
   }
 
+
+  click() {
+
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);
+
+  }
   /*
   loadData(event) {
     //event.first = First row offset
