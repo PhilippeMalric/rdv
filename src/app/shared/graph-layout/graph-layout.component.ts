@@ -7,6 +7,7 @@ import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
 import { Jerzy } from "jerzy"
 
+
 import { fillcolorNode, fillcolorRect, fillcolorLink} from './functionUtiles'
 
 declare var jerzy: any;
@@ -98,8 +99,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     console.log(this.items)
     let scores = this.items.map(x=>x.score)
 
-    let v = new jerzy.Vector(scores);
-    console.log(JSON.stringify(jerzy.Normality.shapiroWilk(v), null, 4));
+    console.log(scores);
+    console.log("c("+scores.join(",")+")")
   }
 
 
