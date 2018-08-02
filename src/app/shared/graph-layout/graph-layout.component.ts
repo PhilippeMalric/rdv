@@ -5,7 +5,6 @@ import { Node } from '../../objectDef/Node';
 import { Link } from '../../objectDef/Link';
 import { Ncm } from '../../objectDef/Ncm';
 import { LNode } from '@angular/core/src/render3/interfaces/node';
-import { Jerzy } from "jerzy"
 
 
 import { fillcolorNode, fillcolorRect, fillcolorLink} from './functionUtiles'
