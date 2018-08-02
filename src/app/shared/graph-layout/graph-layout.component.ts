@@ -84,7 +84,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
           6
         ],
         tooltip: {
-          contentGenerator: function (d) {
+          contentGenerator: (d) => {
             console.log(d.point.exp, d.point.rna, d.point.pos, d.point.score);
             this.ncmSelected = [d.point.exp, d.point.rna, d.point.pos, d.point.score].join(" ")
             return '<p>RNA : ' + d.point.rna + '</p><p>Exp : ' + d.point.exp + '</p><p>Pos : ' + d.point.pos + '</p><p>Score : ' + d.point.score+'</p>'; }
