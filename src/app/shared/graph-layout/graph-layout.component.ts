@@ -40,7 +40,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   public options = null
   public data = null
   public stringV = ""
-  public ncmSelected = ""
+  public ncmSelected = "-"
   ngOnInit() {
     this.height = 300
     this.width = 400
