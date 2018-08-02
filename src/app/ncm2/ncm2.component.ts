@@ -84,9 +84,6 @@ export class NCM2Component implements OnInit {
     event.preventDefault();
   }
 
-  processNcm(event: Event, ncm: Ncm) {
-    console.log("process");
-  }
 
 
   onSortChange(event) {

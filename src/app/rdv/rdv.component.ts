@@ -14,7 +14,7 @@ export class RdvComponent implements OnInit {
 
   rnas:string[] = []
   svg: any;
-  collection = "RNA_ALL_0_5_0_5_0_5"
+  collection = "RNA_Hi_stn_seuil_1_5__Filter__0_a_90__noPred__A_0_5_S_20_0_stn_0_5_ed_5_0"
   rna = ""
   id = ""
   exp = ""

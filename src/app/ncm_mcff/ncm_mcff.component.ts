@@ -42,6 +42,8 @@ export class NCM_mcffComponent implements OnInit {
 
   collection: string
 
+  
+
   constructor(private ncmService: MajsrvService) { }
 
 
@@ -68,6 +70,9 @@ export class NCM_mcffComponent implements OnInit {
 
   }
 
+
+
+
   /*
   loadData(event) {
     //event.first = First row offset
@@ -83,8 +88,8 @@ export class NCM_mcffComponent implements OnInit {
     event.preventDefault();
   }
 
-  processNcm(event: Event, ncm: Ncm) {
-    console.log("process");
+  processNcm() {
+    this.stringV = ""
   }
 
 

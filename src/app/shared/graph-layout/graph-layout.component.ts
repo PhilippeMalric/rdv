@@ -39,7 +39,7 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
   private force = null
   public options = null
   public data = null
-
+  public stringV = ""
 
   ngOnInit() {
     this.height = 300
@@ -100,7 +100,8 @@ export class GraphLayoutComponent implements OnInit, AfterViewInit {
     let scores = this.items.map(x=>x.score)
 
     console.log(scores);
-    console.log("c("+scores.join(",")+")")
+    console.log("c(" + scores.join(",") + ")")
+    this.stringV = "c(" + scores.join(",") + ")"
   }
 
 
