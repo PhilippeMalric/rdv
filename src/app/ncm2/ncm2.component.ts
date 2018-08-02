@@ -40,7 +40,7 @@ export class NCM2Component implements OnInit {
 
   filterD: any
 
-  collection: string
+  collection: string = "RNA_Hi_stn_seuil_1_5__Filter__0_a_90__noPred__A_0_5_S_5_0_stn_1_5_ed_5_0"
 
   constructor(private ncmService: MajsrvService) { }
 
