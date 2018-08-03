@@ -18,7 +18,7 @@ export class NCM_mcffComponent implements OnInit {
 
   skip = 0;
   limit = 1000;
-  cmin = 5;
+  cmin = 20;
   stdDevMax = 10
 
   ncm1_Only_seq = ""

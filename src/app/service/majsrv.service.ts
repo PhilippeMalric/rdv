@@ -162,11 +162,11 @@ export class MajsrvService {
   createNCMObservableFiltered_mcff(collection:string, skip: Number, limit: Number, cmin: Number, stdDevMax: Number): Observable<Ncm[]> {
 
     return this.createNCMObservable_mcff(collection, skip, limit, cmin, stdDevMax)
-      /*
+      
       .pipe(map(epics => epics.filter((ncm: any) => {
        
         if (ncm._id) {
-          return ncm._id.indexOf("&") == -1 && ncm._id.indexOf("3_2") != -1
+          return ((ncm._id.indexOf("&") == -1) && (ncm._id.indexOf("3_2") != -1))
         }
         else {
           console.log("ncm._id : " + ncm._id)
@@ -174,7 +174,7 @@ export class MajsrvService {
         }
 
       })));
-    */
+    /*
       .pipe(map(epics => epics.filter((ncm: any) => {
         console.log("ncm._id : " + ncm._id)
         if (ncm._id.indexOf("&") != -1) {
@@ -185,11 +185,11 @@ export class MajsrvService {
           return !(ncm._id in this.filterD);
         }
     })))
-    
+    */
       //.pipe(map(epics => epics.filter((ncm: any) => (ncm._id.indexOf("3_2") != -1 ))));
   }
 
-
+  //Hi_stn_MFE_Filter__0_a_90__noPred__A_0_5_S_20_0_stn_0_5_ed_1_0
 
 
 
