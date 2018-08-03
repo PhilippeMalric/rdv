@@ -18,6 +18,7 @@ readFile = function(f)
   y["s"] = info[2]
   y["stn"] = info[3]
   y["ed"] = info[4]
+  y
   
 }
 
