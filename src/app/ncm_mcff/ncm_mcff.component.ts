@@ -40,7 +40,7 @@ export class NCM_mcffComponent implements OnInit {
 
   filterD: any
 
-  collection: string = "RNA_Hi_stn_seuil_1_5__Filter__0_a_90__noPred__A_0_5_S_5_0_stn_1_5_ed_5_0"
+  collection: string = "RNA_Hi_stn_MFE_Filter__90__Pred_db_rdv_col_0_5_0_5_0_5_stat__A_0_5_S_1_0_stn_6_0_ed_20_0"
 
   
 
@@ -66,7 +66,7 @@ export class NCM_mcffComponent implements OnInit {
 
   click() {
 
-    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection, this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection.trim(), this.skip, this.limit, this.cmin, this.stdDevMax);
 
   }
 
