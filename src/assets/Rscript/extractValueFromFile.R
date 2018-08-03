@@ -174,3 +174,174 @@ plot(sort(so.pairee.hi))
 
 
 
+#--------------------------------------------------- Matrice et roc curve
+
+
+
+
+getMatriceconfusion_p_mcff = function(nt,seuil){
+  
+  #print(seuil)
+  if(!is.null(nt$real.react)){
+    if(nt$real.react == "Hi"){
+      if(!nt$p_mcff){
+        res = "vraiPositif"
+      }
+      else{
+        res = "fauxPositif"
+      }
+    }
+    if(nt$real.react == "Low"){
+      if(nt$p_mcff ){
+        res = "vraiN???gatif"
+      }
+      else{
+        res = "fauxN???gatif"
+      }
+      
+    }
+    if(nt$real.react == "Bg"){
+      
+      res = "BG"
+    }
+  }
+  else{
+    res = "null"
+  }
+  
+  res
+  
+}
+
+getMatriceconfusion_p_so = function(nt,seuil){
+  if(!is.null(nt$real.react)){
+    if(nt$real.react == "Hi"){
+      if(nt$p_so){
+        res = "vraiPositif"
+      }
+      else{
+        res = "fauxPositif"
+      }
+    }
+    if(nt$real.react == "Low"){
+      if(nt$p_so ){
+        res = "vraiN???gatif"
+      }
+      else{
+        res = "fauxN???gatif"
+      }
+      
+    }
+    if(nt$real.react == "Bg"){
+      
+      res = "BG"
+    }
+  }
+  else{
+    res = "null"
+  }
+  
+  res
+  
+}
+
+getMatriceconfusion_pv_mcff = function(nt,seuil){
+  if(!is.null(nt$real.react)){
+    if(nt$real.react == "Hi"){
+      if(seuil < nt$pred.val.mcff ){
+        res = "vraiPositif"
+      }
+      else{
+        res = "fauxPositif"
+      }
+    }
+    if(nt$real.react == "Low"){
+      if(seuil < nt$pred.val.mcff ){
+        res = "vraiN???gatif"
+      }
+      else{
+        res = "fauxN???gatif"
+      }
+      
+    }
+    if(nt$real.react == "Bg"){
+      
+      res = "BG"
+    }
+  }
+  else{
+    res = "null"
+  }
+  res
+  
+}
+
+getMatriceconfusion_pv_so =function(nt,seuil){
+  if(!is.null(nt$real.react)){
+    if(nt$real.react == "Hi"){
+      if(seuil < nt$pred.val.so ){
+        res = "vraiPositif"
+      }
+      else{
+        res = "fauxPositif"
+      }
+    }
+    if(nt$real.react == "Low"){
+      if(seuil < nt$pred.val.so ){
+        res = "vraiN???gatif"
+      }
+      else{
+        res = "fauxN???gatif"
+      }
+      
+    }
+    if(nt$real.react == "Bg"){
+      
+      res = "BG"
+    }
+  }
+  else{
+    res = "null"
+  }
+  res
+  
+}
+
+getMCs = function (seuil){
+  
+  MC_pm = sapply(nt.v,getMatriceconfusion_p_mcff,seuil)
+  
+  MC_ps = sapply(nt.v,getMatriceconfusion_p_so,seuil)
+  table(MC_ps)
+  
+  MC_pvm = sapply(nt.v,getMatriceconfusion_pv_mcff,seuil)
+  table(MC_pvm)
+  
+  MC_pvs = sapply(nt.v,getMatriceconfusion_pv_so,seuil)
+  table(MC_pvs)
+  
+  list("MC_pm"=table(MC_pm),"MC_ps"=table(MC_ps),"MC_pvm"=table(MC_pvm),"MC_pvs"=table(MC_pvs))
+}
+
+getRC = function(seuil){
+  
+  MC_pvm = sapply(nt.v,getMatriceconfusion_pv_mcff,seuil)
+  t = table(MC_pvm)
+  c((t['vraiPositif']/(t['fauxPositif']+t['vraiPositif'])),(t['vraiN???gatif']/(t['fauxPositif']+t['vraiN???gatif'])))
+}
+
+getRC.mcff = function(seuil){
+  
+  MC_pvm = sapply(nt.v,getMatriceconfusion_pv_mcff,seuil)
+  t = table(MC_pvm)
+  c((t['vraiPositif']/(t['fauxPositif']+t['vraiPositif'])),(t['vraiN???gatif']/(t['fauxPositif']+t['vraiN???gatif'])))
+}
+
+getRC.so = function(seuil){
+  
+  MC_pvs = sapply(nt.v,getMatriceconfusion_pv_so,seuil)
+  t = table(MC_pvs)
+  c((t['vraiPositif']/(t['fauxPositif']+t['vraiPositif'])),(t['vraiN???gatif']/(t['fauxPositif']+t['vraiN???gatif'])))
+}
+
+
