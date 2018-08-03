@@ -47,6 +47,6 @@ Thumbs.db
 # Asset too Big
 /src/assets/rnaJson_pred
 
-/src/assets/Rscript
+#/src/assets/Rscript
 
 \.vs/
