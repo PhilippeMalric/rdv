@@ -67,7 +67,7 @@ export class RdvComponent implements OnInit {
   }
 
   click_api() {
-    this.majsrvService.getRNA(this.collection, this.exp, this.id).subscribe(data => {
+    this.majsrvService.getRNA(this.collection.trim(), this.exp.trim(), this.id.trim()).subscribe(data => {
       console.log("data: ", data[0])
       this.createVizualisation(data[0])
     })

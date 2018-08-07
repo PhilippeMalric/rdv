@@ -66,7 +66,7 @@ export class NCM_mcffComponent implements OnInit {
 
   click() {
 
-    this.ncms$ = this.ncmService.createNCMObservableFiltered_so(this.collection.trim(), this.skip, this.limit, this.cmin, this.stdDevMax);
+    this.ncms$ = this.ncmService.createNCMObservableFiltered_mcff(this.collection.trim(), this.skip, this.limit, this.cmin, this.stdDevMax);
 
   }
 
