@@ -15,8 +15,8 @@ export class RdvComponent implements OnInit {
   rnas:string[] = []
   svg: any;
   collection = "RNA_ZZZ_Auto_10SS_All_Filter__90__Pred_db_rdv_col_1_0_1_5_5_0_stat__A_0_5_S_1_0_stn_1_5_ed_5_0"
-  rna = "134"
-  id = ""
+  rna = ""
+  id = "134"
   exp = "ETERNA_R94_0000"
 
 
@@ -43,6 +43,12 @@ export class RdvComponent implements OnInit {
 
     this.rnas.push("ETERNA_R70_0000_31");
 
+
+
+    this.majsrvService.getRNA(this.collection.trim(), this.exp.trim(), this.id.trim()).subscribe(data => {
+      console.log("data: ", data[0])
+      this.createVizualisation(data[0])
+    })
     
   }
 
