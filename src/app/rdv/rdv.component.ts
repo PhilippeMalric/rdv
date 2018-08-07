@@ -14,10 +14,10 @@ export class RdvComponent implements OnInit {
 
   rnas:string[] = []
   svg: any;
-  collection = "RNA_Hi_stn_seuil_1_5__Filter__0_a_90__noPred__A_0_5_S_20_0_stn_0_5_ed_5_0"
-  rna = ""
+  collection = "RNA_ZZZ_Auto_10SS_All_Filter__90__Pred_db_rdv_col_1_0_1_5_5_0_stat__A_0_5_S_1_0_stn_1_5_ed_5_0"
+  rna = "134"
   id = ""
-  exp = ""
+  exp = "ETERNA_R94_0000"
 
 
   @ViewChild('chart') private chartContainer: ElementRef;
